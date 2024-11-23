@@ -1,0 +1,527 @@
+[
+    {
+        "idx": "9",
+        "response": "[;];[C]",
+        "response_text": "[[;]]",
+        "answer": "[[A];[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "12",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "15",
+        "response": "[[B];[B]]",
+        "response_text": "[[B];[B]]",
+        "answer": "[[B];[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "17",
+        "response": "```markdown\n[['!q & !r', 'q | r', 'p & q & r']]\n```",
+        "response_text": "[['!q & !r', 'q | r', 'p & q & r']]",
+        "answer": "[[!p&q];[p&!q];[!q&!r]]",
+        "is_correct": false
+    },
+    {
+        "idx": "18",
+        "response": "[[B1=(!p&q);B2=(!p&!q)|(p&q);B3=p&!q];\n [C1=(p&q);C2=(p&!q)|(!p&q);C3=p&!q];\n [D1=(q&r);D2=(q&!r)|(!q&r);D3=q&!r]]",
+        "response_text": "[[B1=(!p&q);B2=(!p&!q)|(p&q);B3=p&!q];\n [C1=(p&q);C2=(p&!q)|(!p&q);C3=p&!q];\n [D1=(q&r);D2=(q&!r)|(!q&r);D3=q&!r]]",
+        "answer": "[[C1=p&!q];[C2=(p&q)|(!p&!q)];[C3=!p&q];[D1=!q&!r];[D2=(!q&r)|(q&!r)];[D3=q&r]]",
+        "is_correct": false
+    },
+    {
+        "idx": "19",
+        "response": "[[B1&C2&D3::=::(!p&q)|(p&q)];\n[B1&C3&D2::=::p&!q];\n[B2&C1&D3::=::(!p&!q); (p & q)];\n[B2&C3&D1::=::(!p&!q); (q & !r)];\n[B3&C1&D2::=::!q&!r];\n[B3&C2&D1::=::q & r];\n[E::=::(!p & !q)|(p & q) & (q & !r) | (!q & !r)]",
+        "response_text": "[[[B1&C2&D3::=::(!p&q)|(p&q)]]",
+        "answer": "[[B1&C2&D3::=::0];[B1&C3&D2::=::!p&q&!r];[B2&C1&D3::=::0];[B2&C3&D1::=::0];[B3&C1&D2::=::p&!q&r];[B3&C2&D1::=::0];[E::=::(!p&q&!r)|(p&!q&r)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "21",
+        "response": "[[¬p∧¬q∧r),(¬p∧q∧r)]; [denoted: m0, M7]",
+        "response_text": "[[[¬p∧¬q∧r),(¬p∧q∧r)]]",
+        "answer": "[[pairedconjunctiveterms:¬p^¬q^r,¬p^q^r];[denoted:m1∨m3]]",
+        "is_correct": false
+    },
+    {
+        "idx": "26",
+        "response": "[[A];[[-(p∨r)∧(¬q∨r)∧(¬p∨q∨¬r)]]]",
+        "response_text": "[[A];[[-(p∨r)∧(¬q∨r)∧(¬p∨q∨¬r)]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "36",
+        "response": "[Plausible; 1]\n\nExplanation:\n1. Initialization:\n   - S0 = {}\n   - S1 = {{¬p ∨ q}, {p ∨ q}, {q}}\n   - S2 = {}\n\n2. Resolve clauses in S0 and S1:\n   - S1 contains a simple disjunctive clause (p ∨ q) which cannot be resolved with C1 (¬p ∨ q) in S0 since there are no common literals.\n   - C1 = (¬p ∨ q) ∧ (p ∨ q) ∧ (q) simplifies to (q).\n   - S2 contains C1 = (q).\n\n3. Resolve clauses in S1:\n   - S1 contains a simple disjunctive clause (q) which cannot be resolved with any other C1 in S0 or C2 in S2 since they are disjoint.\n\n4. Check S2:\n   - S2 contains no elements, so the algorithm terminates with an empty set, indicating a plausible assignment exists.\n\nThe cycle number is 1, as the algorithm terminates after the first iteration with an empty set.",
+        "response_text": "[[Plausible; 1]]",
+        "answer": "[[Implausible];[2]]",
+        "is_correct": false
+    },
+    {
+        "idx": "37",
+        "response": "[[ ]; [p∧q]; [p∧¬q∧r, q]];\n\nExplanation:\nIn the first set (S0), all simple disjunctive clauses are empty because there are no simple disjunctive clauses in initial input.\n\nIn the second set (S1), the first disjunctive clause is already considered since the empty clause cannot be resolved with itself. The remaining clauses to be grouped and resolved are [p∨q], [p∨¬q], [q∨¬r], and [q∨r].\n\nGrouping and resolving these, we find that the empty set [0] results from resolving [p∨q] and [q∨r]. Thus, the second set (S1) looks like this:\n[ ]; [ p∨q, q∨r]; [p∨¬q, ¬r];\n\nIn the second increment of the algorithm, no new elements are added to S0, S1, or S2 since these sets remain empty.",
+        "response_text": "[[]; [p∧q]; [p∧¬q∧r, q]]",
+        "answer": "[[{p,p∨q,p∨¬q,q∨¬r,q∨r}];[{p∨r,p∨¬r,q}];[∅]]",
+        "is_correct": false
+    },
+    {
+        "idx": "42",
+        "response": "```plaintext\n[[\"A\", \"B\", \"A AND B\"], [\"-\", \"-\", \"-\"], [\"-\", \"-\", \"-\"], [\"+\", \"+\", \"+\"]]\n```",
+        "response_text": "[[\"A\", \"B\", \"A AND B\"], [\"-\", \"-\", \"-\"], [\"-\", \"-\", \"-\"], [\"+\", \"+\", \"+\"]]",
+        "answer": "[[I1,I2,O];[+,+,+];[+,-,-];[-,+,-];[-,-,-]]",
+        "is_correct": false
+    },
+    {
+        "idx": "44",
+        "response": "- I1 (input)\n- I2 (input)\n- \"-\" (Not powered)\n\n```plaintext\n|-p: I1\n|-q: I2\n\n|-¬(p∧q): \n  |-p: I1 and -|q: I2 (Both input conditions are satisfied)\n  |-O: ± ()\n\n  |-¬(p∧q): \n  |-¬(p): I1 (p is not satisfied)\n  |-¬q: -I2 (q is satisfied)\n  |-O: I1 or -I2\n```\n\nOutput table:\n\n```\n|-p: I1\n|-q: I2\n|-¬(p∧q): -I1 or -I2\n```",
+        "response_text": "NULL",
+        "answer": "[[I1,I2,O];[+,+,-];[+,-,+];[-,+,+];[-,-,+]]",
+        "is_correct": false
+    },
+    {
+        "idx": "54",
+        "response": "[[Ex(F(x) & ∀y(G(y) → H(x, y)))]]",
+        "response_text": "[[Ex(F(x) & ∀y(G(y) → H(x, y)))]]",
+        "answer": "[[Ex(F(x)&Ay(G(y)⇒H(x,y)))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "55",
+        "response": "To symbolize the given propositions using 0-ary predicates, we follow the instructions provided:\n\n1. 2 is an even prime number.\n   - F(2) ∧ G(2)\n   \n2. If 2 is prime, then 4 is not prime.\n   - ¬G(4) ∈ Fr(2)\n   \n3. Only 2 is prime, for 6 to be prime.\n   - I)((2 ∈ F) ∧ (6 ∈ G) ∧ (2 ≠ 6 ∧ 6 ∈ F))\n\n4. Unless 6 is prime, 4 is prime.\n   - ¬F(6) ∨ G(4)\n\nThus, the solutions are :\n\n[[F(2) ∧ G(2)];[¬G(4) ∈ Fr(2)];[I)((2 ∈ F) ∧ (6 ∈ G) ∧ (2 ≠ 6 ∧ 6 ∈ F));][¬F(6) ∨ G(4)]];[[2];[4];[6];[6]];[[2];[F(6)]];[1]",
+        "response_text": "[[F(2) ∧ G(2)];[¬G(4) ∈ Fr(2)];[I)((2 ∈ F) ∧ (6 ∈ G) ∧ (2 ≠ 6 ∧ 6 ∈ F));][¬F(6) ∨ G(4)]]",
+        "answer": "[[F(2)&G(2)];[G(2)⇒~G(4)];[G(6)⇒G(2)];[~G(6)⇒G(4)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "57",
+        "response": "(1) [\"For all x in D, x uses chopsticks to eat\" represented as: AxF(x)]\n\n(2) [\"There exists some x in D, x does not live in the United States\" represented as: Ex(F(x) & ∼G(x))]",
+        "response_text": "[[\"For all x in D, x uses chopsticks to eat\" represented as: AxF(x)]]",
+        "answer": "[[Ax(F(x)⇒G(x))];[Ex(F(x)&∼G(x))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "59",
+        "response": "[[Ax][Ay][AxAy][∼H(x, y, z)]]",
+        "response_text": "[[Ax][Ay][AxAy][∼H(x, y, z)]]",
+        "answer": "[[AxAyEzH(x,y,z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "60",
+        "response": "[[Ex L(y) & Ey M(y, x0, |x - x0|) & Ey F(x, y) & Jy Eyng N(x, y, s) & Nx K | Ex L(y) & Ey M(y, x0, s) & Ey F(x, y) & Jy Eyng N(x, y, s) & Nx K ]].",
+        "response_text": "[[Ex L(y) & Ey M(y, x0, |x - x0|) & Ey F(x, y) & Jy Eyng N(x, y, s) & Nx K | Ex L(y) & Ey M(y, x0, s) & Ey F(x, y) & Jy Eyng N(x, y, s) & Nx K]]",
+        "answer": "[[Aε(L(ε)⇒(Eλ(L(λ)&(M(x,x0,λ)⇒N(x,x0,ε)))))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "63",
+        "response": "[a] 𝐸 = {\n- ℕ\n}\n\n[b] a′ = 0\n\n[c] fJ(x, y) = x + y\ngJ(x, y) = x * y\n\n[d] FJ(x, y) denotes x = y.\n\nThe implementation is:\n```json\n[∀xF(gJ(x, y), z) → ((y = 0) | (y + z = 0)) = {0 = 0 | 0 + (x * y) = 0}]\n```",
+        "response_text": "[[a]]",
+        "answer": "[[∀x(x*y=z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "64",
+        "response": "Under the interpretation J, the formula ∀xF(g(x,a),x)→F(x,y) is implemented as follows:\n∀𝑥∈ℕ[(f{(x+0)}(a),x)→(x=𝑥)]\nThis can be recognized as:\n∀𝑥∈ℕ[(𝑥,𝑥)→(𝑥=𝑥)]",
+        "response_text": "[[(f{(x+0)}(a),x)→(x=𝑥)]]",
+        "answer": "[[∀x(x*0=x)→(x=y)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "68",
+        "response": "To solve this problem, we need to apply the provided logical operations step by step according to the rules given.\n\n### Step 1: Determine the entity set\nFrom (a), we have:\n- The set of entities \\( E = \\text{natural numbers } \\mathbb{N} \\).\n\n### Step 2: Replace entity constants with their assignments\nFor (b), we have:\n- Assignment of a to 0.\n  \n### Step 3: Replace function symbols with their implementations\nFor (c), we have:\n- Function f = identity function (f(x, y) = x + y)\n- Function g = identity function (g(x, y) = x * y)\n\n### Step 4: Replace predicate symbols with their implementations\nFor (d), predicate F = equality (F(x, y) = x == y)\n\n### Step 5: Encode the formula ∃xF(f(x, x), g(x, x)) under J\nFirst, calculate the bounds of the existential quantifier:\n- Lower bound: 0 (from F(x, y), x > y -> y < x -> x < 0)\n- Upper bound: no upper bound because x can be any natural number (x > y for all y ∈ N)\n\nSo, the set of natural numbers for x and y is all natural numbers.\n\nNow, the formula becomes:\n\\[ \\exists x \\forall y (F_J(x, y) \\land F_J(y, x)) \\]\n\n### Final answer in [ ] format:\n\\[ [ \\exists x \\forall y (F_J(x, y) \\land F_J(y, x)) ] \\]",
+        "response_text": "[[\\exists x \\forall y (F_J(x, y) \\land F_J(y, x)) \\]]",
+        "answer": "[[∃x(x+x=x*x)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "69",
+        "response": "### Answer:\n(1) [∀x∈N; fJ(x, 2) ∧ gJ(x, 2)]  \n(2) [∃x∈N; fJ(x, 2) → ∃y∈N; fJ(y, 2) ∧ RJ(y, x)]",
+        "response_text": "[[∀x∈N; fJ(x, 2) ∧ gJ(x, 2)]]",
+        "answer": "[[∀x(2x=x)];[∃x(x+2=y)→∃y(y+2=x)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "70",
+        "response": "(a) The non-empty set of entities E = natural numbers N.\n(b) a′ = 2.\n(c) Functions fJ(x, y) = x + y, gJ(x, y) = x * y.\n(d) Predicate FJ(x, y) denotes x = y.\n\n### (1) ∀x∀y∃zF(f(x,y),z)\n1. Determining the entity set E:\n   The natural numbers N.\n2. Replacing entity constants and function symbols:\n   ∀x∀y∃z (f(x,y) + z)\n3. Replacing the predicate symbol:\n   ∀x∀y∃z (x + y + z)\n\nTherefore, the implementation of (1) under J is:\n\n[∀x∀y∃z (x + y + z);[]]\n\n### (2) ∃xF(f(x,y),g(x,z))\n1. Determining the entity set E:\n   The natural numbers N.\n2. Replacing entity constants and function symbols:\n   ∃x ∀y ∀z (f(x,y) = g(x,z))\n3. Replacing the predicate symbol:\n   ∃x ∀y ∀z (x = x * y)\n\nTherefore, the implementation of (2) under J is:\n\n[∃x ∀y ∀z (x = x * y);[]]",
+        "response_text": "[[∀x∀y∃z (x + y + z);[]]",
+        "answer": "[[∀x∀y∃z(x+y=z)];[∃x(x+y=x*z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "72",
+        "response": "[O;A;C;D]",
+        "response_text": "[[O;A;C;D]]",
+        "answer": "[[A];[B];[D];[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "75",
+        "response": "[SIP]",
+        "response_text": "[[SIP]]",
+        "answer": "[[SIP]]",
+        "is_correct": true
+    },
+    {
+        "idx": "81",
+        "response": "[Some products are top-grade.]",
+        "response_text": "[[Some products are top-grade.]]",
+        "answer": "[[Someproductsarenon-top-grade.]]",
+        "is_correct": false
+    },
+    {
+        "idx": "84",
+        "response": "[[All students are not non-patriots, Some students are patriots]]",
+        "response_text": "[[All students are not non-patriots, Some students are patriots]]",
+        "answer": "[[Somepatriotsarecollegestudents.]]",
+        "is_correct": false
+    },
+    {
+        "idx": "91",
+        "response": "[[III];[EIO]]",
+        "response_text": "[[III];[EIO]]",
+        "answer": "[[I];[AAA]]",
+        "is_correct": false
+    },
+    {
+        "idx": "93",
+        "response": "[IV; AEE]",
+        "response_text": "[[IV; AEE]]",
+        "answer": "[[IV];[AEE]]",
+        "is_correct": false
+    },
+    {
+        "idx": "94",
+        "response": "[II; AEO]",
+        "response_text": "[[II; AEO]]",
+        "answer": "[[II];[EIO]]",
+        "is_correct": false
+    },
+    {
+        "idx": "95",
+        "response": "A NEO (Existential Importing Non-Demonstrative) syllogism corresponds to Figure III with Mood AAIO.\n\nTherefore, the correct answer is [[III];[AAIO]].",
+        "response_text": "[[III];[AAIO]]",
+        "answer": "[[II];[AOO]]",
+        "is_correct": false
+    },
+    {
+        "idx": "98",
+        "response": "AII;OAO",
+        "response_text": "NULL",
+        "answer": "[[M];[S]]",
+        "is_correct": false
+    },
+    {
+        "idx": "102",
+        "response": "To symbolize the given modal propositions, let's follow the instructions carefully.\n\n1. **Fire and Life**:\n   The statement \"There must be either life or no life in a fire\" can be symbolized as follows:\n   - Let \\( p \\) denote \"there is life\" and \\( q \\) denote \"there is no life\".\n   - The negation of \\( q \\) is \\( !q \\).\n   - The statement can be interpreted as \\( p \\vee (!q) \\).\n   - Using the modality symbols, the proposition is:\n     \\[ [[p \\vee (!q)]] \\]\n\n2. **Game Outcome**:\n   The statement \"If Li Ming plays well, it is possible for him to win the championship\" can be symbolized as follows:\n   - Let \\( p \\) denote \"Li Ming plays well\" and \\( q \\) denote \"he wins the championship\".\n   - The negation of \\( q \\) is \\( !q \\).\n   - The statement can be interpreted as \\( p \\rightarrow q \\).\n   - Using the modality symbols, the proposition is:\n     \\[ [(p \\rightarrow q)] \\]\n\nThus, the answers in the required format are:\n\n1. For \"There must be either life or no life in a fire\":\n   \\[ [[];[]] [[p \\vee (!q)]] \\]\n\n2. For \"If Li Ming plays well, it is possible for him to win the championship\":\n   \\[ [[];[]] [(p \\rightarrow q)] \\]\n\nEnclosing the propositions in square brackets ensures clarity and spacing, as required by the format.",
+        "response_text": "[[p \\vee (!q)]]",
+        "answer": "[[#(p-!p)];[$(p>q)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "103",
+        "response": "[[1; A];[1; B]]",
+        "response_text": "[[1; A];[1; B]]",
+        "answer": "[[A];[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "110",
+        "response": "[D]\n\nExplanation:\nThe given statement \"Team A did not win the championship\" can be represented as $!$champion\\_A. The truth modal reasoning formula 16 states that \"¬!p → !p\", which translates to \"If it is not the case that ¬p is true, then p is false\". So, from $!$champion\\_A, we can infer !champion\\_A, meaning \"Team A cannot win the championship\". Thus, the correct answer is D.",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "117",
+        "response": "[[4]]",
+        "response_text": "[[4]]",
+        "answer": "[[3]]",
+        "is_correct": false
+    },
+    {
+        "idx": "118",
+        "response": "[B/C]\n\nThe reasoning formula 9 states that \"Citizens all have the duty to protect national property\" implies that citizens cannot not protect national property. Thus, citizens are allowed to protect national property, making the answer **[B/C]**.",
+        "response_text": "[[B/C]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "119",
+        "response": "[D]",
+        "response_text": "[[D]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "128",
+        "response": "[D]",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "137",
+        "response": "[C]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "138",
+        "response": "[C]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "143",
+        "response": "[[ c1 || c2 ]φ]",
+        "response_text": "[[[ c1 || c2]]",
+        "answer": "[[[c1+c2]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "144",
+        "response": "[ c* ]φ \n\nExplanation:\nAlice's belief can be logically expressed as the loop command `c*` executing until the proposition `φ` is true. According to the Loop Rule, this is equivalent to `φ ∨ ([ c* ]φ)`, but since she believes it will continue executing until `φ` is true, the executable expression is `φ ∨ [ c* ]φ`. Again, this adheres to the histories explicit rule (`[ c* ]φ ∨ [ h ][ c* ]φ`), so the simplest form ensures that we have the fewest occurrences of the required symbols, hence the result.",
+        "response_text": "[[c*]]",
+        "answer": "[[[c*]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "146",
+        "response": "To address this question, we need to use the appropriate logical rules to represent Alice's belief that the loop command \\( c^* \\) will persist in execution until the proposition \\( \\phi \\) is true.\n\nFirst, we need to identify the relevant properties and objects in Alice's belief:\n- \\( c^* \\) is the loop command.\n- \\( \\phi \\) is the proposition that must be true for the loop to continue.\n\nAlice's core belief can be summarized as \\( c^* \\) (loop command) will persist in execution until condition \\( \\phi \\) is true, which is represented as \\( \\phi \\). However, this description needs to be formalized with the necessary logical statements.\n\nBy applying the rules given, if \\( \\phi \\) is an event (a proposition), Alice's belief means that no matter what, the loop command will eventually reach the point where \\( \\phi \\) is true. Ideally, the script of execution should periodically check and see if it has concluded its goal (state \\( \\phi \\)) before recursing. However, in the absence of a fulfilling script to check continuous sightly proposition, Alice's belief remains that \\( \\phi \\) is true.\n\nWe can abstract Alice's belief into a conclusion predicate: \\( c^* \\) (loop command) is guaranteed to halt with truth predicate \\( \\phi \\).\n\nHence, the representation of her belief using the provided rules and notation framework is \\( ⟨ c^* ⟩ ⟨ \\phi ⟩ \\).\n\nThis indicates that Alice's mind process believes that the loop command \\( c^* \\) will never become false regarding hypothesis \\( \\phi \\). Thus, the true understanding aligns with \\( \\phi \\) holding conditionally until the state satisfies it.",
+        "response_text": "NULL",
+        "answer": "[[[c*]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "150",
+        "response": "[D/F/G/H/I/K/L]\n\nThe logic rule describes a situation where the outcome `φ` depends on the satisfaction of a resource limitation `R`. This detail aligns with:\n\n- **Choice Rule**: The result depends on whether `c` is executed in `c*` form.\n- **Concurrency Rule**: Execution of `c` and `c*` may lead to the outcome being true.\n- **Resource Limitation Rule**: Execution of `c` is contingent upon `R` being satisfied.\n- **History Rule**: Execution depends on historical command `R`.\n- **Prediction Rule**: The system predicts the outcome based on future conditions defined by `c+Hφ`.\n\nTherefore, the rules A, D, E, H, I, K, and L are applicable. If the context needs to distinguish between `History Rule`, `Concurrency Rule`, `Resource Limitation Rule`, or `Priority Rule` more specifically, these can also be included in the final answer.",
+        "response_text": "[[D/F/G/H/I/K/L]]",
+        "answer": "[[H]]",
+        "is_correct": false
+    },
+    {
+        "idx": "156",
+        "response": "```plaintext\n[forall e_i in S, P(e_i); forall e in S, P(e)]\n```",
+        "response_text": "[[forall e_i in S, P(e_i); forall e in S, P(e)]]",
+        "answer": "[[P(a1),P(a2),P(a3)];[forallainS,P(a)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "163",
+        "response": "B",
+        "response_text": "NULL",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "164",
+        "response": "[B/C/D/E]",
+        "response_text": "[[B/C/D/E]]",
+        "answer": "[[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "165",
+        "response": "[❚]][",
+        "response_text": "[[❚]]",
+        "answer": "[[E]]",
+        "is_correct": false
+    },
+    {
+        "idx": "166",
+        "response": "[ MagicMock ]",
+        "response_text": "[[MagicMock]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "168",
+        "response": "[B/C/D/E]",
+        "response_text": "[[B/C/D/E]]",
+        "answer": "[[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "170",
+        "response": "[A/C/E]",
+        "response_text": "[[A/C/E]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "172",
+        "response": "[B]",
+        "response_text": "[[B]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "175",
+        "response": "A/B",
+        "response_text": "NULL",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "176",
+        "response": "[B]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "177",
+        "response": "[**B**]",
+        "response_text": "[[**B**]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "180",
+        "response": "A. -⌘ attribute",
+        "response_text": "NULL",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "181",
+        "response": "We will apply the U-Generalization Rule to estimate the proportion of the whole class that would get an A.\n\n1. From the sample, we know that all 10 students who were selected got an A.\n2. According to the U-Generalization Rule, if all individuals in the sample possess a certain attribute, we can infer that all individuals in the population may also possess that attribute.\n3. Therefore, the proportion of students who got an A in the class with 10 students is 100%. Since U-Generalization applies only to exactly 10 students getting A, we infer that in the whole class of 50 students, approximately 100% would get an A.\n\nThus, the answer is:\n\n[[100%]]",
+        "response_text": "[[100%]]",
+        "answer": "[[100%]]",
+        "is_correct": true
+    },
+    {
+        "idx": "184",
+        "response": "\\[ \\left[\\frac{20\\%}{20}\\right] \\]",
+        "response_text": "[[\\left[\\frac{20\\%}{20}\\right]]",
+        "answer": "[[100%]]",
+        "is_correct": false
+    },
+    {
+        "idx": "187",
+        "response": "For the given scenario, we can use the C-Reasoning Rule to infer the proportions of satisfied students in the two schools and understand why the whole can be symbolised based on the information provided.\n\n1. **For School X:**\n   - Number of students: 200\n   - Number of satisfied students: 180\n   - Proportion of satisfied students: \\( \\frac{180}{200} = 0.9 \\)\n\n2. **For School Y:**\n   - Number of students: 300\n   - Number of satisfied students: 210\n   - Proportion of satisfied students: \\( \\frac{210}{300} = 0.7 \\)\n\nUsing the C-Reasoning Rule:\n- We know that the proportion of satisfied students in School X is higher than that in School Y (\\(0.9 > 0.7\\)).\n\nTherefore, based on the C-Reasoning Rule, the whole can be symbolised to understand why the proportion of satisfied students might be higher in School X compared to School Y. This can be interpreted as:\n\n\\[\nC(F, 0.9, 0.7)\n\\]\n\nThis notation indicates that the two samples (School X and School Y) likely come from populations with different proportion levels of 'student satisfaction'.",
+        "response_text": "[[C(F, 0.9, 0.7)\n\\]]",
+        "answer": "[[IfC(F,180/200,210/300),thenPr(F,P1)≈Pr(F,P2)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "197",
+        "response": "[C]",
+        "response_text": "[[C]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "198",
+        "response": "Yes.",
+        "response_text": "NULL",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "199",
+        "response": "[B/C]",
+        "response_text": "[[B/C]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "201",
+        "response": "[A]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "202",
+        "response": "[B]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "210",
+        "response": "[B/C]",
+        "response_text": "[[B/C]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "214",
+        "response": "[A/B/C]",
+        "response_text": "[[A/B/C]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "219",
+        "response": "[A/B/C]\n\nExplanation:\nThe statement \"Xiao Wang gives flowers to a nurse\" is a simplified form of knowledge that implies a larger, more specific piece of information, namely that Xiao Wang gives flowers to a female nurse. This incorporates steps from C% Principle as it does not directly involve minimalization or the Speaker's Criterion, but rather the Hearing's Inference which is about the extent of the information that needs to be expanded. CB! is used for the embellishment of information, not the contraction, so it does not apply here.",
+        "response_text": "[[A/B/C]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "222",
+        "response": "A/Q",
+        "response_text": "NULL",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "228",
+        "response": "A",
+        "response_text": "NULL",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "233",
+        "response": "[D]",
+        "response_text": "[[D]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "236",
+        "response": "[D]\n\nThe argumentation method used in this problem is directly using specific instances (epitome) to argue for the truth of the proposition p. Here, we are proving that if either p or q or r is true, then p must be true. Let's analyze the steps:\n\n(1) To prove: p  \n(2) Assume: Either p or q or r  \n(3) Proof: Either p or q or r  \n(4) Not q  \n(5) Not r  \n(6) Therefore, p\n\nThe assumption and proof at steps (2) and (3) directly establishes that if p is false, then both q and r must be false for the disjunction \"Either p or q or r\" to hold true. This is a kind of direct argumentation using specific instances, which is similar to the E+ Method. However, the notation of this problem suggest that not all direct argumentation methods are explicitly labeled as such, this could mean that we need to rejustify our selection by detailed logical arguments. Yet, it clearly fits with the given E+ Method for using specific instances.",
+        "response_text": "[[D]]",
+        "answer": "[[F]]",
+        "is_correct": false
+    },
+    {
+        "idx": "239",
+        "response": "[D/F]",
+        "response_text": "[[D/F]]",
+        "answer": "[[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "243",
+        "response": "[D/G/J]",
+        "response_text": "[[D/G/J]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "246",
+        "response": "[F/G/H]",
+        "response_text": "[[F/G/H]]",
+        "answer": "[[F]]",
+        "is_correct": false
+    },
+    {
+        "idx": "247",
+        "response": "[C/D/G]",
+        "response_text": "[[C/D/G]]",
+        "answer": "[[G]]",
+        "is_correct": false
+    }
+]

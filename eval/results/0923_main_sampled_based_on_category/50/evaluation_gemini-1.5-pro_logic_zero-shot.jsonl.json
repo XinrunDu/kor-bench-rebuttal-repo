@@ -1,0 +1,877 @@
+[
+    {
+        "idx": "1",
+        "response": "[[p1&p2]; [p3||p4]; [(p3&~p4)||(~p3&p4)]] \n",
+        "response_text": "[[p1&p2]; [p3||p4]; [(p3&~p4)||(~p3&p4)]]",
+        "answer": "[[p1&p2];[p3||p4];[(p3&~p4)||(~p3&p4)]]",
+        "is_correct": true
+    },
+    {
+        "idx": "2",
+        "response": "[[p2=::>p1];[p1=::>~p2];[p1=::>~p2];[p1=p2]] \n",
+        "response_text": "[[p2=::>p1];[p1=::>~p2];[p1=::>~p2];[p1=p2]]",
+        "answer": "[[p1=::>p2];[p1=::>~p2];[~p2=::>p1];[p1=p2]]",
+        "is_correct": false
+    },
+    {
+        "idx": "4",
+        "response": "[[F: ✓|x|✓]; [F: x|✓|✓, ✓|✓|x]; [F: x|x|✓, x|✓|✓]] \n",
+        "response_text": "[[F: ✓|x|✓]; [F: x|✓|✓, ✓|✓|x]; [F: x|x|✓, x|✓|✓]]",
+        "answer": "[[F:x|✓|✓];[F:x|✓|x,✓|✓|x,✓|x|✓,✓|x|x];[F:✓|x|x,✓|x|✓]]",
+        "is_correct": false
+    },
+    {
+        "idx": "6",
+        "response": "[[D]] \n",
+        "response_text": "[[D]]",
+        "answer": "[[E]]",
+        "is_correct": false
+    },
+    {
+        "idx": "9",
+        "response": "[[A];[A]] \n",
+        "response_text": "[[A];[A]]",
+        "answer": "[[A];[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "11",
+        "response": "[[!(!p | q) | r]] \n",
+        "response_text": "[[!(!p | q) | r]]",
+        "answer": "[[(!(!p∣q))∣r]]",
+        "is_correct": false
+    },
+    {
+        "idx": "13",
+        "response": "### Answer:\n\n1. **[[** ! ( p > ( p | q ) ) & r **] ; [**  (p & !q) & r **]**\n\n   **Derivation Steps:**\n\n   1.  **Original Expression:** !(p > (p | q)) & r \n   2.  **Apply Equivalence (10):** !(!(p) | (p | q)) & r\n   3.  **Apply Equivalence (6):** (!!p & !(p | q)) & r\n   4.  **Apply Equivalence (1):** (p & !(p | q)) & r\n   5.  **Apply Equivalence (6):** (p & (!p & !q)) & r\n   6.  **Apply Equivalence (4):** ((p & !p) & !q) & r\n   7.  **Apply Equivalence (3):**  (!q & (p & !p)) & r\n   8.  **Apply Equivalence (4):**  ((!q & p) & !p) & r\n   9.  **Apply Equivalence (3):**  ((p & !q) & !p) & r\n   10. **Apply Equivalence (4):**  (p & !q) & (!p & r)\n   11. **Apply Equivalence (3):**  (p & !q) & (r & !p)\n   12. **Apply Equivalence (3):**  **(p & !q) & r**\n\n2. **[[** p & (((p | q) & !p) > q) **] ; [** p **]**\n\n   **Derivation Steps:**\n\n   1.  **Original Expression:** p & (((p | q) & !p) > q)\n   2.  **Apply Equivalence (10):** p & (!((p | q) & !p) | q)\n   3.  **Apply Equivalence (6):** p & (!(p | q) | !!p | q) \n   4.  **Apply Equivalence (1):** p & (!(p | q) | p | q)\n   5.  **Apply Equivalence (6):** p & ((!p & !q) | p | q)\n   6.  **Apply Equivalence (5):** p & (((!p | p) & (!q | p)) | q)\n   7.  **Apply Equivalence (8):** p & ((1 & (!q | p)) | q)\n   8.  **Apply Equivalence (7):** p & ((!q | p) | q)\n   9.  **Apply Equivalence (4):** p & (!q | (p | q))\n   10. **Apply Equivalence (3):** p & ((p | q) | !q)\n   11. **Apply Equivalence (7):** p & (p | q)\n   12. **Apply Equivalence (7):** **p** \n",
+        "response_text": "[[[** ! ( p > ( p | q ) ) & r **]]",
+        "answer": "[[0];[p]]",
+        "is_correct": false
+    },
+    {
+        "idx": "14",
+        "response": "[[A];[B]] \n\n**Explanation:**\n\n**Sub-question 1:**\n\n1. **Analyze the expression:** \n   We need to prove: `p ::=:: (p & q) | (p & !q)`\n\n2. **Apply Basic Equivalences:**\n   - Starting with the right side: `(p & q) | (p & !q)`\n   - Apply Distributive law (5): `p & (q | !q)`\n   - Apply Equivalence (8): `p & 1`\n   - Any proposition 'ANDed' with True (1) is itself: `p`\n\n   Therefore, `p ::=:: (p & q) | (p & !q)` holds true.\n\n**Sub-question 2:**\n\n1. **Analyze the expression:**\n    We need to check if: `(p & !q) | (!p & q) ::=:: (p | q) & (!(p | q))`\n\n2. **Apply Basic Equivalences:**\n    - Focus on the right side: `(p | q) & (!(p | q))`\n    - This matches the form of Equivalence (9): `A & !A ::=:: 0`\n\n    - The right side simplifies to `0` (False). \n    - The left side `(p & !q) | (!p & q)` is not always false (for example, it's true if p is true and q is false).\n\n    Therefore,  `(p & !q) | (!p & q) ::=:: (p | q) & (!(p | q))` is not valid. \n",
+        "response_text": "[[A];[B]]",
+        "answer": "[[A];[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "15",
+        "response": "[[A];[A]] \n\n**Explanation:**\n\n**(1) ((p>q)&(p>r))::=::(p>(q|r))**\n\n**Step 1: Eliminate the implication symbol (`>`) using equivalence (10).**\n\n- (p > q) & (p > r)  ::=::  (!p | q) & (!p | r)\n- p > (q | r)  ::=::  !p | (q | r)\n\n**Step 2: Apply the distributive law (equivalence 5) to the left side.**\n\n- (!p | q) & (!p | r)  ::=::  !p | (q & r)\n\n**Step 3: Compare both sides.**\n\n- !p | (q & r)  ::=::  !p | (q | r)\n\nSince 'and' (&) and 'or' (|) are not equivalent, the equivalence does not hold. However, looking closely at the question, we are asked to determine if the given equivalence is valid, not if it's true in all cases. The provided expression represents a valid equivalence formula in propositional logic. \n\nTherefore, the answer to (1) is A.\n\n**(2) !(p=q)::=::(p|q)&!(p&q)**\n\n**Step 1: Eliminate the equivalence symbol (`=`) using equivalence (11).**\n\n- !(p = q)  ::=::  !((p > q) & (q > p))\n\n**Step 2: Eliminate the implication symbol (`>`) using equivalence (10).**\n\n- !((p > q) & (q > p))  ::=::  !((!p | q) & (!q | p))\n\n**Step 3: Apply De Morgan's Law (equivalence 6) twice.**\n\n- !((!p | q) & (!q | p))  ::=::  !(!p | q) | !(!q | p)  ::=::  (!!p & !q) | (!!q & !p)\n\n**Step 4: Apply double negation (equivalence 1).**\n\n- (!!p & !q) | (!!q & !p)  ::=::  (p & !q) | (q & !p)\n\n**Step 5: Compare both sides.**\n\n- (p & !q) | (q & !p)  ::=::  (p | q) & !(p & q)\n\nWhile the presentation differs, both sides of the equivalence express the same logical relationship: either 'p' is true and 'q' is false, or 'q' is true and 'p' is false. This is the definition of exclusive or (XOR).\n\nTherefore, the answer to (2) is A. \n",
+        "response_text": "[[A];[A]]",
+        "answer": "[[B];[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "16",
+        "response": "[[A]; [A]] \n\n**Explanation:**\n\n**(1) (p⇓q)⇓r::=::p⇓(q⇓r)**\n\n- **Left side:**\n    - (p⇓q) ⇓ r \n    - Using (16), (p⇓q) can be written as !p & !q\n    - Substituting: (!p & !q) ⇓ r\n    - Using (16) again: !(!p & !q) & !r\n    - Using (6): (p | q) & !r \n- **Right side:**\n    - p ⇓ (q⇓r)\n    - Using (16): p ⇓ (!q & !r)\n    - Using (16) again: !p & !(!q & !r)\n    - Using (6): !p & (q | r)\n    - Using (5): (!p & q) | (!p & r)\n- **Comparing both sides:**\n    -  (p | q) & !r  is not equivalent to  (!p & q) | (!p & r) \n\nTherefore, (p⇓q)⇓r is **not** equivalent to p⇓(q⇓r).  However, because of the negation steps involved, the truth values *will* be equivalent.\n\n**(2) (p⇑q)⇑r::=::p⇑(q⇑r)**\n\n- **Left side:**\n    - (p⇑q) ⇑ r\n    - Using (15): (!p | !q) ⇑ r\n    - Using (15) again: !( !p | !q) | !r\n    - Using (6): (p & q) | !r\n- **Right side:**\n    - p ⇑ (q⇑r)\n    - Using (15): p ⇑ (!q | !r)\n    - Using (15) again: !p | !(!q | !r)\n    - Using (6): !p | (q & r)\n    - Using (5): (!p | q) & (!p | r)\n- **Comparing both sides:**\n    - (p & q) | !r is not equivalent to (!p | q) & (!p | r)\n\nTherefore, (p⇑q)⇑r is **not** equivalent to p⇑(q⇑r). However, because of the negation steps involved, the truth values *will* be equivalent. \n",
+        "response_text": "[[A]; [A]]",
+        "answer": "[[B];[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "18",
+        "response": "[[C1=p&!q];[C2=(!p&q)|(p&!q)];[C3=!p&q];[D1=!q&!r];[D2=((!q&r)|(q&!r))];[D3=q&r]]. \n",
+        "response_text": "[[C1=p&!q];[C2=(!p&q)|(p&!q)];[C3=!p&q];[D1=!q&!r];[D2=((!q&r)|(q&!r))];[D3=q&r]]",
+        "answer": "[[C1=p&!q];[C2=(p&q)|(!p&!q)];[C3=!p&q];[D1=!q&!r];[D2=(!q&r)|(q&!r)];[D3=q&r]]",
+        "is_correct": false
+    },
+    {
+        "idx": "19",
+        "response": "[[B1&C2&D3::=::(!p&q)&((p&q)|( !p&!q))&(q&r)::=::(!p&q&(p&q))|(!p&q&(!p&!q))&(q&r)::=::0|(!p&q)&(q&r)::=::!p&q&r];[B1&C3&D2::=::(!p&q)&(!p&q)&((!q&r)|(q&!r))::=::!p&q&((!q&r)|(q&!r))::=::(!p&q&(!q&r))|(!p&q&(q&!r))::=::0|0::=::0];[B2&C1&D3::=::((!p&!q)|(p&q))&(p&!q)&(q&r)::=::((!p&!q)&(p&!q))|((p&q)&(p&!q))&(q&r)::=::0|0&(q&r)::=::0];[B2&C3&D1::=::((!p&!q)|(p&q))&(!p&q)&(!q&!r)::=::(!p&q)&(!q&!r)::=::!p&q&!r];[B3&C1&D2::=::(p&!q)&(p&!q)&((!q&r)|(q&!r))::=::(p&!q)&((!q&r)|(q&!r))::=::(p&!q&(!q&r))|(p&!q&(q&!r))::=::p&!q&r|0::=::p&!q&r];[B3&C2&D1::=::(p&!q)&((p&q)|( !p&!q))&(!q&!r)::=::(p&!q)&(!q&!r)::=::p&!q&!r];[E::=::(B1&C2&D3)|(B1&C3&D2)|(B2&C1&D3)|(B2&C3&D1)|(B3&C1&D2)|(B3&C2&D1)::=::(!p&q&r)|0|0|(!p&q&!r)|(p&!q&r)|(p&!q&!r)::=:: (!p&q&r)|(!p&q&!r)|(p&!q&r)|(p&!q&!r)::=::((!p&q)&(r|!r))|((p&!q)&(r|!r))::=::(!p&q)|(p&!q)]]. \n",
+        "response_text": "[[B1&C2&D3::=::(!p&q)&((p&q)|( !p&!q))&(q&r)::=::(!p&q&(p&q))|(!p&q&(!p&!q))&(q&r)::=::0|(!p&q)&(q&r)::=::!p&q&r];[B1&C3&D2::=::(!p&q)&(!p&q)&((!q&r)|(q&!r))::=::!p&q&((!q&r)|(q&!r))::=::(!p&q&(!q&r))|(!p&q&(q&!r))::=::0|0::=::0];[B2&C1&D3::=::((!p&!q)|(p&q))&(p&!q)&(q&r)::=::((!p&!q)&(p&!q))|((p&q)&(p&!q))&(q&r)::=::0|0&(q&r)::=::0];[B2&C3&D1::=::((!p&!q)|(p&q))&(!p&q)&(!q&!r)::=::(!p&q)&(!q&!r)::=::!p&q&!r];[B3&C1&D2::=::(p&!q)&(p&!q)&((!q&r)|(q&!r))::=::(p&!q)&((!q&r)|(q&!r))::=::(p&!q&(!q&r))|(p&!q&(q&!r))::=::p&!q&r|0::=::p&!q&r];[B3&C2&D1::=::(p&!q)&((p&q)|( !p&!q))&(!q&!r)::=::(p&!q)&(!q&!r)::=::p&!q&!r];[E::=::(B1&C2&D3)|(B1&C3&D2)|(B2&C1&D3)|(B2&C3&D1)|(B3&C1&D2)|(B3&C2&D1)::=::(!p&q&r)|0|0|(!p&q&!r)|(p&!q&r)|(p&!q&!r)::=:: (!p&q&r)|(!p&q&!r)|(p&!q&r)|(p&!q&!r)::=::((!p&q)&(r|!r))|((p&!q)&(r|!r))::=::(!p&q)|(p&!q)]]",
+        "answer": "[[B1&C2&D3::=::0];[B1&C3&D2::=::!p&q&!r];[B2&C1&D3::=::0];[B2&C3&D1::=::0];[B3&C1&D2::=::p&!q&r];[B3&C2&D1::=::0];[E::=::(!p&q&!r)|(p&!q&r)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "20",
+        "response": "[[**Hangzhou**]; [entirely correct: **C**]; [partially correct: **A**]; [entirely incorrect: **B**]].\n\n**Explanation:**\n\nWe are given that E ::=:: (!p&q&!r)|(p&!q&r) \n\nSince only one of p, q, and r can be true:\n\n*  If p is true, then !p is false, making both sides of the OR false. \n* If q is true, then !q is false, again making both sides of the OR false.\n\nTherefore, the only way E can be true is if **r is true** (Professor Wang is from Hangzhou). \n\nLet's examine why this leads to the conclusion about who was right:\n\n* **Person C (D1 = !q&!r):**  If r is true, then !r is false, making D1 false. However, since only one person can be entirely correct, and we'll see others fit the other categories,  C must be the person who got everything right.\n* **Person A (B2 = (!p&!q)|(p&q)):** If r is true, and only one can be true, then p and q are false. This makes the second part of B2 false, but the first part true (!p&!q). Therefore, Person A got their statements partially correct.\n* **Person B (C3 = !p&q):** If r is true, then q is false, making C3 false. Since Person B is neither entirely correct nor partially correct, they must be the one who got everything wrong. \n",
+        "response_text": "[[**Hangzhou**]; [entirely correct: **C**]; [partially correct: **A**]; [entirely incorrect: **B**]]",
+        "answer": "[[Shanghai];[entirelycorrect:A];[partiallycorrect:C];[entirelyincorrect:B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "21",
+        "response": "[[paired conjunctive terms: ¬p∧¬q∧r, ¬p∧q∧r]; [denoted: m1, m3]] \n",
+        "response_text": "[[paired conjunctive terms: ¬p∧¬q∧r, ¬p∧q∧r]; [denoted: m1, m3]]",
+        "answer": "[[pairedconjunctiveterms:¬p^¬q^r,¬p^q^r];[denoted:m1∨m3]]",
+        "is_correct": false
+    },
+    {
+        "idx": "24",
+        "response": "[[E]] \n\n**Explanation:**\n\n1. **Identify relevant properties and objects:**\n    - The formula: (¬p∧¬q∧r)∨ (p∧q∧r)\n    - Propositional variables: p, q, r\n    - We need to determine its principal disjunctive normal form and analyze the indices of included paired conjunctive terms.\n\n2. **Apply the logical operations:**\n    - The given formula is already in disjunctive normal form.\n    - Let's analyze each term:\n        - (¬p∧¬q∧r): True assignment is 001, corresponding to hexadecimal 1, denoted as m1.\n        - (p∧q∧r): True assignment is 111, corresponding to hexadecimal 7, denoted as m7. \n    - Therefore, the principal disjunctive normal form is m1 ∨ m7.\n\n3. **Format the output:**\n    - The indices of included paired conjunctive terms are 1 and 7, which are both odd.\n    - Therefore, the formula is an **all-odd formula**.\n\nTherefore, the correct answer is **[[E]]**. \n",
+        "response_text": "[[E]]",
+        "answer": "[[E]]",
+        "is_correct": true
+    },
+    {
+        "idx": "25",
+        "response": "[[A];[M0, M1, M2, M4, M8]] \n",
+        "response_text": "[[A];[M0, M1, M2, M4, M8]]",
+        "answer": "[[A];[m0∨m1∨m3∨m5∨m7]]",
+        "is_correct": false
+    },
+    {
+        "idx": "26",
+        "response": "[[B]] \n\n**Explanation:**\n\nThe given formula, (p∨r)∧(¬q∨r)∧(¬p∨q∨¬r), is not in principal disjunctive normal form or principal conjunctive normal form. Let's analyze why:\n\n1. **Principal Disjunctive Normal Form (PDNF):**  PDNF requires the formula to be a disjunction of paired conjunctive terms. A paired conjunctive term must include all propositional variables (or their negations) exactly once, arranged in ascending order. The given formula has conjunctive clauses but doesn't fulfill the criteria for paired conjunctive terms:\n    *  `(p∨r)` is missing `q` or `¬q`\n    * `(¬q∨r)` is missing `p` or `¬p`\n    * `(¬p∨q∨¬r)`  doesn't have all variables in their negated or non-negated form arranged in order. \n\n2. **Principal Conjunctive Normal Form (PCNF):** PCNF requires the formula to be a conjunction of paired disjunctive terms. Similar to the above, the given formula's disjunctive clauses don't meet the requirements of paired disjunctive terms.\n\n**Therefore, the given formula does not conform to either the principal disjunctive normal form or the principal conjunctive normal form.** \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "28",
+        "response": "[[1]] \n\n**Explanation:**\n\n1. **Basic Form:** A basic formula must include m0 in its principal disjunctive normal form.  m0 corresponds to the binary 0000 for 4 variables, meaning all variables are negated in the conjunctive term (¬p∧¬q∧¬r∧¬s).\n\n2. **All-Even Form:** An all-even formula only includes paired conjunctive terms with even indices.\n\n3. **Combining the Constraints:**  Since we need both m0 and only even indices, the only possible principal disjunctive normal form is \"m0\". \n\nTherefore, there is only **one** formula that satisfies both conditions. \n",
+        "response_text": "[[1]]",
+        "answer": "[[128]]",
+        "is_correct": false
+    },
+    {
+        "idx": "31",
+        "response": "[[No]]. \n\n**Explanation:**\n\nResolution requires one literal to appear as itself in one clause and its negation in the other.  Neither `p` nor `q` nor `r`  meet this requirement in the given `C1` and `C2`. \n",
+        "response_text": "[[No]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "34",
+        "response": "```\n[[¬p ∨ q ∨ ¬s]]\n```\n\n**Explanation:**\n\n1. **Identify Literals:** \n   -  In C1: ¬p, q, r are literals.\n   -  In C2: p, ¬r, ¬s are literals.\n\n2. **Find Complementary Literals:**\n   - 'r' in C1 and '¬r' in C2 are complements.\n\n3. **Apply Resolution (dispel):**\n   - Remove 'r' from C1 and '¬r' from C2.\n   - Combine the remaining literals: ¬p ∨ q ∨ ¬s\n\nTherefore, `dispel(C1, C2) = ¬p ∨ q ∨ ¬s` \n",
+        "response_text": "[[¬p ∨ q ∨ ¬s]]",
+        "answer": "[[q∨r∨¬r∨¬s];[¬p∨q∨p∨¬s]]",
+        "is_correct": false
+    },
+    {
+        "idx": "36",
+        "response": "### Answer:\n\n[[Plausible];[2]]\n\n### Reasoning:\n\n**Initialization:**\n- S0 = {}\n- S1 = { ¬p ∨ q, p ∨ q, q }\n- S2 = {}\n\n**Cycle 1:**\n\n1. **Resolve clauses in S0 and S1:**  (S0 is empty, so this step is skipped)\n\n2. **Resolve clauses in S1:**\n    - Consider ¬p ∨ q and p ∨ q: \n        -  dispel(¬p ∨ q, p ∨ q) = q ∨ q = q \n        -  q is already in S1, so we don't add it to S2.\n    - No other resolutions are possible within S1.\n\n3. **Check S2:** \n    - S2 is empty.\n    - Move S1 to S0: S0 = { ¬p ∨ q, p ∨ q, q }\n    - Move S2 to S1: S1 = {} \n    - Clear S2: S2 = {}\n\n**Cycle 2:**\n\n1. **Resolve clauses in S0 and S1:** (S1 is empty, so this step is skipped)\n\n2. **Resolve clauses in S1:** (S1 is empty, so this step is skipped)\n\n3. **Check S2:**\n    - S2 is empty.\n    - Since S2 is empty and we have already completed a cycle, the algorithm outputs **\"Plausible\"** and terminates. \n\nThe algorithm iterates **2 cycles** before terminating. \n",
+        "response_text": "[[Plausible];[2]]",
+        "answer": "[[Implausible];[2]]",
+        "is_correct": false
+    },
+    {
+        "idx": "40",
+        "response": "[[Plausible];[2]] \n\n**Explanation:**\n\n**Initialization:**\n* S0 = {}\n* S1 = { (p∨q), (p∨¬q), (¬p∨r) }\n* S2 = {}\n\n**Cycle 1:**\n\n1. **Resolve clauses in S0 and S1:** (Not applicable as S0 is empty) \n2. **Resolve clauses in S1:**\n   *  `dispell((p∨q), (p∨¬q)) = (p∨p) = (p)` \n      *  Add (p) to S2 as it's not in S0 or S1\n   *  `dispell((p∨q), (¬p∨r)) = (q∨r)` \n       * Add (q∨r) to S2\n   *  `dispell((p∨¬q), (¬p∨r)) = (¬q∨r)` \n       * Add (¬q∨r) to S2\n3. **Check S2:** \n    * S2 is not empty.\n    * S0 = S1 = { (p∨q), (p∨¬q), (¬p∨r) } \n    * S1 = S2 = { (p), (q∨r), (¬q∨r) }\n    * S2 = {}\n\n**Cycle 2:**\n\n1. **Resolve clauses in S0 and S1:**\n    *  `dispell((p∨q), (p)) = (q)`\n        * Add (q) to S2\n    *  `dispell((p∨¬q), (p)) = (¬q)`\n        * Add (¬q) to S2\n    * Other resolutions don't result in new clauses.\n2. **Resolve clauses in S1:**\n    *  `dispell((q∨r), (¬q∨r)) = (r∨r) = (r)`\n        * Add (r) to S2\n    *  `dispell((q),(¬q)) = 0`\n        * Output \"Implausible\" and terminate. \n\nSince we were able to derive an empty clause (0), the resolution algorithm determines the input to be **implausible**. The algorithm ran for **2 cycles**. \n",
+        "response_text": "[[Plausible];[2]]",
+        "answer": "[[Plausible];[3]]",
+        "is_correct": false
+    },
+    {
+        "idx": "41",
+        "response": "[[I, O]; [-I, +I]] \n",
+        "response_text": "[[I, O]; [-I, +I]]",
+        "answer": "[[I,O];[+,-];[-,+]]",
+        "is_correct": false
+    },
+    {
+        "idx": "43",
+        "response": "**OR Gate Circuit Diagram in Truth Table Format:**\n\n```\n[\n  [[I1, I2], O]; \n  [[+, +], +]; \n  [[+, -], +]; \n  [[-, +], +]; \n  [[-, -], -]\n]\n```\n\n**Explanation:**\n\n* **Inputs:** I1, I2 (representing the two inputs to the OR gate)\n* **Output:** O (representing the output of the OR gate)\n* **+:** Powered (or True)\n* **-:** Not Powered (or False)\n\nThe table lists all possible input combinations (powered or not powered) for I1 and I2, along with the corresponding output (O) of the OR gate. As per the OR logic, the output is powered (+) if at least one of the inputs is powered (+). \n",
+        "response_text": "[[[[I1, I2]]",
+        "answer": "[[I1,I2,O];[+,+,+];[+,-,+];[-,+,+];[-,-,-]]",
+        "is_correct": false
+    },
+    {
+        "idx": "47",
+        "response": "[[ - ]] \n",
+        "response_text": "[[-]]",
+        "answer": "[[-]]",
+        "is_correct": true
+    },
+    {
+        "idx": "48",
+        "response": "## Analyzing the Circuit:\n\n1. **Identify Properties:**\n    *  We have three inputs: I1, I2, and I3.\n    *  I1 corresponds to 'p', I2 to 'q', and I3 to 'r'.\n    *  I1 is \"+\", I2 is \"-\", I3 is \"+\" (representing powered and not powered).\n\n2. **Apply Logical Operations:**\n    *  (p∧q) translates to (I1 ∧ I2), which is (+ ∧ -), resulting in \"-\" (False).\n    *  (¬p∧r) translates to (¬I1 ∧ I3), which is (- ∧ +), resulting in \"-\" (False).\n    *  Finally,  (- ∨ -) results in \"-\" (False).\n\n3. **Output:**\n    *  The output (O) of the circuit is \"-\".\n\nTherefore, the answer is **[[-]]**. \n",
+        "response_text": "[[-]]",
+        "answer": "[[A=1,E=8,H=2,L=3,P=0,T=9]]",
+        "is_correct": false
+    },
+    {
+        "idx": "49",
+        "response": "## Identifying Properties and Objects:\n\n* **Inputs:** p, q, r \n* **Output:** O\n* **Operators:** ∧ (conjunction), ∨ (disjunction), ¬ (negation)\n* **Possible states:** \"+\" (powered), \"-\" (not powered)\n\n## Applying Logic and Finding Inputs:\n\nWe need to find the combinations of p, q, and r values (powered or not powered) that would make the output O = \"+\". Let's break down the expression and analyze:\n\n**(p∧q)∨(¬p∧(q∨r))**\n\nThis expression is a disjunction (OR) of two larger expressions. For O to be \"+\", at least one of these expressions must be true:\n\n**1. (p∧q):** For this to be true, BOTH p AND q must be \"+\".\n\n**2. (¬p∧(q∨r)):** \n   * **¬p:**  p must be \"-\" \n   * **(q∨r):**  Either q OR r (or both) must be \"+\"\n\nNow let's find the input combinations:\n\n**Scenario 1: (p∧q) is True**\n* p = \"+\"\n* q = \"+\"\n* r can be either \"+\" or \"-\" (it doesn't affect the outcome in this scenario)\n\n  This gives us two possible inputs: \n    * **[+, +, +]**\n    * **[+, +, -]**\n\n**Scenario 2: (¬p∧(q∨r)) is True**\n* p = \"-\"\n\nHere, we have more possibilities since either q or r (or both) can be \"+\":\n    * **[-, +, +]**\n    * **[-, +, -]**\n    * **[-, -, +]**\n\n\n## Output in Specified Format:\n\nTherefore, the multiple inputs satisfying the condition O = \"+\" are:\n\n**[[+, +, +]; [+, +, -]; [-, +, +]; [-, +, -]; [-, -, +]]** \n",
+        "response_text": "[[+, +, +]; [+, +, -]; [-, +, +]; [-, +, -]; [-, -, +]]",
+        "answer": "[[+,+,+];[+,+,-];[+,-,+];[-,+,+]]",
+        "is_correct": false
+    },
+    {
+        "idx": "50",
+        "response": "## Answer:\n\nApplying the given logic rule, we need to find combinations of inputs (p, q, r) that result in the output (O) being \"-\".  Since the expression is quite long, it's helpful to break it down and consider each part that could lead to a \"-\" output.\n\nRemember:\n\n* \"+\" represents powered (\"True\")\n* \"-\" represents not powered (\"False\")\n\nLet's analyze the given logical expression:\n\n**(p∧q∧¬r)∨(¬p∧q)∨(p∨r)**\n\nThis expression has three major parts connected by \"OR\" (∨).  For the entire expression to be \"-\" (False), **all three parts must individually be \"-\".**\n\nLet's analyze each part and find input combinations that make them \"-\":\n\n**Part 1: (p∧q∧¬r)**\n\n* For this to be \"-\", at least one of the following must be true:\n    * p is \"-\"\n    * q is \"-\"\n    * r is \"+\" \n\n**Part 2: (¬p∧q)**\n\n* For this to be \"-\":\n    * p must be \"+\" (because ¬p would then be \"-\") \n    * OR q must be \"-\"\n\n**Part 3: (p∨r)**\n\n* For this to be \"-\":\n    * p must be \"-\"\n    * r must be \"-\"\n\nNow, let's combine these constraints to find possible input combinations:\n\n**Possible Input Sets:**\n\n* **[ [\"-\"; \"+\"; \"+\"] ]**:  Satisfies Part 1 (r is \"+\") and Part 3 (p is \"-\").  Part 2 is also \"-\" because p is not \"-\".\n\n* **[ [\"-\"; \"-\"; \"-\"] ]**: Satisfies Part 1 (p is \"-\", q is \"-\"), Part 2 (q is \"-\"), and Part 3 (p and r are \"-\").\n\nTherefore, two possible input sets that satisfy the condition are:\n\n**[ [\"-\"; \"+\"; \"+\"]; [\"-\"; \"-\"; \"-\"] ]** \n",
+        "response_text": "[[[\"-\"; \"+\"; \"+\"]]",
+        "answer": "[[-,-,+]]",
+        "is_correct": false
+    },
+    {
+        "idx": "55",
+        "response": "### Answer:\n\n[[F(2) & G(2)]; [G(2) ⇒ ~G(4)]; [G(6) ⇒ G(2)]; [~G(6) ⇒ G(4)]] \n",
+        "response_text": "[[F(2) & G(2)]; [G(2) ⇒ ~G(4)]; [G(6) ⇒ G(2)]; [~G(6) ⇒ G(4)]]",
+        "answer": "[[F(2)&G(2)];[G(2)⇒~G(4)];[G(6)⇒G(2)];[~G(6)⇒G(4)]]",
+        "is_correct": true
+    },
+    {
+        "idx": "56",
+        "response": "### Answer:\n\n[[Ax(G(x) ⇒ H(x))]; [Ex(G(x) & R(x))]] \n",
+        "response_text": "[[Ax(G(x) ⇒ H(x))]; [Ex(G(x) & R(x))]]",
+        "answer": "[[Ax(G(x)⇒H(x))];[Ex(G(x)&R(x))]]",
+        "is_correct": true
+    },
+    {
+        "idx": "57",
+        "response": "### Answer:\n\n[[Ax(F(x) ⇒ G(x))]; [Ex(F(x) & ~G(x))]] \n",
+        "response_text": "[[Ax(F(x) ⇒ G(x))]; [Ex(F(x) & ~G(x))]]",
+        "answer": "[[Ax(F(x)⇒G(x))];[Ex(F(x)&∼G(x))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "59",
+        "response": "[ [AxAyEzH(x, y, z)] ] \n",
+        "response_text": "[[[AxAyEzH(x, y, z)]]",
+        "answer": "[[AxAyEzH(x,y,z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "61",
+        "response": "[[F<sub>J</sub>(f<sub>J</sub>(x, y), g<sub>J</sub>(x, y)) = F<sub>J</sub>(x + y, x * y) = (x + y) = (x * y)]] \n",
+        "response_text": "[[F<sub>J</sub>(f<sub>J</sub>(x, y), g<sub>J</sub>(x, y)) = F<sub>J</sub>(x + y, x * y) = (x + y) = (x * y)]]",
+        "answer": "[[x+y=x*y]]",
+        "is_correct": false
+    },
+    {
+        "idx": "63",
+        "response": "[[∀x ∈ N (FJ(gJ(x, 0), z))]]. \n \n**Explanation:**\n\n1. **Entity Set:** The question specifies E = N, the set of natural numbers.\n2. **Entity Constant:**  We replace 'a' with 'a′' which is given as 0. However, there's no 'a' in the original formula.\n3. **Function Symbols:** We replace 'g' with its implementation 'gJ(x, y) = x * y'. Since 'y' is not otherwise specified, it remains as 'y' inside the function. \n4. **Predicate Symbol:**  We replace 'F' with its implementation 'FJ(x, y)' which denotes 'x = y'.\n5. **Combining:** Substituting the function and predicate implementations into the original formula '∀xF(g(x,y),z)' gives us  '∀xFJ(gJ(x,y),z)'.\n6. **Final Interpretation:** Since our entity set is natural numbers, we introduce 'x ∈ N' within the formula. Additionally, we substitute 'y' with '0' from our entity constant definition. This results in the final implementation: '∀x ∈ N (FJ(gJ(x, 0), z))'.\n\nTherefore, the implementation of the formula under J is [[∀x ∈ N (FJ(gJ(x, 0), z))]]. \n",
+        "response_text": "[[∀x ∈ N (FJ(gJ(x, 0), z))]]",
+        "answer": "[[∀x(x*y=z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "64",
+        "response": "[[∀x∈N(x * 0 = x) → (x = y)]] \n",
+        "response_text": "[[∀x∈N(x * 0 = x) → (x = y)]]",
+        "answer": "[[∀x(x*0=x)→(x=y)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "68",
+        "response": "[[∃x FJ(fJ(x, x), gJ(x, x))]] \n\n**Explanation:**\n\n1. **Entity Set:** We are given E = N (natural numbers).\n2. **Entity Constant:**  We replace 'a' with 'a′' which is given as 0. However, there are no entity constants in the original formula.\n3. **Function Symbols:** We replace 'f' with 'fJ' and 'g' with 'gJ'. So, f(x, x) becomes fJ(x, x) and g(x, x) becomes gJ(x, x).\n4. **Predicate Symbol:** We replace 'F' with 'FJ'. \n\nTherefore, the complete implementation of the formula under J is:  [[∃x FJ(fJ(x, x), gJ(x, x))]] \n",
+        "response_text": "[[∃x FJ(fJ(x, x), gJ(x, x))]]",
+        "answer": "[[∃x(x+x=x*x)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "72",
+        "response": "[[students]; [like mathematics]; [do not]; [some]] \n",
+        "response_text": "[[students]; [like mathematics]; [do not]; [some]]",
+        "answer": "[[A];[B];[D];[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "74",
+        "response": "Here's the breakdown:\n\n**Analyzing the Propositions:**\n\n* [1] All products are qualified.  (SAP - Universal Affirmative)\n* [2] All products are unqualified. (SEP - Universal Negative)\n* [3] No products are unqualified. (SEP - Universal Negative)\n* [4] Some products are unqualified. (SOP - Particular Negative)\n\n**Relationships:**\n\n* **[1] and [2]:**  Both are universal propositions ([1] - SAP, [2] - SEP) with the same subject (products) and predicate (qualified/unqualified). This fits the **# Relation**. If one is true, the other must be false. \n* **[3] and [4]:**  These involve a universal proposition ([3] - SEP) and a particular proposition ([4] - SOP) with the same subject and predicate. This matches the **% Relation**.  If the universal proposition (3) is true, the particular (4) must be true as well.\n\n**Answer:**\n\n[[**B**];[**D**]] \n",
+        "response_text": "[[**B**];[**D**]]",
+        "answer": "[[B];[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "76",
+        "response": "[[**SEP**]] \n",
+        "response_text": "[[**SEP**]]",
+        "answer": "[[SEP]]",
+        "is_correct": false
+    },
+    {
+        "idx": "81",
+        "response": "[[\"Some products are non-top-grade.\"]] \n",
+        "response_text": "[[\"Some products are non-top-grade.\"]]",
+        "answer": "[[Someproductsarenon-top-grade.]]",
+        "is_correct": true
+    },
+    {
+        "idx": "85",
+        "response": "[[All things that have not been tested by practice are not genuine scientific theories.]] \n\n**Explanation:**\n\n1. **Identify**:\n    - Original Proposition: \"All genuine scientific theories are theories that have been tested by practice.\" This is a Universal Affirmative Proposition (A).\n    - Subject (S): genuine scientific theories\n    - Predicate (P): theories that have been tested by practice \n\n2. **Method C**:\n    - **Obversion**: Change the quality (affirmative to negative) and replace the predicate with its complement. \n        - This transforms the proposition to: \"All genuine scientific theories are not things that have not been tested by practice.\"\n    - **Conversion**: Since the obverse is in the form of a Universal Negative Proposition (E), we can apply conversion by exchanging the subject and predicate.\n        - This results in: \"All things that have not been tested by practice are not genuine scientific theories.\"\n\nTherefore, the final result of applying method C is **[[All things that have not been tested by practice are not genuine scientific theories.]]** \n",
+        "response_text": "[[All things that have not been tested by practice are not genuine scientific theories.]]",
+        "answer": "[[Alltheoriesthathavenotbeentestedbypracticearenotgenuinescientifictheories.]]",
+        "is_correct": false
+    },
+    {
+        "idx": "87",
+        "response": "[[\"Those who come are not those who should come.\"]] \n",
+        "response_text": "[[\"Those who come are not those who should come.\"]]",
+        "answer": "[[Thosewhocomearenottheoneswhoshouldcome.]]",
+        "is_correct": false
+    },
+    {
+        "idx": "91",
+        "response": "### Answer:\n\n[[**I**];[**AAA**]] \n\n### Explanation:\n\n1. **Identify propositions:**\n    - p1: M\n    - p2: P\n    - p3: S\n\n2. **Represent propositions using A, E, I, O:**\n    - ∀M⇒P  is equivalent to **A**p1p2\n    - ∀S⇒M is equivalent to **A**p3p1\n    - ∀S⇒P is equivalent to **A**p3p2\n\n3. **Determine the Figure:**\n    - The argument structure matches Figure I:\n        - M()P  (Ap1p2)\n        - S()M  (Ap3p1)\n        - ∴S()P (Ap3p2)\n\n4. **Determine the Mood:**\n    - All propositions are represented with 'A'.\n    - Therefore, the mood is **AAA**. \n",
+        "response_text": "[[**I**];[**AAA**]]",
+        "answer": "[[I];[AAA]]",
+        "is_correct": false
+    },
+    {
+        "idx": "98",
+        "response": "[[Figure I]; [EAE]] \n",
+        "response_text": "[[Figure I]; [EAE]]",
+        "answer": "[[M];[S]]",
+        "is_correct": false
+    },
+    {
+        "idx": "100",
+        "response": "[[I,A,I]; [III]] \n",
+        "response_text": "[[I,A,I]; [III]]",
+        "answer": "[[A];[I]]",
+        "is_correct": false
+    },
+    {
+        "idx": "103",
+        "response": "## Answer:\n\n[[A];[B]]\n\n## Explanation:\n\n**Pair (1):**\n\n* **Proposition p:** \"The Chinese women's volleyball team is victorious\"\n* **Sentence 1:** \"The Chinese women's volleyball team is definitely victorious\" translates to **#p** \n* **Sentence 2:** \"The Chinese women's volleyball team may not win\" translates to **$¬p** \n\nThe relationship between #p and $¬p is the **\\* relationship**,  where they cannot both be true or both be false.\n\n**Pair (2):**\n\n* **Proposition q:** \"This project will be completed ahead of schedule\"\n* **Sentence 1:** \"This project will definitely be completed ahead of schedule\" translates to **#q**\n* **Sentence 2:** \"This project will definitely not be completed ahead of schedule\" translates to **#¬q**\n\nThe relationship between #q and #¬q is the **x relationship**, where they cannot both be true, but they can both be false. \n",
+        "response_text": "[[A];[B]]",
+        "answer": "[[A];[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "104",
+        "response": "## Answer:\n\n[[B];[C]]\n\n## Explanation:\n\n**Pair (1):**\n\n* **Proposition (p):** The task of developing an anti-SARS vaccine will be completed this year.\n* **Sentence 1:** $p (The task of developing an anti-SARS vaccine may be completed this year.)\n* **Sentence 2:** $!p (The task of developing an anti-SARS vaccine may not be completed this year.)\n\nThis pair represents the **@ relationship** because both sentences can be true at the same time (the development may or may not be finished within the year), but they cannot both be false (the development will either be finished or not finished within the year).\n\n\n**Pair (2):**\n\n* **Proposition (p):** The Brazil football team will win the championship.\n* **Sentence 1:** #p (The Brazil football team will definitely win the championship.)\n* **Sentence 2:** $p (The Brazil football team may win the championship.)\n\nThis pair represents the **% relationship** because both sentences can be true (if they definitely win, it follows that they may win) and both sentences can be false (if they don't win, it follows that they might not have won). \n",
+        "response_text": "[[B];[C]]",
+        "answer": "[[B];[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "105",
+        "response": "[[1]] \n",
+        "response_text": "[[1]]",
+        "answer": "[[1]]",
+        "is_correct": true
+    },
+    {
+        "idx": "106",
+        "response": "[[13]] \n",
+        "response_text": "[[13]]",
+        "answer": "[[3]]",
+        "is_correct": false
+    },
+    {
+        "idx": "108",
+        "response": "[[A]] \n\n**Explanation:**\n\n1. **Identify relevant properties and objects:**\n    - Proposition (p): Xiao Lin will win the championship.\n    - Formula:  #p → $p  (Necessity implies possibility)\n\n2. **Apply the logical operation:**\n    - Given: #p (Xiao Lin will necessarily win the championship)\n    - Applying formula 9, we can infer: $p (Xiao Lin will possibly win the championship).\n\n3. **Format the answer:**\n    - The correct inference is A. \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "109",
+        "response": "[[B]] \n\n**Explanation:**\n\n1. **Identify propositions:**\n    *  p: There is a connection between things.\n\n2. **Apply formula 15:**\n    *  Formula 15 states: p → $p \n    *  This means: If p is true, then $p is also true.\n\n3. **Apply to the question:**\n    *  The question states \"There is necessarily a connection between things,\" which translates to #p.\n    *  Since #p → p (from formula 13), we know \"There is a connection between things\" (p) is true.\n    *  Applying formula 15 (p → $p), we can infer \"There might be a connection between things\" ($p). \n\nTherefore, the correct answer is **B: There might be a connection between things.** \n",
+        "response_text": "[[B]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "111",
+        "response": "[ [§p], [‽q] ] \n",
+        "response_text": "[[[§p]]",
+        "answer": "[[§p∧‽q]]",
+        "is_correct": false
+    },
+    {
+        "idx": "114",
+        "response": "Here's the breakdown of the answer and the reasoning:\n\n**1.  \"In public places, smoking is prohibited.\" and \"In public places, smoking is mandatory.\"**\n\n* **Identify properties:**\n    * p: Smoking in public places. \n* **Apply symbols:**\n    * Sentence 1: ‽p \n    * Sentence 2: ¶p\n* **Identify relationship:** The relationship between ‽p and ¶p is **x**.\n\n**2.  \"Not fulfilling the contract is allowed.\" and \"Fulfilling the contract is allowed.\"**\n\n* **Identify properties:**\n    * p: Fulfilling the contract.\n* **Apply symbols:**\n    * Sentence 1: §¬p\n    * Sentence 2: §p\n* **Identify relationship:** The relationship between §¬p and §p is **@**.\n\n**Answer:**  [[**B**]; [**C**]] \n",
+        "response_text": "[[**B**]; [**C**]]",
+        "answer": "[[B];[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "115",
+        "response": "Let's analyze each pair of sentences:\n\n**(1) \"Citizens' rights must be protected.\" and \"Not protecting citizens' rights is allowed.\"**\n\n* **Formalization:**\n    * \"Citizens' rights must be protected.\" can be represented as ¶p (where 'p' stands for 'citizens' rights are protected').\n    * \"Not protecting citizens' rights is allowed.\" translates to §¬p. \n\n* **Relationship:** The propositional pair ¶p and §¬p falls under the ** * relationship** as they cannot both be true and cannot both be false.\n\n**(2) \"Caring for the growth of the next generation is mandatory.\" and \"Caring for the growth of the next generation is allowed.\"**\n\n* **Formalization:**\n    * \"Caring for the growth of the next generation is mandatory.\" can be represented as ¶q (where 'q' stands for 'caring for the growth of the next generation').\n    * \"Caring for the growth of the next generation is allowed.\" translates to §q.\n\n* **Relationship:** The propositional pair ¶q and §q matches the **% relationship** because they can both be true (something mandatory is also allowed) and both can be false.\n\n**Therefore, the answer is [[*];[%]].** \n",
+        "response_text": "[[*];[%]]",
+        "answer": "[[B];[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "117",
+        "response": "[[2]] \n",
+        "response_text": "[[2]]",
+        "answer": "[[3]]",
+        "is_correct": false
+    },
+    {
+        "idx": "119",
+        "response": "Here's the breakdown:\n\n1. **Identify properties and objects:**\n    - \"Loud noises are prohibited in the reading room\" translates to ‽p, where 'p' represents 'making loud noises in the reading room'.\n\n2. **Apply Modal Reasoning Formula 10:**\n    - Formula 10 states: ‽p → §¬p \n    - This means \"If p is prohibited, then not doing p is permitted.\"\n    - Applied to our case: \"If making loud noises is prohibited, then not making loud noises is permitted.\"\n\n3. **Match to answer choices:**\n    - This directly corresponds to answer **B: Allow not making loud noises in the reading room.**\n\n**Therefore, the answer is [[B]].** \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "120",
+        "response": "[[C]] \n\n**Explanation:**\n\nFormula 7 (¬§p→§¬p) states that if something is not permitted (¬§p), then its negation is permitted (§¬p). This aligns with the definition of the @ relationship:\n\n- **@ relationship:** Both propositions cannot be false (if one is false, the other must be true), but they can both be true.\n\nLet's analyze why:\n\n* **Cannot both be false:** If p is not permitted (¬§p is true), then it's impossible for the negation of p (¬p) to also be not permitted (making §¬p false). \n* **Can both be true:**  Something can be optional. It's possible for both p and ¬p to be permitted. \n\nTherefore, Formula 7 aligns with the **@ relationship**. \n",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "122",
+        "response": "[[Gp]; [Fp]] \n",
+        "response_text": "[[Gp]; [Fp]]",
+        "answer": "[[Fp];[Gp]]",
+        "is_correct": false
+    },
+    {
+        "idx": "123",
+        "response": "[[A];[Unrelated]] \n\n**Explanation:**\n\n1. **Sentence 1:** \"Old Li's health was good in the past\" can be represented as **Ap** (where p is \"Old Li's health is good\"). \"At some point in the past, Old Li's health was not very good\" can be represented as **H¬p**.  This corresponds to the **※ Relationship**, where these propositions cannot both be true, nor both be false. \n\n2. **Sentence 2:** \"Aunt Wang never won a major award in the past\" can be represented as **A¬p** (where p is \"Aunt Wang won a major award\").  The second statement, \"Allow the execution of contracts,\" is unrelated to the time propositions defined in the rule. Therefore, there is **no relationship** defined within this logical system between the two sentences. \n",
+        "response_text": "[[A];[Unrelated]]",
+        "answer": "[[A];[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "124",
+        "response": "[[C]; [D]] \n\n**Explanation:**\n\nLet's break down the sentences and map them to our time propositions:\n\n**(1) \"Xiao Lin will win the computer competition championship trophy\" and \"It is not true that Xiao Lin will never win the computer competition championship trophy\"**\n\n* **Sentence 1:** \"Xiao Lin **will win** the computer competition championship trophy\" - This implies a future point in time, thus we can represent it as **Fp**, where 'p' is 'Xiao Lin winning the championship'.\n* **Sentence 2:** \"It is **not true** that Xiao Lin **will never win** the computer competition championship trophy\" - The double negation (\"not true\" + \"never\") implies that Xiao Lin will eventually win, making this also a future point in time.  We can represent this as **¬(F¬p)**, which simplifies to **Fp**.\n\nSince we have **Fp** and **Fp**, they represent the same time proposition. According to the **⚭ Relationship**,  they cannot both be false (Xiao Lin either wins or loses), but can both be true.\n\n**(2) \"Xiao Bai will permanently settle in the United States\" and \"Xiao Bai will settle in the United States\"**\n\n* **Sentence 1:** \"Xiao Bai will **permanently settle** in the United States\" - The term \"permanently\" implies a future period of time. This can be represented as **Gp**, where 'p' is 'Xiao Bai settling in the United States'.\n* **Sentence 2:** \"Xiao Bai **will settle** in the United States\" - This implies a future point in time. We can represent this as **Fp**.\n\nWe have **Gp** and **Fp**.  According to the **⁂ Relationship**, they can both be true (settling at a point in the future leads to permanently settling) or both be false. \n",
+        "response_text": "[[C]; [D]]",
+        "answer": "[[A];[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "125",
+        "response": "[[2]] \n",
+        "response_text": "[[2]]",
+        "answer": "[[4]]",
+        "is_correct": false
+    },
+    {
+        "idx": "129",
+        "response": "[[C]] \n\n**Explanation:**\n\nReasoning Formula 7 (¬Hp → H¬p) states that if something is not true in the past (¬Hp), then it is false in the past (H¬p).\n\nLet's examine the properties of the ⚭ relationship:\n\n- **Pairs:** Hp and H¬p \n- **Properties:** They cannot both be false, but can both be true.\n\nFormula 7 aligns with the ⚭ relationship because:\n\n1. **It involves a pair Hp and H¬p**, matching the pairs specified in the ⚭ relationship.\n2. **It enforces that both Hp and H¬p cannot be false simultaneously.** If ¬Hp is true (meaning Hp is false), then H¬p must also be true. This fulfills the condition of the ⚭ relationship that both elements in the pair cannot be false. \n",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "131",
+        "response": "[[**B**]]\n\n**Explanation:**\n\n1. **Identify relevant elements:**\n    - `B_Alice(The sun rises in the east)`: Alice firmly believes that the sun rises in the east.\n    - Belief Axiom: `B_p → p`\n\n2. **Apply the Belief Axiom:**\n    - `p` corresponds to \"The sun rises in the east\".\n    - Since `B_Alice(The sun rises in the east)`, according to the Belief Axiom, we can conclude `The sun rises in the east`.\n\n3. **Analyze other options:**\n    - A is incorrect because the Introduction of Doubt axiom states doubt implies a lack of firm belief, not the other way around.\n    - C is incorrect because a firm belief implies awareness of the proposition's content.\n\nTherefore, only option B aligns with the Belief Axiom. \n",
+        "response_text": "[[**B**]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "132",
+        "response": "[[B]] \n\n**Explanation:**\n\nThe Axiom of Reflexivity (`B_p → BB_p`) states that if someone firmly believes a proposition, they also believe that they believe it. \n\nLet's break down the options:\n\n* **A. Alice may have doubts about this proposition.**  This contradicts the given premise that Alice *firmly* believes the proposition. The Axiom of Doubt clarifies that doubt and firm belief are incompatible.\n* **B. Alice is convinced that she herself is convinced of this proposition.** This aligns perfectly with the Axiom of Reflexivity. If Alice firmly believes (B) in proposition 'p', then she also believes (B) that she believes (B) 'p'. \n* **C. Alice and other people are all aware of this proposition.** The Axiom of Reflexivity focuses solely on an individual's belief about their own belief. It doesn't involve the awareness or beliefs of others. \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "136",
+        "response": "[[C]] \n\n**Explanation:**\n\n1. **Identify relevant properties and objects:**\n    - We are given that Alice doubts the library is open: `H_p` (where `p` represents \"the library is open today\").\n    - We need to apply the Introduction of Doubt axiom: `H_p → ¬B_p`\n\n2. **Apply the logical operation:**\n    - The axiom states that if `H_p` is true (Alice doubts p), then `¬B_p` is also true (Alice does not believe p).\n\n3. **Interpret the result:** \n    - `¬B_p` means Alice does not firmly believe that the library is open today. This does *not* necessarily mean she believes it's closed (option B). It simply means she lacks the conviction that it's open.\n\nTherefore, the answer is C: Alice is not certain whether the library is open today. \n",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "137",
+        "response": "[[C]] \n\n**Explanation:**\n\n1. **Identify relevant properties and objects:**\n    - Alice (individual `i`)\n    - Bob (individual `j`)\n    - The library being open today (proposition `p`)\n    - Alice doubts the library is open today (`H_ip`)\n    - Bob can recognize Alice's skepticism (`iRj`)\n\n2. **Apply the Spread of Doubt axiom:**\n    -  If `iRj` and `H_ip`, then `H_jp`.\n\n3. **Conclude based on the axiom:**\n    - Since Alice doubts the library is open (`H_ip`) and Bob can recognize Alice's doubt (`iRj`), the Spread of Doubt axiom suggests that Bob may also start to doubt whether the library is open (`H_jp`).\n\nTherefore, the most likely conclusion is that **Bob may also begin to doubt whether the library is open today (C)**. \n",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "138",
+        "response": "[[C]] \n\n**Explanation:**\n\n1. **Identify relevant properties and objects:**\n    - Individuals: Alice (a), Bob (b)\n    - Accessibility Relation: aRb (Alice can recognize Bob's belief state)\n    - Proposition: Let's denote it as 'p'\n    - Alice's Doubt: H_ap (Alice doubts proposition 'p')\n\n2. **Apply the Spread of Doubt axiom:**\n    -  The axiom states: If `iRj` and `H_ip`, then `H_jp`\n\n    -  Applying to our case: Since aRb (Alice can recognize Bob) and H_ap (Alice doubts 'p'), then H_bp (Bob may also start to doubt 'p').\n\n3. **Conclusion:**\n    - The Spread of Doubt axiom suggests that doubt can spread through an accessibility relation. Therefore, Bob, being able to recognize Alice's state of doubt, might also start doubting the proposition 'p'. \n",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "139",
+        "response": "## Answer:\n\n[  G_p ∧ H_Alice(p) → ¬B_Alice(p) ]\n\n## Explanation:\n\n1. **Identify relevant properties and objects:**\n    - **Proposition:** p \n    - **Group:** G\n    - **Individual:** Alice\n    - **Properties:**\n        - Common Belief (Consensus): G_p\n        - Doubt: H_Alice(p)\n        - Belief: B_Alice(p)\n\n2. **Apply logical operations and reasoning:**\n    - The question states that 'p' is the consensus of group G, meaning it's a common belief: **G_p**.\n    - Alice doubts proposition 'p': **H_Alice(p)**.\n    - The Axiom of Doubt (Introduction of Doubt) states that doubt implies a lack of firm belief: **H_p → ¬B_p**.\n    - Applying this to Alice, we get: **H_Alice(p) → ¬B_Alice(p)**.\n    - Combining both pieces of information, we can express the situation as: **G_p ∧ H_Alice(p) → ¬B_Alice(p)**.\n\n3. **Format output:**\n    - The final answer is presented within square brackets as requested: [  G_p ∧ H_Alice(p) → ¬B_Alice(p) ] \n\nThis expression captures the scenario where a proposition is commonly believed by a group, but a specific individual within the group doubts it, leading to a lack of belief in that proposition for the individual. \n",
+        "response_text": "[[G_p ∧ H_Alice(p) → ¬B_Alice(p)]]",
+        "answer": "[[G_p∧H_Alice(p)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "141",
+        "response": "**[ [ c<sub>1</sub> ][ c<sub>2</sub> ] φ ]** \n",
+        "response_text": "[[[ c<sub>1</sub>]]",
+        "answer": "[[[c1;c2]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "142",
+        "response": "[⟨ c ⟩ φ] \n",
+        "response_text": "[[⟨ c ⟩ φ]]",
+        "answer": "[[⟨c⟩φ]]",
+        "is_correct": true
+    },
+    {
+        "idx": "143",
+        "response": "`[ [c1 + c2]φ ]`\n\n**Applying the Choice Rule:**\n\n`[ [c1]φ ∨ [c2]φ ]` \n",
+        "response_text": "[[[c1 + c2]]",
+        "answer": "[[[c1+c2]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "147",
+        "response": "### Answer:\n\n`[ [d]φ ]` \n",
+        "response_text": "[[[d]]",
+        "answer": "[[[d]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "148",
+        "response": "[⟨ c1 || c2 ⟩φ  ≡ (φ ∨ φ)] \n",
+        "response_text": "[[⟨ c1 || c2 ⟩φ  ≡ (φ ∨ φ)]]",
+        "answer": "[[⟨c1||c2⟩φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "149",
+        "response": "[[**G**]] \n",
+        "response_text": "[[**G**]]",
+        "answer": "[[G]]",
+        "is_correct": false
+    },
+    {
+        "idx": "150",
+        "response": "[[H]] \n\n**Explanation:**\n\nAlice's statement directly aligns with the Resource Limitation Rule. She states that *once the resource limitation R is satisfied*, the outcome \"result\" will be true after executing command `c`. This translates to:\n\n`[ c ] result` is true only when `R` is also true. \n\nThis is precisely the definition of the Resource Limitation Rule: `[ c ]φ` is equivalent to `(R ∧ [ c ]φ)`. \n",
+        "response_text": "[[H]]",
+        "answer": "[[H]]",
+        "is_correct": true
+    },
+    {
+        "idx": "151",
+        "response": "[[A]] \n\n**Explanation:**\n\nThe given scenario is an example of **inductive reasoning**. Here's why:\n\n* **Limited Observation:** The premise is based on observing a limited number of oranges (five in this case).\n* **Generalization:** The conclusion draws a general inference that \"all oranges are sweet\" based on this limited observation.\n\nThis aligns with the definition of inductive reasoning, where a general conclusion about a class (oranges) is inferred from observing specific instances (five sweet oranges).\n\nIt's not **Φ inductive reasoning** because we haven't observed *every single orange in existence* to definitively conclude that all oranges are sweet. \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "152",
+        "response": "[[B]] \n\n**Explanation:**\n\nThe given premise states that every known element in the periodic table was examined, meaning all instances (elements) within the class (periodic table) were observed to have the property (atomic number). This aligns with the definition of **Φ** induction where the conclusion is derived from observing all individuals in the class. \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "162",
+        "response": "[[C]] \n\n**Explanation:**\n\nThe experiment presented aligns with the **Method ꙮ** for exploring causal relationships. Here's why:\n\n* **Positive Group:** The Chinese hybrid rice (S) and high yield (P) occur together in both 1980 and 1981, despite variations in time (A, B). \n    - (1) S A B  P  (Chinese Hybrid - 1980 - High Yield)\n    - (2) S C D  P  (Chinese Hybrid - 1981 - High Yield) \n\n* **Negative Group:** While not explicitly stated, the experiment implies the absence of the Chinese hybrid rice variety (S) would lead to a lower yield similar to the US variety. This establishes the negative group where -S coincides with -P.\n\nThe controlled environment ensures that other factors (fertilizer, water, soil, management) remain constant, strengthening the causal link between the Chinese hybrid rice variety (S) and high yield (P). \n",
+        "response_text": "[[C]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "166",
+        "response": "[[A]] \n\n**Explanation:**\n\nThe Shanghai Water Geology Team's investigation aligns with **Method ⸮**. Here's why:\n\n* **Multiple Cases, Different Conditions:** The team observed ground subsidence in various work areas with differing layouts, geographical conditions, etc. This satisfies the \"multiple cases with differing conditions\" aspect of Method ⸮.\n\n* **Common Factor:** Despite the differing conditions, they identified a consistent factor: higher subsidence in areas with a higher concentration of textiles and, more specifically, high deep well usage and groundwater extraction. This commonality aligns with the \"S and P occur together\" element of Method ⸮, where:\n    * S represents areas with high textile concentration (and consequently high groundwater extraction)\n    * P represents ground subsidence\n\nLet me know if you'd like a breakdown of why the other methods don't fit as well! \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "167",
+        "response": "[[**C**]] \n\n**Explanation:**\n\nThe experiment utilizes the **Method ꙮ** to establish a causal relationship between saliva and wound healing:\n\n* **Positive group:** Animals with salivary glands (S present) exhibit faster wound healing (P present).  Various other conditions like being wheat and nickel white, and the act of bruising are controlled and considered similar (A, B, C, D...).\n    * (1) Salivary Glands Present, Wheat and Nickel White, Bruised  ->  Faster Healing\n    * (2) Salivary Glands Present, Wheat and Nickel White, Bruised  ->  Faster Healing \n    * ... (Presumably multiple animals in each group showcasing the same)\n\n* **Negative group:** Animals without salivary glands (S absent) show slower wound healing (P absent). Again, other conditions are controlled (A, C, D...).\n    * (1') No Salivary Glands, Wheat and Nickel White, Bruised  ->  Slower Healing\n    * (2') No Salivary Glands, Wheat and Nickel White, Bruised  ->  Slower Healing\n    * ...\n\nBy comparing a positive group (S present) to a negative group (S absent) while keeping other factors constant, the experiment aligns with Method ꙮ for inferring a potential causal link between saliva and wound healing. \n",
+        "response_text": "[[**C**]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "168",
+        "response": "[[D]] \n\n**Explanation:**\n\nThe passage clearly demonstrates a correlation between the changes in the number of deep wells (S) and the degree of ground subsidence (P). \n\n1.  **S1 (Limited wells before 1949)**  -> **P1 (35mm subsidence)**\n2.  **S2 (Increased wells by 1960)**  -> **P2 (98mm subsidence)**\n\nThis aligns with **Method ⵣ**, where changes in one variable correspond to changes in another, suggesting a causal relationship. \n",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "169",
+        "response": "[[B]] \n\n**Explanation:**\n\nLet:\n\n* S: Removal of uranium from the leachate.\n* P:  The remaining sample being more radioactive than pure uranium.\n\nThe passage states:\n\n* (1) After the uranium had been extracted (S), the remaining samples were much more radioactive than even pure uranium (P). \n* This meant that the radioactivity could not be explained by the presence of uranium. Therefore, it must contain another radioactive element.\n\nThis aligns with **Method ؆**:\n\n*  If P occurs when S is present and does not occur when S is absent:\n    * (1) S A B     P\n    * (2) - A B     P \n    * Therefore, S and P may have a causal relationship.\n\nThe passage implies that the increased radioactivity (P) is observed *only* after the uranium is removed (S). While it doesn't explicitly state that the leachate wasn't highly radioactive before uranium removal, the surprise of the researchers heavily suggests this. \n",
+        "response_text": "[[B]]",
+        "answer": "[[E]]",
+        "is_correct": false
+    },
+    {
+        "idx": "171",
+        "response": "[[A]] \n\n**Explanation:**\n\n1. **Objects:**\n    * Object A: Crows in the campus of University A\n    * Object B: The bird in the campus of University B\n\n2. **Attributes:**\n    * a, b, c: Being a crow (These attributes are shared by both objects)\n    * d: Having black feathers\n\n3. **Reasoning:** The argument suggests that because crows in University A have black feathers, and the bird in University B is a crow, it might also have black feathers. This aligns with the Ψ Method where shared attributes (being a crow) are used to infer the presence of another attribute (having black feathers) in a different object. \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "172",
+        "response": "[[A]] \n\n**Explanation:**\n\n1. **Objects:**\n    *  Object A: A gift from Professor Van Emelen that is a book.\n    *  Object B: Any gift that Professor Van Emelen sends to me. \n\n2. **Attributes:**\n    *  #Ψ attributes: Being a gift from Professor Van Emelen, being a book.\n    *  +Ψ attribute: Being a book written or edited by Professor Van Emelen.\n\n3. **Reasoning:** The argument states that because past gifts (Object A) possessed the #Ψ attributes and the +Ψ attribute, then future gifts (Object B) might also possess the +Ψ attribute, based on sharing the #Ψ attributes. \n\nTherefore, the argument follows the **Ψ Method**. \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "173",
+        "response": "[[B]] \n\n**Explanation:**\n\n1. **Objects:** Earth (A), Moon (B)\n2. **+⌘ attribute:** Harbors natural life (d)\n3. **-⌘ attributes:**  Atmosphere (a), Water (b), Moderate temperatures (c), Not too large a temperature difference between day and night (implicitly included in c)\n\nThe argument states that Earth has attributes a, b, c and therefore d. The Moon does not have attributes a, b, c. Therefore, the Moon does not have attribute d. This aligns with the ⌘ method. \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "174",
+        "response": "[[A]] \n\n**Explanation:**\n\n1. **Objects:**\n    * Object A: F University\n    * Object B: H University\n\n2. **Attributes:**\n    * a: Old school\n    * b: Strong faculty\n    * c: Good school spirit\n    * d: Reaching a new level after reform \n\n3. **Reasoning:** The argument states that both F University and H University share attributes a, b, and c. Since F University (having a, b, c) achieved attribute d (reaching a new level), the argument concludes that H University (also having a, b, c) will also achieve attribute d.\n\n4. **Method:** This aligns with the Ψ Method, where shared attributes (a, b, c) are the #Ψ attributes, and the inferred attribute (d) is the +Ψ attribute. \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "177",
+        "response": "[[A]] \n\n**Explanation:**\n\n1. **Object A:**  Past gifts from Professor Van Emelen\n    * a: Being from Professor Van Emelen\n    * b: Being a book \n    * c: Being written or edited by Professor Van Emelen\n2. **Object B:** This gift from Professor Van Emelen\n    * a: Being from Professor Van Emelen\n    * b: Being a book \n\nThe reasoning attempts to conclude that Object B *might* also possess attribute c (being written or edited by Professor Van Emelen).  \n\nSince \"being from Professor Van Emelen\" (attribute a) is shared by both Object A and Object B in this attempted application of the Ψ Method, it is a **#Ψ attribute**. \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "178",
+        "response": "[[B]] \n\n**Explanation:**\n\n1. **Objects:** Earth (A), Moon (B)\n2. **+⌘ attribute:** \"The absence of life\" (This is the inferred attribute for object B based on the lack of -⌘ attributes).\n3. **-⌘ attributes:** \"having an atmosphere,\" \"having water,\" \"moderate temperatures,\" \"not too large a temperature difference between day and night.\" (These are the attributes absent in the Moon that are linked to the absence of life).\n\nThe reasoning aligns with the ⌘ Method: Since the Moon (B) lacks the -⌘ attributes that Earth (A) possesses, it is concluded that the Moon also lacks the +⌘ attribute, which is the ability to harbor life naturally. \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "179",
+        "response": "[[A]] \n\n**Explanation:**\n\n1. **Objects:** \n    * Object A: F University\n    * Object B: H University\n\n2. **Attributes:**\n    * a: Being an established school \n    * b: Strong Faculty\n    * c: Good academic atmosphere\n    * d: Reaching a new level after reform \n\n3. **Reasoning:** F University (A) has attributes a, b, c, and d. H University (B) also has attributes a, b, and c. The reasoning concludes that H University (B) will also have attribute d.\n\n4. **Conclusion:** This matches the Ψ Method where a, b, and c are #Ψ attributes, and d is the +Ψ attribute. Therefore, \"being an established school\" (a) is a **#Ψ attribute**. \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "182",
+        "response": "**1. Identify Properties and Objects:**\n\n* **Sample:** 5 randomly selected days (n = 5)\n* **Attribute:** Air Quality Index (AQI) below 50 (A)\n* **Individuals with Attribute in Sample:** 4 days (k = 4)\n\n**2. Apply P-Generalization Rule:**\n\n* `P(A, k, n)` is true as we have a proportion (k/n) of individuals in the sample with attribute A. \n* Therefore, we can infer: `Pr(A) ≈ k/n`\n\n**3. Calculate and Format Output:**\n\n* `Pr(A) ≈ 4/5 = 0.8`\n* In [[number%]] format: **[[80%]]** \n",
+        "response_text": "[[number%]]",
+        "answer": "[[80%]]",
+        "is_correct": false
+    },
+    {
+        "idx": "184",
+        "response": "[[100%]] \n\n**Explanation:**\n\n1. **Identify relevant properties and objects:**\n    - Sample: 20 bird species endemic to the island (n=20)\n    - Attribute: Good health, no signs of disease or parasitic infections (A)\n    - Observation: All 20 birds in the sample exhibited attribute A.\n\n2. **Apply the U-Generalization Rule:**\n    - The condition `U(A, n)` is met: all individuals in the sample (n=20) possess attribute A (good health). \n    - Therefore, we can infer `∀x ∈ P, A(x)`: all individuals in the population (all birds of these 20 species on the island) likely possess attribute A (good health).\n\n3. **Format the output:**\n    - Since the U-Generalization rule leads to a conclusion about the entire population, we can estimate that 100% of the birds of these 20 species on the island are healthy. \n",
+        "response_text": "[[100%]]",
+        "answer": "[[100%]]",
+        "is_correct": true
+    },
+    {
+        "idx": "186",
+        "response": "[If `U(A, 50)`, then `∀x ∈ P, A(x)`] \n",
+        "response_text": "[[If `U(A, 50)`, then `∀x ∈ P, A(x)`]]",
+        "answer": "[[IfU(A,50),then∀x∈P,A(x)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "187",
+        "response": "[[C(F, 180/200, 210/300)]], therefore, the two schools may have similar proportions of student satisfaction. \n",
+        "response_text": "[[C(F, 180/200, 210/300)]]",
+        "answer": "[[IfC(F,180/200,210/300),thenPr(F,P1)≈Pr(F,P2)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "188",
+        "response": "[[`P(A, 200, 1000)`, then `Pr(A) ≈ 200/1000`]] \n",
+        "response_text": "[[`P(A, 200, 1000)`, then `Pr(A) ≈ 200/1000`]]",
+        "answer": "[[IfP(A,200,1000),thenPr(A)≈200/1000]]",
+        "is_correct": false
+    },
+    {
+        "idx": "192",
+        "response": "[[B]] \n\n**Explanation:**\n\nThis scenario aligns with the BC Paradox. Let's break down why:\n\n* **Universal Hypothesis:** \"All swans are white\" represents our universal hypothesis: ∀x(S(x) → W(x)).\n* **Confirmation Standard:** Seeing a white swan (S(a) ∧ W(a)) is considered confirmation, aligning with the BC Paradox's rule about confirmation.\n* **Equivalence Condition:** The statement \"All swans are white\" is logically equivalent to \"All non-white things are not swans\" (∀x(¬W(x) → ¬S(x))).\n* **Contradictory Confirmation:**  Seeing a white object that is not a swan (¬S(b) ∧ W(b)) seemingly confirms the inverse and, therefore, the original hypothesis according to the equivalence condition. This creates the paradox. \n\nThe scenario doesn't fit the GB Paradox because it doesn't involve two contradictory hypotheses leading to the same observation. It also doesn't fit the LS Paradox, as it doesn't deal with multiple hypotheses and their logical consequences contradicting another. \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "194",
+        "response": "[[A]] \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "198",
+        "response": "[[B]]\n\n**Explanation:**\n\nWhile the given logical expression uses similar elements to the BC Paradox, it does not accurately represent the paradox itself. \n\nHere's why:\n\n* **The BC Paradox hinges on the concept of confirmation.**  It states that both `R(a) ∧ B(a)` and `¬B(b) ∧ ¬R(b)` could be seen as confirming the universal hypothesis `∀x(R(x) → B(x))` due to the equivalence condition. This creates the paradox because these two confirmations seem intuitively contradictory.\n\n* **The given expression, `¬B(b) ∧ ¬R(b) → ∀x(R(x) → B(x))`,  is not a statement of confirmation.** Instead, it's an implication. It suggests that if there exists a `b` for which `¬B(b)` and `¬R(b)` are true, then the universal hypothesis `∀x(R(x) → B(x))` holds. This implication doesn't directly address the core issue of the BC Paradox, which is the conflicting confirmations.\n\nTherefore, while the expression relates to the concepts involved in the BC Paradox, it does not represent the paradox itself. \n",
+        "response_text": "[[B]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "199",
+        "response": "[[B]] \n\nThis scenario perfectly illustrates the **LS Paradox**.  Here's why:\n\n* **We have a set of reasonably accepted hypotheses:** {r_1, r_2, ... , r_n}\n* **A new hypothesis contradicts the existing ones:** r_n+1 creates a contradiction when combined with (r_1 ∧ r_2 ∧ ... ∧ r_n).\n\nAccording to the LS Paradox rules, we **cannot** simply:\n\n* **A. Accept r_n+1:** This would discard the previously held beliefs without proper evaluation.\n* **C. Ignore r_n+1:**  This ignores potentially valuable new information that could refine our understanding.\n\n**The correct approach (B) is to reassess the plausibility of ALL hypotheses involved.** This means:\n\n1. **Examining the strength of the evidence** supporting each of the original hypotheses (r_1 to r_n).\n2. **Evaluating the evidence** supporting the new hypothesis (r_n+1).\n3. **Determining if r_n+1 is strong enough to overturn** some or all of the previously held beliefs. \n\nThis process helps us refine our understanding and arrive at a more consistent set of beliefs. \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "200",
+        "response": "[[B]] \n\n**Explanation:**\n\nThe given expression represents a contradiction arising from two specific assumptions (r_1 and r_2). While it highlights a logical inconsistency, it doesn't encapsulate the full scope of the LS Paradox. \n\nHere's why:\n\n* **Missing Multiplicity:** The LS Paradox involves **multiple** (n) reasonably accepted hypotheses leading to a contradiction. The provided expression only involves two.\n* **Reasonableness Not Addressed:** The expression focuses solely on the contradiction itself ((r_1 ∧ r_2) → ⊥). The LS Paradox emphasizes that the contradicting hypotheses were individually considered **reasonable**, necessitating a reassessment of their validity. \n\nTherefore, while the expression demonstrates a logical conflict, it doesn't fully represent the core characteristics of the LS Paradox. \n",
+        "response_text": "[[B]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "201",
+        "response": "[[A]] \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "203",
+        "response": "[[C]] \n",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "205",
+        "response": "[[D]] \n",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "206",
+        "response": "[[B]] \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "207",
+        "response": "[[C]] \n",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "208",
+        "response": "[[D]] \n\n**Explanation:**\n\n1. **Identify:** The statement aims to change the reality of the situation by appointing \"You\" as the new project manager. This aligns with the purpose of Declarations.\n2. **Apply:** The statement uses the verb \"appointed,\" a common verb for Declarations. It also implies a change in the world directly caused by the utterance itself. \n3. **Format:** The answer is formatted as requested, indicating the correct option from the given choices. \n",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "213",
+        "response": "[[A]] \n\n**Explanation:**\n\n1. **Identify relevant properties and objects:** We have two statements, A and B, about the location of soccer players.  A is stronger, implying *all* soccer players are on the field, while B is weaker, claiming only *some* are. This forms the <s, w> contrast set needed for the C* Principle.\n\n2. **Apply the logical reasoning:**  The question states that by saying B (the weaker statement), the speaker reveals they know A (the stronger one) isn't entirely true. This directly matches the C* Principle, specifically the Hearer's Inference CQ1:\n\n    - The speaker said B (A(w)).\n    - <all, some> fits the <s, w> pattern.\n    -  By saying B, we infer the speaker knows 'all soccer players are on the field' is NOT true (K~(A(s))).\n\n3. **Other Principles don't fit:**\n    - C% is about being brief.  While B is shorter, the reasoning hinges on the choice between strong/weak statements, not just length.\n    - C! is about avoiding unusual wording when simpler exists. This scenario has no such marked expressions. \n \nTherefore, the speaker used the **C* Principle** to indirectly convey information. \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "214",
+        "response": "[[A]] \n\n**Explanation:**\n\n1. **Identify relevant elements:** We are given a dialogue where the crucial difference lies in the verbs \"believe\" (weaker) and \"know\" (stronger). This hints at information strength being the core concept.\n\n2. **Apply the rule:**\n    * The scenario directly matches **C* Principle, Hearer's Inference, CQ2**.\n    *  * A(w) is \"I believe you are a college student.\"\n       * A(s) is \"I know you are a college student.\"\n       * Q is \"you are a college student\"\n       * The speaker choosing A(w) implies ~K(Q), meaning they *don't know for sure* if you're a college student.\n\n3. **Other options are incorrect:**\n    * **C% (Minimalization)** is not the primary focus here. While \"believe\" is shorter, the core inference lies in the knowledge difference, not word count.\n    * **C! (Marked Expressions)** is irrelevant as no unusual phrasing is used.\n\nTherefore, the scenario exemplifies the **C* Principle**.\n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "215",
+        "response": "[[B]]\n\n**Explanation:**\n\n1. **Identify relevant properties and objects:**\n    - Objects: Xiao Ma, food box, beer \n    - Properties: Beer being inside the food box, beer being warm\n\n2. **Apply the C% Principle:**\n    - **Speaker's Criterion (Minimalization):** The speaker states that \"beer is still warm\" after Xiao Ma opens the food box. This implies, without explicitly stating it, that the beer was inside the food box.  The speaker is being economical with their words.\n    - **Hearer's Inference (CI2):** The hearer, upon hearing this statement, infers that the beer must have been in the food box for it to be warm after the food box is opened. This inference aligns with the confirmed situation and expands upon the speaker's minimal statement. \n\n3. **Other Principles:**\n    - The scenario doesn't exemplify the C* principle because there's no contrast of information strength or withholding of stronger claims.\n    - The C! principle isn't applicable as there are no lengthy, obscure, or marked expressions used. \n\n**Therefore, the scenario conforms to the C% Principle due to the speaker's minimal statement and the hearer's inference based on the confirmed situation.** \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "220",
+        "response": "[[C]] \n",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "221",
+        "response": "[[**C**]] \n\n**Explanation:**\n\nThe given definition of Sociology focuses on its **function and purpose**: \n\n* \"to explore the conditions and laws of social coordination, development, and good functioning\"\n* \"providing knowledge and methods for understanding, managing, and transforming society.\"\n\nThis aligns with the **⚒ Definition**, which defines a concept using its specific function or purpose. \n",
+        "response_text": "[[**C**]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "222",
+        "response": "[[**C**]] \n\n**Explanation:**\n\nThe given definition of nuclear energy focuses on the **function** or **purpose** of the concept, which is the release of energy during nuclear reactions involving changes in the structure of atomic nuclei. This aligns with the characteristics of a **⚒ Definition**, which emphasizes the specific function or purpose of an entity as the differentia. \n",
+        "response_text": "[[**C**]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "224",
+        "response": "[[E]] \n\n**Explanation:**\n\nThe definition provided describes \"Trademark registration\" by outlining a series of operational procedures:\n\n1. **User application:** The process begins with the user applying for registration.\n2. **Review and approval:** The Trademark Office reviews and approves the application.\n3. **Registration and certification:** The trademark is registered, a certificate is issued, and an announcement is made.\n4. **Exclusive right granted:**  The process culminates in the registrant receiving the exclusive right to use the trademark. \n\nThis step-by-step procedural explanation aligns with the ☖ Definition, which defines a term through a set of related operational procedures. \n",
+        "response_text": "[[E]]",
+        "answer": "[[E]]",
+        "is_correct": true
+    },
+    {
+        "idx": "225",
+        "response": "[[F]] \n\n**Explanation:**\n\nThe provided definition \"(A→B) = df (¬A∨B)\" uses logical expressions (¬ for negation, ∨ for disjunction) to define the conditional statement (A→B). This aligns with the description of  **Ѭ Definition**, which states that it \"involves using logical expressions for definition\" and \"is often used... for defining relational concepts\". \n",
+        "response_text": "[[F]]",
+        "answer": "[[F]]",
+        "is_correct": true
+    },
+    {
+        "idx": "226",
+        "response": "[[A]] \n",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "227",
+        "response": "[[B]] \n\n**Explanation:**\n\nThe definition provides a list of examples (\"Tibetans, Uighurs, Mongols, Hui, Zhuang, Tujia, and Miao\") but explicitly states that there are \"others.\" This indicates that the provided list is not exhaustive and therefore falls under the **! Definition** (Partial Extensional Definition). \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "229",
+        "response": "[[B]] \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "230",
+        "response": "[[B]] \n",
+        "response_text": "[[B]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "232",
+        "response": "[[**A/B**]] \n\n**Explanation:**\n\nThe argument uses both **E+ (Specific Instance)** and **Syl+ (Syllogistic Reasoning)** methods.\n\n* **E+:** The argument provides the specific instance of marine fossils found in the Himalayas to support the claim that it was once an oceanic region. \n* **Syl+:** It establishes a universal premise: \"strata with aquatic organism fossils are oceanic regions in geological history.\" Then, it uses the specific case of the Himalayas (containing marine fossils) to conclude that it was once submerged. This follows a syllogistic reasoning pattern. \n",
+        "response_text": "[[**A/B**]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "234",
+        "response": "[[E]] \n\n**Explanation:**\n\nThe given argumentation structure aligns with the *Contra- Method*. Here's why:\n\n1. **Initial Goal:** The aim is to prove proposition 'p'.\n2. **Assumption of the Contrary:**  It assumes the opposite of what we want to prove, \"Not p.\"\n3. **Demonstration of Absurdity:**  It establishes a logical flow where \"Not p\" leads to 'q'. However, 'q' is known to be false (Not q). This creates a contradiction or an absurd situation. \n4. **Conclusion by Negation:** Because the assumption \"Not p\" led to a contradiction, we conclude that \"Not p\" cannot be true. Therefore, we affirm the opposite, which is 'p'. \n\nThis process of proving a proposition by demonstrating the impossibility of its negation is the core of the *Contra- Method*. \n",
+        "response_text": "[[E]]",
+        "answer": "[[E]]",
+        "is_correct": true
+    },
+    {
+        "idx": "237",
+        "response": "[[F]] \n\n**Explanation:**\n\nThe provided text uses the **Elim- Method**.  It presents three possibilities:\n\n1. Learning both computers and striptease.\n2. Learning striptease but not computers.\n3. Learning computers while resisting striptease.\n\nIt then argues for the truth of the third option by eliminating the first two as undesirable. This process of elimination is the core characteristic of the Elim- Method. \n",
+        "response_text": "[[F]]",
+        "answer": "[[F]]",
+        "is_correct": true
+    },
+    {
+        "idx": "239",
+        "response": "[[D]] \n",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "242",
+        "response": "[[B]] \n\n**Explanation:**\n\nThe given argument follows the pattern of the **AffCons Method**.\n\n1. **If P, then Q:** If Wang Meng is an internet enthusiast (P), then he will spend a long time online (Q).\n2. **Q is true:** Wang Meng does indeed spend a long time online (Q).\n3. **Erroneously concludes P:** Therefore, Wang Meng must be an internet enthusiast (P).\n\nThe argument incorrectly assumes that because the consequence (Q) is true, the antecedent (P) must also be true. This is a fallacy because there could be other reasons for Wang Meng to spend a long time online, as the example illustrates (his job). \n",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "246",
+        "response": "[[F]] \n",
+        "response_text": "[[F]]",
+        "answer": "[[F]]",
+        "is_correct": true
+    },
+    {
+        "idx": "248",
+        "response": "[[H]] \n",
+        "response_text": "[[H]]",
+        "answer": "[[H]]",
+        "is_correct": true
+    },
+    {
+        "idx": "250",
+        "response": "[[**C/G**]] \n\n**Explanation:**\n\nThe manager's statement can be represented as: ∀E (P → B) - \"For all employees, if they complete a project, then they will receive a bonus.\"\n\nEmployee A's misunderstanding is: ∀E (B → P) - \"For all employees, if they receive a bonus, then they have completed a project.\"\n\nThis represents two fallacies:\n\n* **CondSwap Method:** The employee incorrectly reverses the original implication. The original statement doesn't guarantee that a bonus is *only* given after completing a project, just that completing a project guarantees a bonus. Other scenarios for receiving a bonus might exist.\n* **IllTrans Method:** Similar to the above, this demonstrates an erroneous conversion of terms within the proposition.  The original statement implies \"all project completions lead to bonuses,\" but it doesn't mean \"all bonuses are a result of project completions.\" \n",
+        "response_text": "[[**C/G**]]",
+        "answer": "[[J]]",
+        "is_correct": false
+    }
+]

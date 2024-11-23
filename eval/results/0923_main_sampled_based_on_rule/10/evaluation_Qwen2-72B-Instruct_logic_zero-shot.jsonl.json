@@ -1,0 +1,177 @@
+[
+    {
+        "idx": "1",
+        "response": "[[p1&p2];[(p3)||p4];[(p3&&~p4)||( ~p3&&p4)]]",
+        "response_text": "[[p1&p2];[(p3)||p4];[(p3&&~p4)||( ~p3&&p4)]]",
+        "answer": "[[p1&p2];[p3||p4];[(p3&~p4)||(~p3&p4)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "17",
+        "response": "To represent each person's statement using the given simple propositions (p, q, r), let's first interpret their statements:\n\n- First person: \"Professor Wang is not from Suzhou, he is from Shanghai.\"\n  - This can be translated to: !(p) & q.\n\n- Second person: \"Professor Wang is not from Shanghai, he is from Suzhou.\"\n  - This can be translated to: !q & p.\n\n- Third person: \"Professor Wang is neither from Shanghai nor from Hangzhou.\"\n  - This can be translated to: !q & !r.\n\nTherefore, the representations for the First person, Second person, and Third person would be:\n```\n[![p) & q]; \n[!q & p]; \n[!q & !r]\n```\nor, using the custom symbols:\n```\n[!p & q]; \n[!q & p]; \n[!q & !r]\n```",
+        "response_text": "[[![p) & q]]",
+        "answer": "[[!p&q];[p&!q];[!q&!r]]",
+        "is_correct": false
+    },
+    {
+        "idx": "25",
+        "response": "The given formula is a disjunction of conjunctive terms. Each conjunctive term is a conjunction of propositional variables or their negations, and all variables appear exactly once in each term. The terms are:\n- ¬p ∧ ¬q ∧ ¬r\n- ¬p ∧ ¬q ∧ r\n- ¬p ∧ q ∧ r\n- p ∧ ¬q ∧ r\n- p ∧ q ∧ r\n\nThese terms are in lexicographical order and represent all possible truth assignments for p, q, and r. Therefore, they are paired conjunctive terms.\n\nNext, we determine the binary representation corresponding to the truth values of p, q, and r for each term:\n- ¬p ∧ ¬q ∧ ¬r: 111 (binary representation for the false assignment of p, q, and r)\n- ¬p ∧ ¬q ∧ r: 110\n- ¬p ∧ q ∧ r: 100\n- p ∧ ¬q ∧ r: 010\n- p ∧ q ∧ r: 000\n\nThe binary numbers corresponding to these assignments in hexadecimal are:\n- 111: 7 (M7 as it's a negation)\n- 110: 6\n- 100: 4\n- 010: 2\n- 000: 0 (m0 since it includes false assignment for all variables)\n\nSince the formula is a disjunction of conjunctive terms and each paired conjunctive term corresponds to a unique truth assignment, it satisfies the conditions for the principal disjunctive normal form. The paired conjunctive terms included are m0, and the rest (which are not negations) correspond to the formula being an all-even formula except for m0.\n\nTherefore, the formula conforms to the principal disjunctive normal form. It includes all paired conjunctive terms, making it a tautology, and specifically, since it includes m0, it is also a basic formula. However, since the question does not ask about its type (tautology, basic, etc.), we will simply denote it as per the principal disjunctive normal form.\n\nAnswer format: [[A]; [denoted expression]]\n\nThe denoted expression consists of all paired conjunctive terms included, which are m0, m2, m4, m6. We do not include M7 because it denotes the negated term that results in a false assignment.\n\nThe answer is:\n\n[[A]; [m0 + m2 + m4 + m6]]",
+        "response_text": "[[A]; [denoted expression]]",
+        "answer": "[[A];[m0∨m1∨m3∨m5∨m7]]",
+        "is_correct": false
+    },
+    {
+        "idx": "37",
+        "response": "To solve the given question, we first need to convert the given conjunctive normal form (CNF) into its constituent simple disjunctive clauses. Let's first identify these clauses:\n\nGiven CNF: p∧(p∨q)∧(p∨¬q)∧(q∨¬r)∧(q∨r)\n\n- Simple disjunctive clauses:\n    1. p\n    2. p ∨ q\n    3. p ∨ ¬q\n    4. q ∨ ¬r\n    5. q ∨ r\n\nNow, we initialize \\( S0 \\) and \\( S2 \\) as empty sets and \\( S1 \\) with the identified simple disjunctive clauses:\n\n- \\( S0 = \\emptyset \\)\n- \\( S1 = \\{p, p \\vee q, p \\vee ¬q, q \\vee ¬r, q \\vee r\\} \\)\n- \\( S2 = \\emptyset \\)\n\nAccording to the steps of the resolution algorithm, we now resolve clauses in \\( S0 \\) and those in \\( S1 \\), and then resolve clauses in \\( S1 \\) against each other. Given that \\( S0 \\) is initially empty, we will only find resolutions within \\( S1 \\).\n\nResolution within \\( S1 \\):\n\nClauses:\n1. \\( p \\)\n2. \\( p \\vee q \\)\n3. \\( p \\vee ¬q \\)\n4. \\( q \\vee ¬r \\)\n5. \\( q \\vee r \\)\n\nSince clauses 1 and 2 (and 1 and 3) share a common literal (p), they resolve to a tautology (q ∨ ¬q) and thus we discard them as they lead to 0.\n\nResolving 4 and 5, as they share the complementary literals r and ¬r, we get:\n\n- \\( dispel(q \\vee ¬r, q \\vee r) = q \\)\n\nNo other pairs from \\( S1 \\) can resolve according to the specified logic rules.\n\nThus, \\( S2 \\) before the second cycle of the algorithm would be:\n\n- \\( S2 = \\{q\\} \\)\n\nWe provide the sets in the following format:\n\n\\[ [S0;S1;S2] \\]\n\nAfter the first cycle, we have:\n\n\\[ [\\{\\};\\{p, p \\vee q, p \\vee ¬q, q \\vee ¬r, q \\vee r\\};\\{q\\}] \\]\n\nTherefore, the sets \\( S0 \\), \\( S1 \\), and \\( S2 \\) after the first cycle would be represented as:\n\n\\[ [\\emptyset;\\{p, p \\vee q, p \\vee ¬q, q \\vee ¬r, q \\vee r\\};\\{q\\}] \\]\n\nSince \\( S0 \\) is empty, we can represent \\( S0 \\) with ∅ to comply with the given instructions:\n\n\\[ [\\emptyset;\\{p, p \\vee q, p \\vee ¬q, q \\vee ¬r, q \\vee r\\};\\{q\\}] \\]",
+        "response_text": "[[[S0;S1;S2]]",
+        "answer": "[[{p,p∨q,p∨¬q,q∨¬r,q∨r}];[{p∨r,p∨¬r,q}];[∅]]",
+        "is_correct": false
+    },
+    {
+        "idx": "47",
+        "response": "[[O=-]]",
+        "response_text": "[[O=-]]",
+        "answer": "[[-]]",
+        "is_correct": false
+    },
+    {
+        "idx": "53",
+        "response": "[Ax(M(x) ⇒ F(x)); Ex(G(x)); ∼Ex(H(x)); ∼Ax(F(x) ⇒ G(x))]",
+        "response_text": "[[Ax(M(x) ⇒ F(x)); Ex(G(x)); ∼Ex(H(x)); ∼Ax(F(x) ⇒ G(x))]]",
+        "answer": "[[Ax(M(x)⇒F(x))];[Ex(M(x)&G(x))];[∼Ex(M(x)&H(x))];[∼Ax(F(x)⇒G(x))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "61",
+        "response": "[(FJ(fJ(x, y), gJ(x, y)))]\n\nSince we are asked to implement the formula under interpretation J, we replace the symbols according to the rule:\n\n- F(x, y) becomes FJ(x, y)\n- f(x, y) becomes fJ(x, y) = x + y\n- g(x, y) becomes gJ(x, y) = x * y\n\nThus the formula F(f(x, y), g(x, y)) becomes FJ(fJ(x, y), gJ(x, y)) which, under the interpretation J, denotes (x + y) = (x * y).",
+        "response_text": "[[(FJ(fJ(x, y), gJ(x, y)))]]",
+        "answer": "[[x+y=x*y]]",
+        "is_correct": false
+    },
+    {
+        "idx": "78",
+        "response": "[[true];[false];[false];[false]]",
+        "response_text": "[[true];[false];[false];[false]]",
+        "answer": "[[true];[true];[false];[false]]",
+        "is_correct": false
+    },
+    {
+        "idx": "85",
+        "response": "[\"All non-tested by practice theories are not genuine scientific theories.\"]",
+        "response_text": "[[\"All non-tested by practice theories are not genuine scientific theories.\"]]",
+        "answer": "[[Alltheoriesthathavenotbeentestedbypracticearenotgenuinescientifictheories.]]",
+        "is_correct": false
+    },
+    {
+        "idx": "95",
+        "response": "The given logical statements are:\n1. ∀P⇒M (Universal Affirmative - A)\n2. ∃S⇒¬M (Existential Negative - O)\n3. ∴∃S⇒¬P (Existential Negative - O)\n\nThe argument form that matches these statements is Figure II, as it takes the form:\nP()M\nS()M\n∴S()P\n\nThe first premise is universal affirmative (A), the second premise is existential negative (O), and the conclusion is existential negative (O). Therefore, the mood is AOO.\n\nThe answer is [[II];[AOO]].",
+        "response_text": "[[II];[AOO]]",
+        "answer": "[[II];[AOO]]",
+        "is_correct": true
+    },
+    {
+        "idx": "108",
+        "response": "According to truth modal reasoning formula 9 (#p → $p), if \"Xiao Lin will necessarily win the championship\" (#p) is true, then \"Xiao Lin will possibly win the championship\" ($p) can be inferred.\n\n[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "120",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "128",
+        "response": "[[D]]",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "133",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "144",
+        "response": "[ c* ]φ",
+        "response_text": "[[c*]]",
+        "answer": "[[[c*]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "152",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "162",
+        "response": "D\n\nThe scenario described in the question fits Method ⵣ, which involves observing changes in S (Chinese hybrid rice varieties) corresponding to changes in P (rice yield). The experiments compared the yield of Chinese hybrid rice varieties (S) with that of American rice varieties (not S) under the same conditions (A, B, C), and observed changes in yield (P) correlating with the type of rice variety used. This method involves comparing different levels of the supposed cause (S1, S2, S3...) and observing the corresponding variations in the effect (P1, P2, P3...). Thus, the answer is [[D]].",
+        "response_text": "[[D]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "172",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "189",
+        "response": "[C(S, 90/100, 75/150)] This symbolization denotes that there is a C-reasoning similarity in the proportions of daily exercising individuals between Region A and Region B. Therefore, the populations from which these regions are drawn are likely to have similar proportions of individuals who exercise daily.",
+        "response_text": "[[C(S, 90/100, 75/150)]]",
+        "answer": "[[IfC(S,90/100,75/150),thenPr(S,P1)≈Pr(S,P2)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "196",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "201",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "217",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "222",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "231",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "243",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    }
+]

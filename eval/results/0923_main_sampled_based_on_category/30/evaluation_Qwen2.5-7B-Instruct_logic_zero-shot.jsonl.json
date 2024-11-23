@@ -1,0 +1,527 @@
+[
+    {
+        "idx": "9",
+        "response": "[[A];[A]]",
+        "response_text": "[[A];[A]]",
+        "answer": "[[A];[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "12",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "15",
+        "response": "[[B];[B]]",
+        "response_text": "[[B];[B]]",
+        "answer": "[[B];[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "17",
+        "response": "Based on the given problem, we can translate the statements of each person into logical expressions:\n\n- **First person's statement**: \"Professor Wang is not from Suzhou, he is from Shanghai.\"\n  - This can be represented as: `!p & q`\n  \n- **Second person's statement**: \"Professor Wang is not from Shanghai, he is from Suzhou.\"\n  - This can be represented as: `!q & p`\n  \n- **Third person's statement**: \"Professor Wang is neither from Shanghai nor from Hangzhou.\"\n  - This can be represented as: `!q & !r`\n\nTherefore, the logical expressions for each person's statement are:\n[[ !p & q ];[ !q & p ];[ !q & !r ]]",
+        "response_text": "[[!p & q ];[ !q & p ];[ !q & !r]]",
+        "answer": "[[!p&q];[p&!q];[!q&!r]]",
+        "is_correct": false
+    },
+    {
+        "idx": "18",
+        "response": "[[C1=!q&!r];[C2=(p&!q)|(p&!r)|(!q&!r);[C3=p&!q|p&!r|!q&!r];\n[D1=!p&q];[D2=(!p&!q)|(p&q);[D3=p&!q]].\n\nExplanation:\n- For Person C: \"Professor Wang is neither from Shanghai nor from Hangzhou,\" which symbolizes as `!q & !r`. This would be true if Professor Wang is from Suzhou, i.e., p is true, and he is not from Shanghai or Hangzhou.\n- Person C got everything right: `C1 = !q & !r`.\n- Person C got half right: `C2 = (p & !q) | (p & !r) | (!q & !r)`. This covers the scenarios where one statement is correct and the other is incorrect.\n- Person C got everything wrong: `C3 = p & !q | p & !r | !q & !r`. This means Professor Wang is from Shanghai or Hangzhou, which contradicts C's statement entirely.\n\n- For Person A: \"Professor Wang is not from Suzhou, he is from Shanghai,\" which symbolizes as `!p & q`.\n- Person A got everything right: `D1 = !p & q`.\n- Person A got half right: `D2 = (!p & !q) | (p & q)`. This encompasses the scenarios where one statement is correct and the other is incorrect.\n- Person A got everything wrong: `D3 = p & !q`. This means Professor Wang is from Suzhou or Hangzhou, which contradicts A's statement entirely.",
+        "response_text": "[[C1=!q&!r];[C2=(p&!q)|(p&!r)|(!q&!r);[C3=p&!q|p&!r|!q&!r];\n[D1=!p&q];[D2=(!p&!q)|(p&q);[D3=p&!q]]",
+        "answer": "[[C1=p&!q];[C2=(p&q)|(!p&!q)];[C3=!p&q];[D1=!q&!r];[D2=(!q&r)|(q&!r)];[D3=q&r]]",
+        "is_correct": false
+    },
+    {
+        "idx": "19",
+        "response": "[[B1&C2&D3::=::!p&q&!q&!r::=::!p&0::=::0]; [B1&C3&D2::=::!p&q&p&!q&!r::=::0]; [B2&C1&D3::=::(!p&!q)|(p&q)&!q&!r::=::(!p&!q&!q&!r)|(p&q&!q&!r)::=::(!p&0)|(p&0)::=::0]; [B2&C3&D1::=::(!p&!q)|(p&q)&p&!q::=::(!p&!q&!q)|(p&q&!q)::=::(!p&0)|(p&0)::=::0]; [B3&C1&D2::=::p&!q&!q&!r::=::p&0::=::0]; [B3&C2&D1::=::p&!q&(!p&!q)|(p&q) & p&!q::=::p&!q&(!p&!q)|(p&q) & p&!q::=::p&!q&(!p&!q)|(p&q)::=::p&!q&(!p)|p&!q&(q)::=::p&!q&!p|0::=::p&(0)|0::=::0]; [E::=::0|0|0|0|0|0::=::0]].\n\nExplanation:\n- B1&C2&D3 simplifies to !p&0 since q&!q is always false (0).\n- B1&C3&D2 simplifies to 0 since q&q is always true, but then and with !q results in 0.\n- B2&C1&D3 and B2&C3&D1 both simplify to 0 due to inconsistencies in p's and q's roles leading to 0.\n- B3&C1&D2 and B3&C2&D1 both simplify to 0 due to the same reasons as above.\n- Finally, E simplifies to 0 since all decomposed sub-expressions are 0.",
+        "response_text": "[[B1&C2&D3::=::!p&q&!q&!r::=::!p&0::=::0]; [B1&C3&D2::=::!p&q&p&!q&!r::=::0]; [B2&C1&D3::=::(!p&!q)|(p&q)&!q&!r::=::(!p&!q&!q&!r)|(p&q&!q&!r)::=::(!p&0)|(p&0)::=::0]; [B2&C3&D1::=::(!p&!q)|(p&q)&p&!q::=::(!p&!q&!q)|(p&q&!q)::=::(!p&0)|(p&0)::=::0]; [B3&C1&D2::=::p&!q&!q&!r::=::p&0::=::0]; [B3&C2&D1::=::p&!q&(!p&!q)|(p&q) & p&!q::=::p&!q&(!p&!q)|(p&q) & p&!q::=::p&!q&(!p&!q)|(p&q)::=::p&!q&(!p)|p&!q&(q)::=::p&!q&!p|0::=::p&(0)|0::=::0]; [E::=::0|0|0|0|0|0::=::0]]",
+        "answer": "[[B1&C2&D3::=::0];[B1&C3&D2::=::!p&q&!r];[B2&C1&D3::=::0];[B2&C3&D1::=::0];[B3&C1&D2::=::p&!q&r];[B3&C2&D1::=::0];[E::=::(!p&q&!r)|(p&!q&r)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "21",
+        "response": "[[paired conjunctive terms:m1, m3]; [denoted:(¬p∧¬q∧r)∨(¬p∧q∧r)]]",
+        "response_text": "[[paired conjunctive terms:m1, m3]; [denoted:(¬p∧¬q∧r)∨(¬p∧q∧r)]]",
+        "answer": "[[pairedconjunctiveterms:¬p^¬q^r,¬p^q^r];[denoted:m1∨m3]]",
+        "is_correct": false
+    },
+    {
+        "idx": "26",
+        "response": "[[A];[(p∨r)∧(¬q∨r)∧(¬p∨q∨¬r)]]",
+        "response_text": "[[A];[(p∨r)∧(¬q∨r)∧(¬p∨q∨¬r)]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "36",
+        "response": "[[Plausible];[2]]\n\n### Explanation:\nLet's apply the resolution algorithm step-by-step to the given conjunctive normal form (CNF): (¬p ∨ q) ∧ (p ∨ q) ∧ (q).\n\n#### Initialization:\n- S0: Empty set\n- S1: Set of all simple disjunctive clauses in CNF: {(¬p ∨ q), (p ∨ q), (q)}\n\n#### Resolve Clauses in S0 and S1:\n- Clause (¬p ∨ q) is in S1.\n- Clause (p ∨ q) is in S1.\n- They can be resolved since they contain each other's complement literals \\(-p\\) and \\(p\\):\n  - dispel(¬p ∨ q, p ∨ q) = (q ∨ q) = q\n  - Add q to S2 (S2 = {q}).\n\n- Clause (q) is now in S2 and S1 does not contain it, so no change to S1.\n\n#### Resolve Clauses in S1 Again:\n- S1 = { (¬p ∨ q), (p ∨ q), (q) }\n- Clause (q) is in S1, and S0 is still empty.\n- Clause (q) from S1 and (q) from S1 can be resolved, and since they are both \\(q\\), they are trivially resolved into 0.\n  - dispel(q, q) = 0\n  - Since the result is 0, we output \"Implausible\" but follow the algorithm to check S2.\n\n#### Check S2:\n- S2 contains q, and nothing is resolved to 0, so we add S1 to S0 (S0 = { (¬p ∨ q), (p ∨ q) }).\n- Set S1 to S2 (S1 = {q}).\n- Clear S2 (S2 = {}).\n- Since S1 has elements, we return to step b (resolve clauses in S1).\n\nSince resolving S1 to itself without affecting S2 and not generating 0, no further cycles will occur, and the algorithm concludes with a \"Plausible\" output, validating the CNF has a satisfying assignment. The algorithm iterates 2 cycles total. Thus, the answer is [[Plausible];[2]].",
+        "response_text": "[[Plausible];[2]]",
+        "answer": "[[Implausible];[2]]",
+        "is_correct": false
+    },
+    {
+        "idx": "37",
+        "response": "To solve the problem, we first need to convert the given conjunctive normal form (CNF) into its simple disjunctive clauses (SDCs), and then follow the steps of the resolution algorithm to determine the initial states of `S0`, `S1`, and `S2`.\n\nGiven CNF: \\(p \\land (p \\lor q) \\land (p \\lor \\neg q) \\land (q \\lor \\neg r) \\land (q \\lor r)\\)\n\n1. Convert the CNF to SDCs:\n   - \\(p\\) can be written as \\(p \\lor \\top\\)\n   - \\(p \\lor q\\)\n   - \\(p \\lor \\neg q\\)\n   - \\(q \\lor \\neg r\\)\n   - \\(q \\lor r\\)\n\n   So, the SDCs are:\n   - \\(S = \\{p, p \\lor q, p \\lor \\neg q, q \\lor \\neg r, q \\lor r\\}\\)\n\n2. Initialize the sets:\n   - \\(S0 = \\emptyset\\)\n   - \\(S1 = \\{p, p \\lor q, p \\lor \\neg q, q \\lor \\neg r, q \\lor r\\}\\)\n   - \\(S2 = \\emptyset\\)\n\nThe answer is in the format requested:\n\\[ \\left[ \\emptyset; \\{p, p \\lor q, p \\lor \\neg q, q \\lor \\neg r, q \\lor r\\}; \\emptyset \\right] \\]",
+        "response_text": "[[\\left[ \\emptyset; \\{p, p \\lor q, p \\lor \\neg q, q \\lor \\neg r, q \\lor r\\}; \\emptyset \\right]]",
+        "answer": "[[{p,p∨q,p∨¬q,q∨¬r,q∨r}];[{p∨r,p∨¬r,q}];[∅]]",
+        "is_correct": false
+    },
+    {
+        "idx": "42",
+        "response": "[[I1, I2, O]; [+, +]; [-, -]];",
+        "response_text": "[[I1, I2, O]; [+, +]; [-, -]]",
+        "answer": "[[I1,I2,O];[+,+,+];[+,-,-];[-,+,-];[-,-,-]]",
+        "is_correct": false
+    },
+    {
+        "idx": "44",
+        "response": "[[I1, I2, O]; [-, -, +]; [-, +, +]; [+,-, +]; [+,*-*, -]] \n\nHere, I1 represents \"p\" and I2 represents \"q\". The output \"O\" is the result of the logical expression ¬(p∧q).\n- When both inputs are not powered (p=false, q=false), the output is powered (true).\n- When only \"p\" is powered (p=true, q=false), the output is not powered (false).\n- When only \"q\" is powered (p=false, q=true), the output is not powered (false).\n- When both inputs are powered (p=true, q=true), the output is not powered (false).",
+        "response_text": "[[I1, I2, O]; [-, -, +]; [-, +, +]; [+,-, +]; [+,*-*, -]]",
+        "answer": "[[I1,I2,O];[+,+,-];[+,-,+];[-,+,+];[-,-,+]]",
+        "is_correct": false
+    },
+    {
+        "idx": "54",
+        "response": "[[Ex(F(x) & Ay(G(y) ⇒ H(x, y)))]]",
+        "response_text": "[[Ex(F(x) & Ay(G(y) ⇒ H(x, y)))]]",
+        "answer": "[[Ex(F(x)&Ay(G(y)⇒H(x,y)))]]",
+        "is_correct": true
+    },
+    {
+        "idx": "55",
+        "response": "[[E2 ∧ F2 ∧ G2; (E2 ∧ G2) ⇒ ∼E4; E2 ∧ G2 ∧ (∀x)((x ≠ 2) ⇒ ∼Gx) ∧ G6; (∀x)((x ≠ 6) ⇒ G4)]]",
+        "response_text": "[[E2 ∧ F2 ∧ G2; (E2 ∧ G2) ⇒ ∼E4; E2 ∧ G2 ∧ (∀x)((x ≠ 2) ⇒ ∼Gx) ∧ G6; (∀x)((x ≠ 6) ⇒ G4)]]",
+        "answer": "[[F(2)&G(2)];[G(2)⇒~G(4)];[G(6)⇒G(2)];[~G(6)⇒G(4)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "57",
+        "response": "[[AxF(x) ⇒ G(x)];[Ex(F(x) & ∼G(x))]]",
+        "response_text": "[[AxF(x) ⇒ G(x)];[Ex(F(x) & ∼G(x))]]",
+        "answer": "[[Ax(F(x)⇒G(x))];[Ex(F(x)&∼G(x))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "59",
+        "response": "[[AzH(x, y, z)]]",
+        "response_text": "[[AzH(x, y, z)]]",
+        "answer": "[[AxAyEzH(x,y,z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "60",
+        "response": "[[Ax(L(ε) ⇒ Ey(L(λ) & M(x, x0, λ) ⇒ N(f(x), f(x0), ε)))]]",
+        "response_text": "[[Ax(L(ε) ⇒ Ey(L(λ) & M(x, x0, λ) ⇒ N(f(x), f(x0), ε)))]]",
+        "answer": "[[Aε(L(ε)⇒(Eλ(L(λ)&(M(x,x0,λ)⇒N(x,x0,ε)))))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "63",
+        "response": "[[∀x' (g'(x', y'), z') = (x' + y') * z']]",
+        "response_text": "[[∀x' (g'(x', y'), z') = (x' + y') * z']]",
+        "answer": "[[∀x(x*y=z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "64",
+        "response": "[[∀x((gJ(x,0) = x) → (x = y))]]",
+        "response_text": "[[∀x((gJ(x,0) = x) → (x = y))]]",
+        "answer": "[[∀x(x*0=x)→(x=y)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "68",
+        "response": "[[∃n∈N((0 + n) * (0 + n) = n)]]",
+        "response_text": "[[∃n∈N((0 + n) * (0 + n) = n)]]",
+        "answer": "[[∃x(x+x=x*x)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "69",
+        "response": "[[∀x F(gJ(x, 2), x); ∃x F(fJ(x, 2), y) → ∃y F(fJ(y, 2), x)]];[[(∀x F(x + 2, x)); (∃x F(x * 2, y) → ∃y F(y * 2, x))]]",
+        "response_text": "[[∀x F(gJ(x, 2), x); ∃x F(fJ(x, 2), y) → ∃y F(fJ(y, 2), x)]]",
+        "answer": "[[∀x(2x=x)];[∃x(x+2=y)→∃y(y+2=x)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "70",
+        "response": "[[∀x∀y∃z(x = y);[]];[∃x(x + y = 2 * x);[]]]",
+        "response_text": "[[∀x∀y∃z(x = y);[]]",
+        "answer": "[[∀x∀y∃z(x+y=z)];[∃x(x+y=x*z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "72",
+        "response": "[[C];[B];[D];[A]]",
+        "response_text": "[[C];[B];[D];[A]]",
+        "answer": "[[A];[B];[D];[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "75",
+        "response": "[[SIP]]",
+        "response_text": "[[SIP]]",
+        "answer": "[[SIP]]",
+        "is_correct": true
+    },
+    {
+        "idx": "81",
+        "response": "[Some products are not non-top-grade.]",
+        "response_text": "[[Some products are not non-top-grade.]]",
+        "answer": "[[Someproductsarenon-top-grade.]]",
+        "is_correct": false
+    },
+    {
+        "idx": "84",
+        "response": "[Some patriots are college students.]",
+        "response_text": "[[Some patriots are college students.]]",
+        "answer": "[[Somepatriotsarecollegestudents.]]",
+        "is_correct": true
+    },
+    {
+        "idx": "91",
+        "response": "[[I];[AII]]",
+        "response_text": "[[I];[AII]]",
+        "answer": "[[I];[AAA]]",
+        "is_correct": false
+    },
+    {
+        "idx": "93",
+        "response": "[[II];[EAE]]",
+        "response_text": "[[II];[EAE]]",
+        "answer": "[[IV];[AEE]]",
+        "is_correct": false
+    },
+    {
+        "idx": "94",
+        "response": "[[II];[EIO]]",
+        "response_text": "[[II];[EIO]]",
+        "answer": "[[II];[EIO]]",
+        "is_correct": true
+    },
+    {
+        "idx": "95",
+        "response": "[[IV];[EIO]]",
+        "response_text": "[[IV];[EIO]]",
+        "answer": "[[II];[AOO]]",
+        "is_correct": false
+    },
+    {
+        "idx": "98",
+        "response": "[[];AIO]",
+        "response_text": "[[[]]",
+        "answer": "[[M];[S]]",
+        "is_correct": false
+    },
+    {
+        "idx": "102",
+        "response": "[[#(p - !p)];[(#$p) > q]]",
+        "response_text": "[[#(p - !p)];[(#$p) > q]]",
+        "answer": "[[#(p-!p)];[$(p>q)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "103",
+        "response": "[[D];[B]]",
+        "response_text": "[[D];[B]]",
+        "answer": "[[A];[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "110",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "117",
+        "response": "[[4]]",
+        "response_text": "[[4]]",
+        "answer": "[[3]]",
+        "is_correct": false
+    },
+    {
+        "idx": "118",
+        "response": "[[D]]",
+        "response_text": "[[D]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "119",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "128",
+        "response": "[[D]]",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "137",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "138",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "143",
+        "response": "[ [c_1 + c_2 ]φ ]",
+        "response_text": "[[[c_1 + c_2]]",
+        "answer": "[[[c1+c2]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "144",
+        "response": "[ c* ]φ\n\nGiven that Alice is convinced the loop command `c*` will continue to execute until the proposition `φ` is true, the simplest logical expression representing her belief adheres to the Loop Rule. Therefore, the expression is `[ c* ]φ`.",
+        "response_text": "[[c*]]",
+        "answer": "[[[c*]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "146",
+        "response": "[[c*]φ]",
+        "response_text": "[[[c*]]",
+        "answer": "[[[c*]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "150",
+        "response": "[[H]]",
+        "response_text": "[[H]]",
+        "answer": "[[H]]",
+        "is_correct": true
+    },
+    {
+        "idx": "156",
+        "response": "[[P(a1), P(a2), P(a3)];\n[forall a in S, P(a)]]",
+        "response_text": "[[P(a1), P(a2), P(a3)];\n[forall a in S, P(a)]]",
+        "answer": "[[P(a1),P(a2),P(a3)];[forallainS,P(a)]]",
+        "is_correct": true
+    },
+    {
+        "idx": "163",
+        "response": "[[D]]",
+        "response_text": "[[D]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "164",
+        "response": "[D]",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "165",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[E]]",
+        "is_correct": false
+    },
+    {
+        "idx": "166",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "168",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "170",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "172",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "175",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "176",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "177",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "180",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "181",
+        "response": "[[100%]]",
+        "response_text": "[[100%]]",
+        "answer": "[[100%]]",
+        "is_correct": true
+    },
+    {
+        "idx": "184",
+        "response": "[[100%]]",
+        "response_text": "[[100%]]",
+        "answer": "[[100%]]",
+        "is_correct": true
+    },
+    {
+        "idx": "187",
+        "response": "[[]C(F, 180/200, 210/300)]",
+        "response_text": "[[[]]",
+        "answer": "[[IfC(F,180/200,210/300),thenPr(F,P1)≈Pr(F,P2)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "197",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "198",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "199",
+        "response": "[B]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "201",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "202",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "210",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "214",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "219",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "222",
+        "response": "[A]",
+        "response_text": "[[A]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "228",
+        "response": "[A]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "233",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "236",
+        "response": "[[F]]",
+        "response_text": "[[F]]",
+        "answer": "[[F]]",
+        "is_correct": true
+    },
+    {
+        "idx": "239",
+        "response": "[[D]]",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "243",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "246",
+        "response": "[[F]]",
+        "response_text": "[[F]]",
+        "answer": "[[F]]",
+        "is_correct": true
+    },
+    {
+        "idx": "247",
+        "response": "[[G]]",
+        "response_text": "[[G]]",
+        "answer": "[[G]]",
+        "is_correct": true
+    }
+]

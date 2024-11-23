@@ -1,0 +1,352 @@
+[
+    {
+        "idx": "4",
+        "response": "To find the falsity values of the given formulas, we need to assign truth values (✓ for true and x for false) to each proposition p1, p2, and p3 according to the rules provided and then evaluate the formulas for each assignment.\n\n### (1) ~(~p1 &p2 )||~p3\n\nFor this formula to be false, the subformula ~(~p1 &p2 )||~p3 must be true. This means either ~(~p1 &p2 ) is true or ~p3 is true.\n\n- If ~(~p1 &p2 ) is false, that means (~p1 &p2 ) is true, which implies both ~p1 and p2 are true. In this case, ~p3 must also be true to satisfy the formula.\n- If ~p3 is false, that means p3 is true. This doesn't affect the truth value of ~(~p1 &p2 ), so ~(~p1 &p2 ) can still be true or false, depending on the truth values of p1 and p2.\n\nThus, the possible false assignments for the formula are:\n- [[F: x|x|x];  // first case, where both p1 and p2 are false, and p3 is true\n- [F: ✓|✓|x];  // second case, where p3 is true but p1 and p2 can be either true or false]\n\n### (2) (~p2 ||p3 )&(p1 =::>p2 )\n\nFor the entire formula to be false, both (~p2 ||p3 ) and p1 =::>p2 must be false (since we're using the \"and\" operation).\n\n- (~p2 ||p3 ) is false only if both p2 is false and p3 is false.\n- For p1 =::>p2 to be false, p1 must be true and p2 must be false (since =::> means \"If p1, then p2\", it's false if p1 is true and p2 is false).\n\nTherefore, for the entire formula to be false, p1 must be true, p2 must be false, and p3 must be false:\n- [[F: ✓|x|x]]\n\n### (3) (p1 =::>p2 )&(~(p1 &p3 )||p1 )\n\nFor the entire formula to be false, both (p1 =::>p2 ) and ~(p1 &p3 )||p1 must be false.\n\n- Since p1 =::>p2 means \"If p1, then p2\", it's false if p1 is true and p2 is false.\n- ~(p1 &p3 )||p1 is true if either both (p1 &p3 ) and p1 are true, or if p1 &p3 is false and p1 is true. The latter case is what matters here for falsity.\n\nFor the entire formula to be false, p1 must be true (since p1 is needed for the disjunction to be true), and p2 must be false (to make p1 =::>p2 false), and p3 must also be false (to ensure ~(p1 &p3 ) is true, which makes the whole disjunction true barring the case of p1 being false, which we've excluded for this to fail).\n\n- [[F: ✓|x|x]]\n\nSo, the overall answer format is:\n```\n[[F: x|x|x];\n [F: ✓|✓|x];\n [F: ✓|x|x]]\n```",
+        "response_text": "[[F: x|x|x];  // first case, where both p1 and p2 are false, and p3 is true\n- [F: ✓|✓|x];  // second case, where p3 is true but p1 and p2 can be either true or false]\n\n### (2) (~p2 ||p3 )&(p1 =::>p2 )\n\nFor the entire formula to be false, both (~p2 ||p3 ) and p1 =::>p2 must be false (since we're using the \"and\" operation).\n\n- (~p2 ||p3 ) is false only if both p2 is false and p3 is false.\n- For p1 =::>p2 to be false, p1 must be true and p2 must be false (since =::> means \"If p1, then p2\", it's false if p1 is true and p2 is false).\n\nTherefore, for the entire formula to be false, p1 must be true, p2 must be false, and p3 must be false:\n- [[F: ✓|x|x]]",
+        "answer": "[[F:x|✓|✓];[F:x|✓|x,✓|✓|x,✓|x|✓,✓|x|x];[F:✓|x|x,✓|x|✓]]",
+        "is_correct": false
+    },
+    {
+        "idx": "9",
+        "response": "To determine the type of each formula, we need to assess if they are Truth Formulas or Falsehood Formulas based on the given Truth Formula (p1 =::>(p1 ||p2 ))&((p1 &p2 )=::>p1 ) being a Truth Formula.\n\n### Question 1: Determine the type of p1 =::>(p1 ||p2 ).\n\nGiven that p1 =::>(p1 ||p2 ) is part of the Truth Formula, it is also a Truth Formula.\n\n### Question 2: Determine the type of (p1 &p2 )=::>p1.\n\nGiven that (p1 &p2 )=::>p1 is part of the Truth Formula, it is also a Truth Formula.\n\n### Formatting the Answer:\n\n[[A];[A]]",
+        "response_text": "[[A];[A]]",
+        "answer": "[[A];[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "17",
+        "response": "[[!(p))];[!(q))];[!(r))]",
+        "response_text": "[[[!(p))]]",
+        "answer": "[[!p&q];[p&!q];[!q&!r]]",
+        "is_correct": false
+    },
+    {
+        "idx": "19",
+        "response": "[[B1 &C2 &D3 ::=:: (! p&q) & ((p & ! q)& ! q&! r) ::=:: (! p&q) & (p&q) & (! q&! r) ::=:: ! p&q];\n [B1 &C3 &D2 ::=:: (! p&q) & (p&! q&(! q&r)) ::=:: (! p&q) & (p&! q) & (! q&r) ::=:: (! p&q) & (! q&r)];\n [B2 &C1 &D3 ::=:: ((! p&! q)|(p&q)) & (! q&! r) ::=:: (! p|p & ! q|q) & (! q&! r) ::=:: (! p|p) & (! q|q) & (! q&! r) ::=:: (! p&! q&! r)];\n [B2 &C3 &D1 ::=:: (! p&! q|p&! r) & (p&! q&! r) ::=:: (! p|p & ! q|p & ! q&! r) & (p&! q&! r) ::=:: (! p|p) & (! q|p & ! q&! r) & (p&! q&! r) ::=:: (! p|p) & (! q|p) & (p&! r)];\n [B3 &C1 &D2 ::=:: (p&! q) & (! q&r) ::=:: (p&! q) & (! q&r) ::=:: p&! q&! q&r ::=:: p&! q];\n [B3 &C2 &D1 ::=:: (p&! q) & (! p & ! r) ::=:: (p&! q) & (! p & ! r) ::=:: p&! q&! p&! r ::=:: ! p&! q]].\n\n[E::=:: ((! p&q) & (! q&r) & (! p&! q&! r)) | ((! p&q) & (! q&r) & p&! q&! p&! r) | ((! p&! q|p&! r) & (! q&r) & p&! q&! p&! r) | ((p&! q) & (! p & ! r) & p&! q&! p&! r) | ((p&! q) & (p&! q&! r) & (! p & ! r)) | ((p&! q) & (! q&r) & (! p & ! r))].",
+        "response_text": "[[B1 &C2 &D3 ::=:: (! p&q) & ((p & ! q)& ! q&! r) ::=:: (! p&q) & (p&q) & (! q&! r) ::=:: ! p&q];\n [B1 &C3 &D2 ::=:: (! p&q) & (p&! q&(! q&r)) ::=:: (! p&q) & (p&! q) & (! q&r) ::=:: (! p&q) & (! q&r)];\n [B2 &C1 &D3 ::=:: ((! p&! q)|(p&q)) & (! q&! r) ::=:: (! p|p & ! q|q) & (! q&! r) ::=:: (! p|p) & (! q|q) & (! q&! r) ::=:: (! p&! q&! r)];\n [B2 &C3 &D1 ::=:: (! p&! q|p&! r) & (p&! q&! r) ::=:: (! p|p & ! q|p & ! q&! r) & (p&! q&! r) ::=:: (! p|p) & (! q|p & ! q&! r) & (p&! q&! r) ::=:: (! p|p) & (! q|p) & (p&! r)];\n [B3 &C1 &D2 ::=:: (p&! q) & (! q&r) ::=:: (p&! q) & (! q&r) ::=:: p&! q&! q&r ::=:: p&! q];\n [B3 &C2 &D1 ::=:: (p&! q) & (! p & ! r) ::=:: (p&! q) & (! p & ! r) ::=:: p&! q&! p&! r ::=:: ! p&! q]]",
+        "answer": "[[B1&C2&D3::=::0];[B1&C3&D2::=::!p&q&!r];[B2&C1&D3::=::0];[B2&C3&D1::=::0];[B3&C1&D2::=::p&!q&r];[B3&C2&D1::=::0];[E::=::(!p&q&!r)|(p&!q&r)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "23",
+        "response": "[[BC...]]",
+        "response_text": "[[BC...]]",
+        "answer": "[[CD]]",
+        "is_correct": false
+    },
+    {
+        "idx": "25",
+        "response": "[[A];[m6Vm5Wm9]]",
+        "response_text": "[[A];[m6Vm5Wm9]]",
+        "answer": "[[A];[m0∨m1∨m3∨m5∨m7]]",
+        "is_correct": false
+    },
+    {
+        "idx": "37",
+        "response": "[∅; {p∨q; p∨¬q; q∨¬r; q∨r}; {}]",
+        "response_text": "[[∅; {p∨q; p∨¬q; q∨¬r; q∨r}; {}]]",
+        "answer": "[[{p,p∨q,p∨¬q,q∨¬r,q∨r}];[{p∨r,p∨¬r,q}];[∅]]",
+        "is_correct": false
+    },
+    {
+        "idx": "38",
+        "response": "[[Plausible];[4]]",
+        "response_text": "[[Plausible];[4]]",
+        "answer": "[[Plausible];[2]]",
+        "is_correct": false
+    },
+    {
+        "idx": "43",
+        "response": "Given the rule for a simple circuit diagram using logical operators and the description of an OR gate, the truth table for an OR gate can be represented as follows:\n\n- An OR gate outputs \"true\" (or \"+\") if at least one input is \"true\" (or \"+\").\n- If all inputs are \"false\" (or \"-\"), the output is \"false\" (or \"-\").\n\nFor an OR gate with two inputs (I1 and I2), the truth table can be represented as:\n\n```\n[[I1, I2, O]]\n```\n\nThe formatted output based on the given logical operations and the provided notation is:\n\n- [[(+, +), (+, -), (-, +), (-, -)]]\n\nWhere:\n- (+, +) represents the output when both inputs are powered (I1 and I2 are both +).\n- (+, -) represents the output when only I1 is powered (I1 is +, I2 is -).\n- (-, +) represents the output when only I2 is powered (I1 is -, I2 is +).\n- (-, -) represents the output when neither input is powered (I1 and I2 are -).\n\nTherefore, the circuit diagram for an OR gate can be represented as:\n\n```\n[[(+, +), (+, -), (-, +), (-, -)]]\n```",
+        "response_text": "[[I1, I2, O]]",
+        "answer": "[[I1,I2,O];[+,+,+];[+,-,+];[-,+,+];[-,-,-]]",
+        "is_correct": false
+    },
+    {
+        "idx": "48",
+        "response": "Given the logical expression (p∧q)∨(¬p∧r), and the inputs I1 as \"+\" (p=+, or \"1\" in decimal), I2 as \"-\" (q=-, or \"0\" in decimal), and I3 as \"+\" (r=+, or \"1\" in decimal), we can substitute the values into the expression:\n\n(1∧0)∨(¬1∧1)\n\nFollowing the logical rules:\n\n- 1∧0 = 0 (because both inputs must be true for the conjunction to be true)\n- ¬1 = - (negation of true is false, or \"0\" in decimal)\n- 0∧1 = 0 (because the first input is false)\n\nSo the expression simplifies to:\n\n0∨0\n\nAnd 0∨0 = 0 (because both inputs must be true for the disjunction to be true, and in this case, one input is false)\n\nTherefore, the output, O, is \"0\".\n\nIn the specified format: [[output]], the answer is:\n\n[[0]]",
+        "response_text": "[[output]]",
+        "answer": "[[A=1,E=8,H=2,L=3,P=0,T=9]]",
+        "is_correct": false
+    },
+    {
+        "idx": "53",
+        "response": "[[(Ax(M(x) ⇒ F(x)));(Ex(G(x))), Ex(G(x)) ⇒ (Ax(¬H(x))));((Ay(G(y) ⇒ ¬H(x, y)));((Ex(F(x)) ∧ Ay(G(y) ⇒ ¬H(x, y))))]]",
+        "response_text": "[[(Ax(M(x) ⇒ F(x)));(Ex(G(x))), Ex(G(x)) ⇒ (Ax(¬H(x))));((Ay(G(y) ⇒ ¬H(x, y)));((Ex(F(x)) ∧ Ay(G(y) ⇒ ¬H(x, y))))]]",
+        "answer": "[[Ax(M(x)⇒F(x))];[Ex(M(x)&G(x))];[∼Ex(M(x)&H(x))];[∼Ax(F(x)⇒G(x))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "59",
+        "response": "[[ExAy(H(x, y, z))]]",
+        "response_text": "[[ExAy(H(x, y, z))]]",
+        "answer": "[[AxAyEzH(x,y,z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "62",
+        "response": "[[FJ(f𝐽(x, a′), y)→FJ(g𝐽(x, y), z)]]",
+        "response_text": "[[FJ(f𝐽(x, a′), y)→FJ(g𝐽(x, y), z)]]",
+        "answer": "[[(x+0=y)→(x*y=z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "64",
+        "response": "⟦∀x (x * 0 = y) → (x * 0 = x)⟧",
+        "response_text": "NULL",
+        "answer": "[[∀x(x*0=x)→(x=y)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "73",
+        "response": "[[#];[#];#]]",
+        "response_text": "[[#];[#];#]]",
+        "answer": "[[A];[B];[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "80",
+        "response": "#/%",
+        "response_text": "NULL",
+        "answer": "[[*]]",
+        "is_correct": false
+    },
+    {
+        "idx": "83",
+        "response": "[All theists are not thoroughgoing materialists]",
+        "response_text": "[[All theists are not thoroughgoing materialists]]",
+        "answer": "[[Alltheistsarenotthoroughgoingmaterialists.]]",
+        "is_correct": true
+    },
+    {
+        "idx": "87",
+        "response": "[All non-arriving are not the ones who should not have come.]",
+        "response_text": "[[All non-arriving are not the ones who should not have come.]]",
+        "answer": "[[Thosewhocomearenottheoneswhoshouldcome.]]",
+        "is_correct": false
+    },
+    {
+        "idx": "94",
+        "response": "To determine which figure and mood of syllogism the argument \"∀P⇒¬M,  ∃S⇒M ⇒ ∃S⇒¬P\" corresponds to, let's break down the argument step by step:\n\n1. **∀P⇒¬M**: This statement represents Universal Affirmative (AAA) reasoning because it says \"For all P, not M\" or in formal terms, \"All P are not M.\"\n\n2. **∃S⇒M**: This statement represents Particular Affirmative (AII) reasoning because it says \"There exists an S which implies M\" or in formal terms, \"Some S is M.\"\n\n3. **∃S⇒¬P**: This statement represents Particular Affirmative (AII) reasoning again because it says \"There exists an S which implies not P\" or in formal terms, \"Some S is not P.\"\n\nNow, let's match these reasons with the figures of syllogism:\n\n- The first reason (All P are not M) fits into Figure II (P()M, S()M) because it starts with an \"All\" (universal quantifier) and moves to an \"Some\" (particular quantifier), which is the structure of Figure II.\n- The second reason (Some S is M) fits into the middle of our syllogism (S()M), and the third reason (Some S is not P) fits into the conclusion (S()P).\n\nGiven the structure, we are working with Figure II. The moods that match the reasons provided are:\n- **AEE** (All P are not M) could be the first premise, showing a contradiction, which is not the mood we are looking for in a single premise within a figure II syllogism.\n- **EAE** (No P is M) could be the second premise, but our second premise is \"Some S is M,\" so this does not fit directly.\n- **EIO** (No M is P) could be a part of a more complex syllogism that leads to \"Some S is not P,\" but our direct premises do not fit this mood.\n\nThe most fitting mood based on the given premises is **AII**, which would be the first premise stating \"All P are not M.\" This is followed by the premise \"Some S is M,\" which fits into the mood of Figure II.\n\nTherefore, the argument corresponds to **Figure II; [AII]**.",
+        "response_text": "[[AII]]",
+        "answer": "[[II];[EIO]]",
+        "is_correct": false
+    },
+    {
+        "idx": "98",
+        "response": "Given the rule and the premise:\n\n- A: ∀p1 ⇒p2 (All p1 are p2)\n- E: ∀p1 ⇒¬p2 (No p1 are p2)\n- I: ∃p1 ⇒p2 (Some p1 are p2)\n- O: ∃p1 ⇒¬p2 (Some p1 are not p2)\n\nThe form given is:\n\nP()M\nS()M\n∴ S()P\n\nThe mood in this case is AIO, as we have an A statement, an I statement, and an O conclusion.\n\nP1: M()P (All M are P)\nP2: I()¬P (Some are not P)\nConclusion: S()P (Some S are P)\n\nTherefore, the filled parentheses are:\n\n[I()¬P; A()M]",
+        "response_text": "[[I()¬P; A()M]]",
+        "answer": "[[M];[S]]",
+        "is_correct": false
+    },
+    {
+        "idx": "107",
+        "response": "[[-9]]",
+        "response_text": "[[-9]]",
+        "answer": "[[6]]",
+        "is_correct": false
+    },
+    {
+        "idx": "109",
+        "response": "[[B/$p]]",
+        "response_text": "[[B/$p]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "112",
+        "response": "[¶p]",
+        "response_text": "[[¶p]]",
+        "answer": "[[‽p∧‽q∧‽r]]",
+        "is_correct": false
+    },
+    {
+        "idx": "118",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "126",
+        "response": "2 of these correspond to the inference formulae.",
+        "response_text": "NULL",
+        "answer": "[[9]]",
+        "is_correct": false
+    },
+    {
+        "idx": "130",
+        "response": "The reasoning formula 17 is consistent with the ⚭ (\"double arrow\") relationship, which represents a pair of propositions that can both be true, but cannot both be false. This is because the formula states: \"G¬p ↔ ¬Gp\" - which means G¬p and Gp cannot both be false, but they can both be true. Therefore, the answer is:\n\n```\n[C/⚭]\n```",
+        "response_text": "[[C/⚭]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "138",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "140",
+        "response": "Based on the provided information and the axioms of cognitive logic, the logical expression can be formulated as:\n\n```\n[[B_p ∧ BB_p]]\n```\n\nThis expression states that Alice firmly believes (B_p) that the library is open today (p), and she also believes she firmly believes (BB_p) that the library is open today.",
+        "response_text": "[[B_p ∧ BB_p]]",
+        "answer": "[[B_Alice(p)∧B_Alice(B_Alice(p))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "142",
+        "response": "⟨ c ⟩φ",
+        "response_text": "NULL",
+        "answer": "[[⟨c⟩φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "147",
+        "response": "[[c]]",
+        "response_text": "[[c]]",
+        "answer": "[[[d]φ]]",
+        "is_correct": false
+    },
+    {
+        "idx": "152",
+        "response": "A. * inductive reasoning",
+        "response_text": "NULL",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "159",
+        "response": "[Premise symbolisation]: `P(s_1 ), P(s_2 ), P(s_3 ), P(s_4)`\n[Conclusion symbolisation]: `P(E)`",
+        "response_text": "[[Premise symbolisation]]",
+        "answer": "[[Q(s1),Q(s2),Q(s3),Q(s4)];[Q(S)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "163",
+        "response": "The answer is [C] Method ꙮ. \n\nThe passage describes two groups of individuals: those who have regular physical activity and those who have infrequent physical activity. It then compares the lung sizes (and thus volumes) of these two groups, finding that the first group has significantly larger lung volumes. The conclusion drawn is that regular physical activity results in an increase in lung capacity.\n\nThis conclusion aligns with Method ꙮ (Positive-Negative Group) because it involves identifying both conditions where P (lung size) and S (regular physical activity) occur together and conditions where one occurs without the other, while controlling for other variables (differing ages, genders, and occupations). The key point is that in the experiment, lung size (P) is associated with physical activity (S), and when all other conditions are controlled, it's clear that higher levels of physical activity are associated with larger lung volumes.",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "167",
+        "response": "A. ⸮ method",
+        "response_text": "NULL",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "172",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "175",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "181",
+        "response": "To apply the U-Generalization Rule, we symbolize the given information as follows:\n\n- `U(A, 10)`: All 10 students in the sample (n = 10) possess attribute `A`, which means they all got an A.\n- `∀x ∈ P`: This symbolizes that `x` represents any individual in the population (the whole class of 50 students).\n- `A(x)`: Attribute `A` is possessed by individual `x` in the population, which in this case means `x` got an A in the maths test.\n\nAccording to the U-Generalization Rule, if `U(A, 10)`, then `∀x ∈ P,  A(x)`. Given that all 10 students in the sample got an A, we can infer that all individuals in the population (50 students) would also get an A.\n\nTherefore, the estimated proportion of the whole class that would get an A is `100%`, or in [[number%]] format: `100%`.",
+        "response_text": "[[number%]]",
+        "answer": "[[100%]]",
+        "is_correct": false
+    },
+    {
+        "idx": "189",
+        "response": "C(S, 75/150, 90/100)",
+        "response_text": "NULL",
+        "answer": "[[IfC(S,90/100,75/150),thenPr(S,P1)≈Pr(S,P2)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "191",
+        "response": "A.  GB Paradox",
+        "response_text": "NULL",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "196",
+        "response": "B",
+        "response_text": "NULL",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "205",
+        "response": "[D/]",
+        "response_text": "[[D/]]",
+        "answer": "[[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "208",
+        "response": "[D/Declarations]",
+        "response_text": "[[D/Declarations]]",
+        "answer": "[[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "211",
+        "response": "[[A/B/C]]",
+        "response_text": "[[A/B/C]]",
+        "answer": "[[C]]",
+        "is_correct": false
+    },
+    {
+        "idx": "212",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "222",
+        "response": "A. ⚯ Definition",
+        "response_text": "NULL",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "224",
+        "response": "A[[A/B/C/D/E/F]]\n\nThe definition provided for trademark registration belongs to the ⚯ Definition, as it identifies the distinctive attributes or essential properties of the term \"trademark registration.\" It is categorized as a species concept within the genus concept of \"legal activity\" and outlines the conditions, procedures, and outcomes of trademark registration, distinguishing it from other activities covered by the law or comparable legal processes.",
+        "response_text": "[[A/B/C/D/E/F]]",
+        "answer": "[[E]]",
+        "is_correct": false
+    },
+    {
+        "idx": "234",
+        "response": "B. Syl+ Method",
+        "response_text": "NULL",
+        "answer": "[[E]]",
+        "is_correct": false
+    },
+    {
+        "idx": "240",
+        "response": "F. Elim- Method",
+        "response_text": "NULL",
+        "answer": "[[F]]",
+        "is_correct": false
+    },
+    {
+        "idx": "247",
+        "response": "[[D/E]]",
+        "response_text": "[[D/E]]",
+        "answer": "[[G]]",
+        "is_correct": false
+    },
+    {
+        "idx": "250",
+        "response": "[[E]]",
+        "response_text": "[[E]]",
+        "answer": "[[J]]",
+        "is_correct": false
+    }
+]

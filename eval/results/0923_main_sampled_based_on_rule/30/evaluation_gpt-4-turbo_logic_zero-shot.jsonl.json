@@ -1,0 +1,527 @@
+[
+    {
+        "idx": "1",
+        "response": "[[p1&p2];[p3||p4];[(p3&~p4)||(p4&~p3)]]",
+        "response_text": "[[p1&p2];[p3||p4];[(p3&~p4)||(p4&~p3)]]",
+        "answer": "[[p1&p2];[p3||p4];[(p3&~p4)||(~p3&p4)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "6",
+        "response": "In order to determine the level of the formula (~(p1=::>~p2))&((p3||p4)=~p1), let us analyze the structure and depth of logical connectives in the formula:\n\n1. Starting with the innermost structures:\n   - p1=::>~p2 is a Level B formula (two Level A formulas connected by =::>).\n   - ~p2 is a Level B formula (negation of the Level A formula p2).\n   - p3||p4 is also a Level B formula (two Level A formulas connected by ||).\n\n2. Moving one step outward:\n   - ~(p1=::>~p2) is a Level C formula (negation of a Level B formula).\n   - ~p1 is a Level B formula (negation of the Level A formula p1).\n\n3. Finally, the entire formula:\n   - ((p3||p4)=~p1) is a Level C formula (Level B formula on the left and a Level B formula on the right joined by =).\n   - (~(p1=::>~p2))&((p3||p4)=~p1) is a Level D formula because it consists of two Level C formulas connected by &.\n\nBased on the explanation above, the level of the formula is D. Thus, the output formatted according to the rules is:\n\n[[D]]",
+        "response_text": "[[D]]",
+        "answer": "[[E]]",
+        "is_correct": false
+    },
+    {
+        "idx": "9",
+        "response": "First, let's analyze each sub-formula:\n(1) p1=::>(p1||p2)\n- Analyzing logically:\n  - If p1 is true, then p1||p2 is also true (because p1 is true).\n  - If p1 is false, then p1||p2 is equivalent to p2, which can be either true or false, but the implication p1=::>p2 holds (false implies anything).\n  - Therefore, this formula is always true irrespective of the truth values of p1 and p2.\n\n(2) (p1&p2)=::>p1\n- Analyzing logically:\n  - If p1 and p2 are both true (p1&p2), then p1 is obviously true.\n  - If either p1 or p2 is false, making p1&p2 false, the implication is true because false implies anything.\n  - Thus, this formula is always true irrespective of the truth values of p1 and p2.\n\nFor both sub-formulas:\n- Since each of them is true regardless of the truth values of their propositions, they both qualify as Truth Formulas.\n\nThe responses are:\n(1) A (Truth Formula)\n(2) A (Truth Formula)\n\nFormatted response: [[A];[A]]",
+        "response_text": "[[A];[A]]",
+        "answer": "[[A];[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "12",
+        "response": "To determine if the two propositions, \\((p>q)>r\\) and \\(p>(q>r)\\), are equivalent, we symbolize and simplify each according to the propositional symbolization rules and the basic equivalences.\n\n1. Starting with \\(p>q\\), by rule (10), it is equivalent to \\(!p | q\\).\n   - Therefore, \\((p>q)>r\\) becomes \\((!p | q)>r\\).\n   - Applying rule (10) again, we get \\((!p | q)>r \\equiv:: !(!p | q) | r\\).\n   - By De Morgan's Law from rule (6), this is \\((!!p & !q) | r\\).\n   - Simplifying further using basic equivalence rule (1), this becomes \\((p & !q) | r\\).\n\n2. Moving to \\(q>r\\), this also converts by rule (10) to \\(!q | r\\).\n   - Thus, \\(p>(q>r)\\) becomes \\(p>(!q | r)\\).\n   - Again, by rule (10), we get \\(p>(!q | r) \\equiv:: !p | (!q | r)\\).\n   - This simplifies directly to \\( !p | (!q | r)\\), and applying the associative property (rule (4)), it becomes \\((!p | !q) | r\\).\n\n3. Now let’s compare the final forms of the two propositions:\n   - \\((p>q)>r\\) is \\((p & !q) | r\\).\n   - \\(p>(q>r)\\) is \\((!p | !q) | r\\).\n\nThese two propositions are not structurally identical and thus, cannot be translated into one another using the provided rules. \\( (p & !q) \\) is not the same as \\( (!p | !q) \\), as one expresses a conjunction while the other expresses a disjunction of negations.\n\nAccording to this analysis, \\((p>q)>r\\) and \\(p>(q>r)\\) are **not** equivalent, so the correct response is:\n\n[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "16",
+        "response": "Let's evaluate each sub-question separately:\n\n**(1) (p⇓q)⇓r::=::p⇓(q⇓r)**\n\nFirst, translate according to NAND and NOR rules as given in equivalences (15) and (16):\n- \\( A ⇓ B ::=:: !A & !B \\)\n\nTherefore: \n- \\( p⇓q ::=:: !p & !q \\) \n- \\( (p⇓q)⇓r ::=:: !(p⇓q) & !r ::=!(!p & !q) & !r \\)\nUsing De Morgan's Law (Equivalence 6):\n- \\( !(!p & !q) ::=:: !!p | !!q ::=:: p | q \\)\nThus:\n- \\( (p⇓q)⇓r ::=:: (p | q) & !r \\)\n\nNow, \\( q⇓r ::=:: !q & !r \\)\nAnd, \\( p⇓(q⇓r) ::=:: !p & !(q⇓r) ::=:: !p & !(!q & !r) \\) \nUsing De Morgan's Law:\n- \\( !(!q & !r) ::=:: !!q | !!r ::=:: q | r \\)\nThus:\n- \\( p⇓(q⇓r) ::=:: !p & (q | r) \\)\n\nComparing both:\n- \\( (p⇓q)⇓r ::=:: (p | q) & !r \\)\n- \\( p⇓(q⇓r) ::=:: !p & (q | r) \\)\n\nThese are not structurally the same and cannot be transformed one into the other using equivalences provided. So, sub-question (1) is invalid.\n\n**(2) (p⇑q)⇑r::=::p⇑(q⇑r)**\n\nFrom the equivalences:\n- \\( A ⇑ B ::=:: !A | !B \\)\n\nSo:\n- \\( p⇑q ::=:: !p | !q \\)\n- \\( (p⇑q)⇑r ::=:: !(p⇑q) | !r ::=:: !(!p | !q) | !r \\)\nUsing De Morgan's Law:\n- \\( !(!p | !q) ::=:: !!p & !!q ::=:: p & q \\)\nThus:\n- \\( (p⇑q)⇑r ::=:: (p & q) | !r \\)\n\nNow, \\( q⇑r ::=:: !q | !r \\)\nAnd, \\( p⇑(q⇑r) ::=:: !p | !(q⇑r) ::=:: !p | !(!q | !r) \\)\nUsing De Morgan's Law:\n- \\( !(!q | !r) ::=:: !!q & !!r ::=:: q & r \\)\nThus:\n- \\( p⇑(q⇑r) ::=:: !p | (q & r) \\) \n\nComparing both:\n- \\( (p⇑q)⇑r ::=:: (p & q) | !r \\)\n- \\( p⇑(q⇑r) ::=:: !p | (q & r) \\)\n\nThese are also not structurally the same and cannot be transformed one into the other using equivalences provided. So, sub-question (2) is invalid.\n\n### Final Answer: \n[[B];[B]]",
+        "response_text": "[[B];[B]]",
+        "answer": "[[B];[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "20",
+        "response": "Given the final derivation:\nE ::=:: (!p & q & !r) | (p & !q & r)\n\nWe can analyze these two final instances:\n1. !p & q & !r\n   - p is false (Professor Wang is not from Suzhou)\n   - q is true (Professor Wang is from Shanghai)\n   - r is false (Professor Wang is not from Hangzhou)\n\n2. p & !q & r\n   - p is true (Professor Wang is from Suzhou)\n   - q is false (Professor Wang is not from Shanghai)\n   - r is true (Professor Wang is from Hangzhou)\n\nSince only one of p, q, r can be true at any instance, we can utilize this information:\n1. If \"q is true (Shanghai),\" then:\n   - A (: !p & q) is entirely correct.\n   - B (: p & !q) is entirely incorrect.\n   - C (: !q & !r) is partially correct.\n\n2. If \"p is true (Suzhou)\" and \"r is true (Hangzhou),\" it would invalidate the condition that \n   exactly one of p, q, r is true. But we simultaneously cannot have two truths in (p, q, r).\n   \nTherefore, the valid scenario that fits the problem's conditions and Professor Wang's statement is:\n- Professor Wang is from Shanghai (as q is true in the only valid instance)\n- Person A got everything right.\n- Person B got everything wrong.\n- Person C got half right.\n\nIn summary, the answer is:\n[[Shanghai]; [entirely correct: A]; [partially correct: C]; [entirely incorrect: B]].",
+        "response_text": "[[Shanghai]; [entirely correct: A]; [partially correct: C]; [entirely incorrect: B]]",
+        "answer": "[[Shanghai];[entirelycorrect:A];[partiallycorrect:C];[entirelyincorrect:B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "21",
+        "response": "First, we need to determine the paired conjunctive terms from the expression (¬p ∧ ¬q ∧ r) ∨ (¬p ∧ q ∧ r).\n\n1. Evaluating (¬p ∧ ¬q ∧ r):\n   - p = 0, q = 0, r = 1, hence the binary representation is 001, corresponding to hexadecimal number 1.\n   - This paired conjunctive term is denoted as m1.\n\n2. Evaluating (¬p ∧ q ∧ r):\n   - p = 0, q = 1, r = 1, hence the binary representation is 011, corresponding to hexadecimal number 3.\n   - This paired conjunctive term is denoted as m3.\n\nTherefore, the expression (¬p ∧ ¬q ∧ r) ∨ (¬p ∧ q ∧ r) comprises the paired conjunctive terms m1 and m3, which implies it can be written in the principal disjunctive normal form with these terms.\n\nThe output, according to the specified format, is:\n[[paired conjunctive terms: m1, m3]; [denoted: (¬p^¬q^r)∨(¬p^q^r)]]",
+        "response_text": "[[paired conjunctive terms: m1, m3]; [denoted: (¬p^¬q^r)∨(¬p^q^r)]]",
+        "answer": "[[pairedconjunctiveterms:¬p^¬q^r,¬p^q^r];[denoted:m1∨m3]]",
+        "is_correct": false
+    },
+    {
+        "idx": "25",
+        "response": "First, we analyze the logical formula:\n(¬p∧¬q∧¬r)V(¬p∧¬q∧r)V(¬p∧q∧r)V(p∧¬q∧r)V(p∧q∧r)\n\nWe have three propositional variables, and thus 2^3 = 8 possible binary outcomes. Each term in the given formula represents a paired conjunctive term since each variable and its negation appear exactly once in conjunction across the terms.\n\nWe determine the binary and corresponding hexadecimal index for each term:\n\n1. ¬p∧¬q∧¬r: False assignment is 000 (binary), so m0.\n2. ¬p∧¬q∧r: True assignment is 001 (binary), so m1.\n3. ¬p∧q∧r: True assignment is 011 (binary), so m3.\n4. p∧¬q∧r: True assignment is 101 (binary), so m5.\n5. p∧q∧r: True assignment is 111 (binary), so m7.\n\nNow, to see if the formula is expressed in principal disjunctive normal form:\n- The principal disjunctive normal form requires all paired conjunctive terms to be covered. However, here only specific terms (m0, m1, m3, m5, m7) are included. Also, there are a total of 8 possible terms of three variables, and we have only covered 5 terms.\n\nGiven that the PDNF should include all possible paired conjunctive terms for the formula to be a tautology and it doesn't in this case, the given formula does not conform to the principal disjunctive normal form.\n\nSince the terms included are explicit in their use of alternating true assignments (binary) and represent a true outcome negated to form a simple conjunctive term, we can safely conclude:\n[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[A];[m0∨m1∨m3∨m5∨m7]]",
+        "is_correct": false
+    },
+    {
+        "idx": "26",
+        "response": "To determine whether (p∨r)∧(¬q∨r)∧(¬p∨q∨¬r) conforms to either the principal disjunctive normal form or the principal conjunctive normal form, we need to analyze its structure and ascertain if the form consists of all possible paired disjunctive or paired conjunctive terms for the involved variables p, q, and r.\n\n### Step 1: Structure Analysis\nThe formula:\n1. (p∨r)\n2. (¬q∨r)\n3. (¬p∨q∨¬r)\n\n### Step 2: Convert to Disjunctive Terms\nEach clause must be made exclusive by considering the other variables' true/false states, ensuring each term is a paired conjunctive term.\n- In (p∨r), possible satisfied assignments are: pq¬r (101), p¬q¬r (100), pqr (111), and so forth, covering terms where either p or r is true.\n- In (¬q∨r), possible satisfied assignments are: p¬qr (110), p¬q¬r (100), ¬p¬qr (010), and so forth, covering terms where either q is false or r is true.\n- In (¬p∨q∨¬r), all combinations where not all literals are false (¬p, q, ¬r specifically).\n\n### Step 3: Combined Term Truth Assignments\nFor the formula to be in principal disjunctive normal form, each conjunctive term in a complete disjunctive form must involve every possible combination of variables in either their normal or negated states once. However, from the formula's structure, not all combinations are represented; for example, combined terms need to allow for every possible value assignment to p, q, r to be accounted for in the principal disjunctive normal form.\n\nGiven the distinct clauses do not cover absolutely every possible pairing of p, q, r (e.g., ¬p¬q¬r not directly represented unless deduced through complex Boolean algebra), we find:\n\n### Conclusion\nThe formula cannot be exactly framed into either a principal disjunctive normal form or principal conjunctive normal form as it doesn’t include all exclusive possible assignments of variables p, q, and r (all 2^n combinations of the variables) distinctly. Each term isn't neatly a paired conjunctive term given overlaps and missing explicit representations of some states.\n\n### Answer:\n[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "32",
+        "response": "Based on the resolution logic provided, we must identify a pair of literals L and L' in the clauses C1 and C2 such that one contains L and the other contains L'. \n\nIn this instance:\n- C1 = ¬p ∨ ¬q ∨ r \n- C2 = ¬q ∨ ¬r ∨ s ∨ ¬t\n\nFrom the set of literals:\n- In C1, we have ¬p, ¬q, and r.\n- In C2, we have ¬q, ¬r, s, and ¬t.\n\nWe do not find any matching pair of L and L’ (where one clause has L and the other has L’) between the two clauses. Both C1 and C2 share the literal ¬q, but not in L and L' form (such as q and ¬q). Consequently, no resolution can be performed between C1 and C2.\n\nTherefore, according to the resolution rule, if no literals and their complements are found between two clauses, we cannot dispel them using the resolution rule provided. \n\nFormatted response: \n[[]]",
+        "response_text": "[[]]",
+        "answer": "[[¬p∨¬q∨s∨¬t]]",
+        "is_correct": false
+    },
+    {
+        "idx": "34",
+        "response": "Given two clauses:\nC1 = ¬p ∨ q ∨ r\nC2 = p ∨ ¬r ∨ ¬s\n\nTo find dispel(C1, C2), we need to check for pairs of literals where one is the complement of the other.\n\nFrom C1 and C2:\nC1 contains ¬p, and C2 contains p, which are complements of each other. \nWe also observe C1 contains r and C2 contains ¬r, which are also complements of each other.\n\n1. Resolving on p and ¬p:\n   Remove p and ¬p from the clauses:\n   - From C1: q ∨ r\n   - From C2: ¬r ∨ ¬s\n   \n   Now resolving resulting clauses:\n   - (q ∨ r) and (¬r ∨ ¬s) based on r and ¬r:\n     Resulting in q ∨ ¬s after removal of r and ¬r.\n\nTherefore, dispel(C1, C2) yields q ∨ ¬s. \n\nFinal formatted answer: [[q; ¬s]]",
+        "response_text": "[[q; ¬s]]",
+        "answer": "[[q∨r∨¬r∨¬s];[¬p∨q∨p∨¬s]]",
+        "is_correct": false
+    },
+    {
+        "idx": "37",
+        "response": "Given the conjunctive normal form S = p ∧ (p ∨ q) ∧ (p ∨ ¬q) ∧ (q ∨ ¬r) ∧ (q ∨ r), let's convert this into sets of clauses and apply the resolution algorithm processes to identify S0, S1, and S2 states before the second cycle.\n\nStart by decomposing S into clauses:\n- S contains the clauses {p}, {p ∨ q}, {p ∨ ¬q}, {q ∨ ¬r}, {q ∨ r}.\n\n#### Initialization:\n- Initial S0 = ∅.\n- All simple disjunctive clauses initially are in S1 = {{p}, {p ∨ q}, {p ∨ ¬q}, {q ∨ ¬r}, {q ∨ r}}.\n- Initial S2 = ∅.\n\n#### Resolution in S0 and S1:\n- Since S0 is empty in the first cycle, no resolution occurs between the clauses in S0 and S1.\n\n#### Resolution in S1:\n- We are looking for pairs of clauses (C1, C2) that can be resolved:\n  1. Resolving {p ∨ q} and {p ∨ ¬q}, we get {p} by dispelling on q and ¬q. However, {p} is already in S1.\n  2. Resolving {q ∨ ¬r} and {q ∨ r}, we get {q} by dispelling on ¬r and r. However, we only add new clauses if they aren’t already in S0 or S1. Thus, S2 remains empty as all resolutions lead to clauses already present or empty clauses.\n\n#### Check S2:\n- Since S2 contains no elements, S1 doesn't change, no clauses move to S0, and S2 remains empty for the next cycle.\n\n### Before the second cycle:\n- S0 = ∅\n- S1 = {{p}, {p ∨ q}, {p ∨ ¬q}, {q ∨ ¬r}, {q ∨ r}}\n- S2 = ∅\n\nThe notation according to the specified format:\n[∅;{{p}, {p ∨ q}, {p ∨ ¬q}, {q ∨ ¬r}, {q ∨ r}};∅]",
+        "response_text": "[[∅;{{p}, {p ∨ q}, {p ∨ ¬q}, {q ∨ ¬r}, {q ∨ r}};∅]]",
+        "answer": "[[{p,p∨q,p∨¬q,q∨¬r,q∨r}];[{p∨r,p∨¬r,q}];[∅]]",
+        "is_correct": false
+    },
+    {
+        "idx": "47",
+        "response": "[[O: -]]",
+        "response_text": "[[O: -]]",
+        "answer": "[[-]]",
+        "is_correct": false
+    },
+    {
+        "idx": "48",
+        "response": "To analyze the output based on the given logical expression (p∧q)∨(¬p∧r) and the input values, let's break it down:\n\n1. Inputs:\n   - p (I1) = \"+\"\n   - q (I2) = \"-\"\n   - r (I3) = \"+\"\n\n2. Logical expression evaluation:\n   - p∧q: This is a conjunction (AND) operation between p and q. With p as \"+\" (true) and q as \"-\" (false), the result is false (\"-\" in our notation).\n   - ¬p∧r: This is negation of p (¬p) followed by a conjunction (AND) with r. With p as \"+\" (true), ¬p becomes \"-\" (false). Conjunction of \"-\" and r (\"+\") is false (\"-\").\n\n3. Total expression (p∧q)∨(¬p∧r): This is a disjunction (OR) between the results of p∧q and ¬p∧r. Both components yielded \"-\" (false), so the result of the OR operation is also false (\"-\").\n\nTherefore, the output of the circuit, represented as \"O\", is false (\"-\").\n\nThe answer in the specified notation is:\n[[output]]: \"-\"",
+        "response_text": "[[output]]",
+        "answer": "[[A=1,E=8,H=2,L=3,P=0,T=9]]",
+        "is_correct": false
+    },
+    {
+        "idx": "50",
+        "response": "[[-, -, +]; [-, +, -]; [-, +, +]]",
+        "response_text": "[[-, -, +]; [-, +, -]; [-, +, +]]",
+        "answer": "[[-,-,+]]",
+        "is_correct": false
+    },
+    {
+        "idx": "52",
+        "response": "[[AxF(x); Ex(F(x) & G(x)); Ax(M(x) ⇒ F(x)); Ex(M(x) & G(x))]]",
+        "response_text": "[[AxF(x); Ex(F(x) & G(x)); Ax(M(x) ⇒ F(x)); Ex(M(x) & G(x))]]",
+        "answer": "[[AxF(x)];[ExF(x)];[Ax(M(x)⇒F(x))];[Ex(M(x)&G(x))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "53",
+        "response": "[[Ax(M(x) ⇒ F(x))]; [Ex(G(x))]; [∼Ex(H(x))]; [Ax(F(x) ⇒ ∼G(x))]]",
+        "response_text": "[[Ax(M(x) ⇒ F(x))]; [Ex(G(x))]; [∼Ex(H(x))]; [Ax(F(x) ⇒ ∼G(x))]]",
+        "answer": "[[Ax(M(x)⇒F(x))];[Ex(M(x)&G(x))];[∼Ex(M(x)&H(x))];[∼Ax(F(x)⇒G(x))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "56",
+        "response": "[[Ax(G(x) ⇒ H(x)); Ex(G(x) & R(x))]]",
+        "response_text": "[[Ax(G(x) ⇒ H(x)); Ex(G(x) & R(x))]]",
+        "answer": "[[Ax(G(x)⇒H(x))];[Ex(G(x)&R(x))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "61",
+        "response": "[[FJ(fJ(x, y), gJ(x, y))]]",
+        "response_text": "[[FJ(fJ(x, y), gJ(x, y))]]",
+        "answer": "[[x+y=x*y]]",
+        "is_correct": false
+    },
+    {
+        "idx": "64",
+        "response": "[[∀x FJ(gJ(x, 0), x) → FJ(x, y)]]",
+        "response_text": "[[∀x FJ(gJ(x, 0), x) → FJ(x, y)]]",
+        "answer": "[[∀x(x*0=x)→(x=y)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "70",
+        "response": "[[\n    ∀x∀y∃z FJ(fJ(x,y),z)\n];\n[\n    ∃x FJ(fJ(x,y),gJ(x,z))\n]]",
+        "response_text": "[[∀x∀y∃z FJ(fJ(x,y),z)\n];\n[\n    ∃x FJ(fJ(x,y),gJ(x,z))]]",
+        "answer": "[[∀x∀y∃z(x+y=z)];[∃x(x+y=x*z)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "75",
+        "response": "[[SIP]]",
+        "response_text": "[[SIP]]",
+        "answer": "[[SIP]]",
+        "is_correct": true
+    },
+    {
+        "idx": "78",
+        "response": "[[true];[true];[false];[false]]",
+        "response_text": "[[true];[true];[false];[false]]",
+        "answer": "[[true];[true];[false];[false]]",
+        "is_correct": true
+    },
+    {
+        "idx": "80",
+        "response": "The statement made by Inspector A is formatted as a universal negative, \"All individual businesses did not pay taxes,\" which can be symbolized as SEP (No S are P), where S stands for individual businesses, and P stands for entities that paid taxes.\n\nThe statement made by Inspector C is a particular affirmative, \"Some individual businesses have paid taxes,\" which is symbolized as SIP (Some S are P).\n\nThe relationship between SEP and SIP is a * Relation. They are in direct contradiction as follows:\n- If SEP (No S are P) is true, then SIP (Some S are P) must be false.\n- Conversely, if SIP (Some S are P) is true, then SEP (No S are P) must be false.\n\nThus, the correct answer is [[*]].",
+        "response_text": "[[*]]",
+        "answer": "[[*]]",
+        "is_correct": true
+    },
+    {
+        "idx": "82",
+        "response": "[[Every natural number is not non-rational.]]",
+        "response_text": "[[Every natural number is not non-rational.]]",
+        "answer": "[[Everynaturalnumberisnotanon-rationalnumber.]]",
+        "is_correct": false
+    },
+    {
+        "idx": "85",
+        "response": "[[\"All non-theories that have been tested by practice are not genuine scientific theories.\"]]",
+        "response_text": "[[\"All non-theories that have been tested by practice are not genuine scientific theories.\"]]",
+        "answer": "[[Alltheoriesthathavenotbeentestedbypracticearenotgenuinescientifictheories.]]",
+        "is_correct": false
+    },
+    {
+        "idx": "89",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "94",
+        "response": "The given logical statements translate to:\n- ∀P⇒¬M, which corresponds to E (For every P, M is not true)\n- ∃S⇒M, which corresponds to I (There exists some S that implies M)\n- ∃S⇒¬P, which corresponds to O (There exists some S that implies not P)\n\nMapping these to the forms in the syllogistic figures:\n- P()M corresponds to E (For every P, M is not true)\n- M()S corresponds to the converse form of I (typically M()S in its usual form would be ∀M⇒S, when interpreted as I, it corresponds to ∃M⇒S, thus to fit I here, we consider it from the perspective given by the second statement)\n- S()P corresponds to O\n\nThis corresponds best to Figure IV with its form:\nP()M\nM()S\n∴S()P\nAnd the valid moods for Figure IV are AEE, EIO, IAI.\n\nMatching the translated statements E, I initially, and then O finally, we find the mood that fits is EIO.\n\nThus, the answer is [[IV];[EIO]].",
+        "response_text": "[[IV];[EIO]]",
+        "answer": "[[II];[EIO]]",
+        "is_correct": false
+    },
+    {
+        "idx": "98",
+        "response": "From the given propositions:\n()AP\nMI()\n∴SIP\n\nWe can observe that the notation follows the format that fits the first figure from the syllogism description provided in the logic rule:\nM()P\nS()M\n∴S()P\n\nIn this case, we identify:\n- AP as P()M\n- MI as S()M\n- SIP as S()P\n\nThe valid moods for Figure I are:\n- AAA\n- EAE\n- AII\n- EIO\n\nHowever, given the conclusion SIP matches ∃p1⇒p2, which corresponds to the notation \"I.\" We should seek a mood wherein the conclusion follows a similar pattern. Checking the valid moods for Figure I and where the conclusion SIP can imply an existential positive (I):\n\nFrom the possible moods:\n- AAA is not suitable because it would require all premises and conclusion to be of type \"A\" or universal affirmative.\n- EAE won't suit as it alternates between universal affirmative and universal negative.\n- AII fits because it starts with a universal affirmative for the major premise and existential affirmatives for the minor premise and conclusion.\n\nThus, the logical fit would be the mood \"AII,\" where:\n- ()AP matches \"A\"\n- MI() matches \"I\"\n- SIP uses \"I\" already.\n\nSo, based on the mood AII, the filled parentheses will be:\nA for ()AP,\nI for MI(),\nLeading to the conclusion format I for SIP.\n\nThus, the complete answer in the required format is [A;I].",
+        "response_text": "[[A;I]]",
+        "answer": "[[M];[S]]",
+        "is_correct": false
+    },
+    {
+        "idx": "100",
+        "response": "The given form is:\nMIP\nM()S\n∴S()P\n\nAnalyzing this, we're looking at Figure III because \"M\" acts as the middle term first relating to \"P\" and then to \"S\". \n\nFrom the provided valid moods for Figure III:\n- AII\n- EIO\n- IAI\n- OAO\n\nWe find the mood that fits the given MIP, which is 'I'. Then, using this mood, the full notation can be identified:\nI: ∃p1⇒p2 \n\nFrom this interpretation within the matching moods, the mood \"IAI\" corresponds:\nMIP (the first 'I') fits with ∃p1⇒p2,\nThe second and third positions should also be an 'I' to fit the mood IAI.\n\nThus, the completed syllogism is:\nMIP\nMIS\n∴SIP\n\nRepresenting this in the specified format gives us:\n[[\"I\"]; [\"I\"]].",
+        "response_text": "[[\"I\"]; [\"I\"]]",
+        "answer": "[[A];[I]]",
+        "is_correct": false
+    },
+    {
+        "idx": "105",
+        "response": "[[1]]",
+        "response_text": "[[1]]",
+        "answer": "[[1]]",
+        "is_correct": true
+    },
+    {
+        "idx": "107",
+        "response": "Given the statement \"The experiment is not necessarily not going to succeed,\" we can symbolically represent this as #!(p) where p is the proposition \"The experiment will succeed.\" According to our formulas, formula (6) directly maps to this relationship:\n\n>#!(p) → !$p\n\nThis formula states that if it is not necessarily the case that p is false, then it is possible that p is true. Substituting our proposition back in, this reads, \"If it is not necessarily the case that 'The experiment will succeed' is false, then it is possible that 'The experiment will succeed' is true.\"\n\nTherefore, the correct modal reasoning formula that corresponds to the inference from \"The experiment is not necessarily not going to succeed\" to \"The experiment may possibly succeed\" is formula:\n\n[[6]]",
+        "response_text": "[[6]]",
+        "answer": "[[6]]",
+        "is_correct": true
+    },
+    {
+        "idx": "108",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "114",
+        "response": "To determine the relationship between the given propositions according to the rules specified, we analyze each pair:\n\n1. The first pair: \"In public places, smoking is prohibited.\" and \"In public places, smoking is mandatory.\"\n- Translated into symbols: \"In public places, smoking is prohibited.\" is ‽p and \"In public places, smoking is mandatory.\" is ¶p.\n- According to the rules, the pair ¶p and ‽p falls under x relationship where both cannot be true, but can both be false.\n\n2. The second pair: \"Not fulfilling the contract is allowed.\" and \"Fulfilling the contract is allowed.\"\n- Translated into symbols: \"Not fulfilling the contract is allowed.\" is §¬p and \"Fulfilling the contract is allowed.\" is §p.\n- According to the rules, the pair §p and §¬p falls under @ relationship where both cannot be false, but can both be true.\n\nCombining these findings, the formatted answer is [[B];[C]].",
+        "response_text": "[[B];[C]]",
+        "answer": "[[B];[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "116",
+        "response": "Given the statements:\n- \"Elderly abuse is prohibited\" corresponds to ‽p.\n- \"Elderly abuse is not allowed\" corresponds to ¬§p.\n\nFrom the normative reasoning formulas:\n(2) ‽p←→¬§p indicates that 'Elderly abuse is prohibited' (‽p) is equivalent to 'It is not permitted to abuse the elderly' (¬§p).\n\nThis means both statements directly correspond through formula (2). Therefore, there is [[1]] canonical reasoning formula that connects these statements according to the provided logic rules.",
+        "response_text": "[[1]]",
+        "answer": "[[2]]",
+        "is_correct": false
+    },
+    {
+        "idx": "118",
+        "response": "From the statement \"Citizens all have the duty to protect national property,\" we translate this normatively as ¶p, where p is \"protect national property.\"\n\nAccording to reasoning formula 9 (¶p→§p), the expression ¶p translates to an obligation to protect national property implies that §p is true, which is permission to protect national property.\n\nHence, the correct inference is:\n\nC: Allow citizens to protect national property.\n\nTherefore, the answer is [[C]].",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "122",
+        "response": "[[Gp; F¬p]; [Fp; G¬p]]",
+        "response_text": "[[Gp; F¬p]; [Fp; G¬p]]",
+        "answer": "[[Fp];[Gp]]",
+        "is_correct": false
+    },
+    {
+        "idx": "124",
+        "response": "To determine the relationships according to the provided rules, let's analyze the semantics of the given sentences and apply the corresponding symbolic notations:\n\n**(1) \"Xiao Lin will win the computer competition championship trophy\" and \"It is not true that Xiao Lin will never win the computer competition championship trophy\"**\n\n- Let `p`: \"Xiao Lin will win the computer competition championship trophy\".\n- Therefore, the first sentence is represented as `Fp` (“future point in time”: Xiao Lin will win).\n- The second sentence is `¬F¬p` (It is not true that in the future, it is not the case that Xiao Lin will win).\n\nFrom the Time Proposition Inference formulas:\n- `¬F¬p → Fp` (Formula 20)\n- This corresponds to relationship ⚭ (C), under which `Fp and F¬p` cannot both be false, but can both be true.\n\n\n**(2) \"Xiao Bai will permanently settle in the United States\" and \"Xiao Bai will settle in the United States\"**\n\n- Let `q`: \"Xiao Bai will settle in the United States\".\n- First sentence is represented as `Gq` (\"permanently\" indicates a \"future period of time\").\n- The second sentence is represented as `Fq` (\"future point in time\" that Xiao Bai will settle).\n\nFrom the Time Proposition Relationships:\n- The pair `Gq` and `Fq` has a Relationship ⁂ (D). According to Rule (4) for ⁂ relationship, they can both be true or both false.\n\nTherefore, the answers for the relationships between the sentences are:\n- (1) C\n- (2) D\n\nFormatted answer: [[C];[D]].",
+        "response_text": "[[C];[D]]",
+        "answer": "[[A];[D]]",
+        "is_correct": false
+    },
+    {
+        "idx": "125",
+        "response": "Given the statements for Old Zhao and Ningbo, we assign the proposition p to represent \"Old Zhao worked in Ningbo\". Thus, \"Old Zhao did not work in Ningbo\" is ¬p.\n\nFrom the condition \"It is not the case that Old Zhao worked in Ningbo all the time in the past,\" we interpret this as \"It is not always true that p in the past,\" which is symbolized as ¬Ap.\n\nGiven the other condition \"Old Zhao did not work in Ningbo at some point in the past,\" we interpret this as \"There exists a point in the past where ¬p,\" which is symbolized as H¬p.\n\nAnalyzing through the given inference formulas:\n1. ¬Ap → H¬p (#4) - This symbolizes that if it's not always the case that Old Zhao worked in Ningbo in the past, there must be at least one past point where Old Zhao did not work in Ningbo.\n2. H¬p → ¬Ap (#12) - This symbolizes that if there was a past point where Old Zhao did not work in Ningbo, then it is not always the case that Old Zhao worked in Ningbo.\n\nThese two reasoning formulas correspond directly to the logical relationships stated in the question. Therefore, this corresponds to two formulas.\n\nAnswer: [[2]]",
+        "response_text": "[[2]]",
+        "answer": "[[4]]",
+        "is_correct": false
+    },
+    {
+        "idx": "131",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "137",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "140",
+        "response": "[[B_p → BB_p]]",
+        "response_text": "[[B_p → BB_p]]",
+        "answer": "[[B_Alice(p)∧B_Alice(B_Alice(p))]]",
+        "is_correct": false
+    },
+    {
+        "idx": "145",
+        "response": "[[ c ]open]",
+        "response_text": "[[[ c]]",
+        "answer": "[[[c]open]]",
+        "is_correct": false
+    },
+    {
+        "idx": "147",
+        "response": "[[[d]φ]]",
+        "response_text": "[[[d]φ]]",
+        "answer": "[[[d]φ]]",
+        "is_correct": true
+    },
+    {
+        "idx": "150",
+        "response": "[[H]]",
+        "response_text": "[[H]]",
+        "answer": "[[H]]",
+        "is_correct": true
+    },
+    {
+        "idx": "153",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "156",
+        "response": "[[P(a1), P(a2), P(a3)];[forall a in S, P(a)]]",
+        "response_text": "[[P(a1), P(a2), P(a3)];[forall a in S, P(a)]]",
+        "answer": "[[P(a1),P(a2),P(a3)];[forallainS,P(a)]]",
+        "is_correct": true
+    },
+    {
+        "idx": "157",
+        "response": "[[P(a1), P(a2), P(a3), P(a4)];[P(A)]]",
+        "response_text": "[[P(a1), P(a2), P(a3), P(a4)];[P(A)]]",
+        "answer": "[[P(a1),P(a2),P(a3),P(a4)];[P(A)]]",
+        "is_correct": true
+    },
+    {
+        "idx": "164",
+        "response": "[[D]]",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "167",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "170",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "173",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[B]]",
+        "is_correct": true
+    },
+    {
+        "idx": "177",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "179",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "185",
+        "response": "If `P(defective, 2, 50)`, then `Pr(defective) ≈ 2/50`.\n\nCalculating the fraction, \n2 divided by 50 is 0.04.\n\nConverting to percentage:\n0.04 * 100 = 4%\n\nTherefore, the estimated rate of defective products for the entire batch is [[4%]].",
+        "response_text": "[[4%]]",
+        "answer": "[[4%]]",
+        "is_correct": true
+    },
+    {
+        "idx": "186",
+        "response": "[[U(A, 50) → ∀x ∈ P, A(x)]]",
+        "response_text": "[[U(A, 50) → ∀x ∈ P, A(x)]]",
+        "answer": "[[IfU(A,50),then∀x∈P,A(x)]]",
+        "is_correct": false
+    },
+    {
+        "idx": "190",
+        "response": "[[P(A, 40, 500), Pr(A) ≈ 40/500]]",
+        "response_text": "[[P(A, 40, 500), Pr(A) ≈ 40/500]]",
+        "answer": "[[IfP(A,40,500),thenPr(A)≈40/500]]",
+        "is_correct": false
+    },
+    {
+        "idx": "194",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "197",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "200",
+        "response": "[[B]]",
+        "response_text": "[[B]]",
+        "answer": "[[A]]",
+        "is_correct": false
+    },
+    {
+        "idx": "203",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "205",
+        "response": "[[D]]",
+        "response_text": "[[D]]",
+        "answer": "[[D]]",
+        "is_correct": true
+    },
+    {
+        "idx": "207",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "211",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "216",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "220",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[C]]",
+        "is_correct": true
+    },
+    {
+        "idx": "222",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[B]]",
+        "is_correct": false
+    },
+    {
+        "idx": "224",
+        "response": "[[C]]",
+        "response_text": "[[C]]",
+        "answer": "[[E]]",
+        "is_correct": false
+    },
+    {
+        "idx": "226",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "231",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "234",
+        "response": "[[E]]",
+        "response_text": "[[E]]",
+        "answer": "[[E]]",
+        "is_correct": true
+    },
+    {
+        "idx": "236",
+        "response": "[[F]]",
+        "response_text": "[[F]]",
+        "answer": "[[F]]",
+        "is_correct": true
+    },
+    {
+        "idx": "241",
+        "response": "[[A]]",
+        "response_text": "[[A]]",
+        "answer": "[[A]]",
+        "is_correct": true
+    },
+    {
+        "idx": "248",
+        "response": "[[H]]",
+        "response_text": "[[H]]",
+        "answer": "[[H]]",
+        "is_correct": true
+    },
+    {
+        "idx": "249",
+        "response": "[[I]]",
+        "response_text": "[[I]]",
+        "answer": "[[I]]",
+        "is_correct": true
+    }
+]
